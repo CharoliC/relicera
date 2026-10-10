@@ -84,6 +84,11 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)
                     .food(SculkFruitItem.createFoodProperties())));
 
+    public static final RegistryObject<Item> SOULKNOT_STONE = ITEMS.register("soulknot_stone", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)));
+
     public static final RegistryObject<Item> SILK_OF_NIGHT = ITEMS.register("silk_of_night", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)

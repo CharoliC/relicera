@@ -39,6 +39,7 @@ import com.yukari.relicera.common.item.PastoralMelodyEffects;
 import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
 import com.yukari.relicera.common.item.SolarEmberEffects;
+import com.yukari.relicera.common.item.SoulknotStoneEffects;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldEffects;
 import com.yukari.relicera.common.loot.StormscaleDrops;
@@ -197,6 +198,7 @@ public final class CommonGameEvents {
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+        SoulknotStoneEffects.onEntityJoinLevel(event);
         if (event.getEntity() instanceof ItemEntity itemEntity && itemEntity.getItem().is(ModItems.ASTRAL_LENS.get())) {
             itemEntity.setGlowingTag(true);
         }
@@ -352,6 +354,16 @@ public final class CommonGameEvents {
     @SubscribeEvent
     public static void onLivingExperienceDrop(LivingExperienceDropEvent event) {
         FourfoldSherdPendantEffects.applyExperienceBonus(event);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
+    public static void onSoulknotDrops(LivingDropsEvent event) {
+        SoulknotStoneEffects.suppressDrops(event);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
+    public static void onSoulknotExperienceDrop(LivingExperienceDropEvent event) {
+        SoulknotStoneEffects.suppressExperience(event);
     }
 
     @SubscribeEvent

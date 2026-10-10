@@ -28,15 +28,18 @@
     "SculkCatalystBlockEntityMixin",
     "SculkCatalystListenerMixin",
     "SlotMixin",
+    "SonicBoomMixin",
     "VillagerMixin",
     "VillagerHostilesSensorMixin",
-    "WardenEntitySensorMixin"
+    "WardenEntitySensorMixin",
+    "WardenMixin"
   ],
   "client": [
     "client.LivingEntityRendererMixin",
     "client.MinecraftMixin",
     "client.PlayerRendererMixin",
-    "client.PlayerItemInHandLayerMixin"
+    "client.PlayerItemInHandLayerMixin",
+    "client.WardenClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

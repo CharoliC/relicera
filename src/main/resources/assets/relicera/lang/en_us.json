@@ -389,9 +389,9 @@
   "tooltip.relicera.pastoral_melody.0": "§9When played, makes nearby animals breed.",
   "tooltip.relicera.pastoral_melody.refill": "§9Refill with Hay Bales",
 
-  "item.relicera.sculk_fruit": "Sculk Fruit",
   "item.relicera.sculk_fruit_seeds": "Sculk Fruit Seeds",
   "block.relicera.sculk_fruit_crop": "Sculk Fruit Crop",
+  "item.relicera.sculk_fruit": "Sculk Fruit",
   "config.jade.plugin_relicera.sculk_fruit_growth": "Sculk Fruit growth",
 
   "item.relicera.ephemeral_bloom": "Ephemeral Bloom",
@@ -417,6 +417,7 @@
   "item.relicera.rotten_tusk": "Rotten Tusk",
   "item.relicera.forgeling_bucket": "Bucket of Forgeling",
   "item.relicera.forgeling_spawn_egg": "Forgeling Spawn Egg",
+  "item.relicera.soulknot_stone": "Soulknot Stone",
 
   "item.relicera.extinguished_solar_furnace": "Extinguished Solar Furnace",
   "item.relicera.withered_life_chalice": "Withered Life Chalice",
@@ -500,6 +501,8 @@
   "effect.relicera.furnace_of_war": "Furnace of War",
   "effect.relicera.furnace_of_war.description": "Burn the nearby arrows, fireworks, potion bottles. Burn the sword and axe weapons that attacking you.",
   "effect.relicera.covenant_breaker": "Covenant Breaker",
+  "effect.relicera.soul_overload": "Soul Overload",
+  "effect.relicera.soul_overload.description": "Increases Warden sonic boom damage and heartbeat rate. At level III, unleashes uncontrolled sonic booms before collapsing into a Soulknot Stone.",
   "effect.relicera.covenant_breaker.description": "Cannot form new covenants.",
 
   "jei.relicera.info.astral_lens.line_1": "Obtained after observing every moon phase with a spyglass.",

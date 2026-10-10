@@ -389,9 +389,9 @@
   "tooltip.relicera.pastoral_melody.0": "§9吹响时，让附近的动物繁殖。",
   "tooltip.relicera.pastoral_melody.refill": "§9使用干草捆进行填充",
 
-  "item.relicera.sculk_fruit": "幽光果",
   "item.relicera.sculk_fruit_seeds": "幽光果种子",
   "block.relicera.sculk_fruit_crop": "幽光果植株",
+  "item.relicera.sculk_fruit": "幽光果",
   "config.jade.plugin_relicera.sculk_fruit_growth": "幽光果生长进度",
 
   "item.relicera.ephemeral_bloom": "一夜花",
@@ -417,6 +417,7 @@
   "item.relicera.rotten_tusk": "腐化獠牙",
   "item.relicera.forgeling_bucket": "锻灵桶",
   "item.relicera.forgeling_spawn_egg": "锻灵刷怪蛋",
+  "item.relicera.soulknot_stone": "魂结之石",
 
   "item.relicera.extinguished_solar_furnace": "熄灭的太阳熔炉",
   "item.relicera.withered_life_chalice": "枯萎的生命圣杯",
@@ -500,6 +501,8 @@
   "effect.relicera.furnace_of_war": "战争熔炉",
   "effect.relicera.furnace_of_war.description": "焚毁靠近的箭矢、烟花火箭、药水瓶，焚毁攻击你的剑类和斧类武器。",
   "effect.relicera.covenant_breaker": "背约",
+  "effect.relicera.soul_overload": "灵魂过载",
+  "effect.relicera.soul_overload.description": "提高监守者的音爆伤害与心跳频率。达到III级时，失控释放音爆，随后崩解为魂结之石。",
   "effect.relicera.covenant_breaker.description": "无法订立新的契约。",
 
   "jei.relicera.info.astral_lens.line_1": "使用望远镜观察所有的月相后获得。",

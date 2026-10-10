@@ -21,7 +21,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetworking {
-    private static final String PROTOCOL_VERSION = "8";
+    private static final String PROTOCOL_VERSION = "10";
     private static int messageId;
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
