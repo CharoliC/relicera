@@ -389,6 +389,7 @@
   "tooltip.relicera.pastoral_melody.0": "§9吹响时，让附近的动物繁殖。",
   "tooltip.relicera.pastoral_melody.refill": "§9使用干草捆进行填充",
 
+  "item.relicera.sculk_fruit": "幽光果",
   "item.relicera.sculk_fruit_seeds": "幽光果种子",
   "block.relicera.sculk_fruit_crop": "幽光果植株",
   "config.jade.plugin_relicera.sculk_fruit_growth": "幽光果生长进度",

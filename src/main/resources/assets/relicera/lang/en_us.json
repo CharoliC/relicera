@@ -389,6 +389,7 @@
   "tooltip.relicera.pastoral_melody.0": "§9When played, makes nearby animals breed.",
   "tooltip.relicera.pastoral_melody.refill": "§9Refill with Hay Bales",
 
+  "item.relicera.sculk_fruit": "Sculk Fruit",
   "item.relicera.sculk_fruit_seeds": "Sculk Fruit Seeds",
   "block.relicera.sculk_fruit_crop": "Sculk Fruit Crop",
   "config.jade.plugin_relicera.sculk_fruit_growth": "Sculk Fruit growth",

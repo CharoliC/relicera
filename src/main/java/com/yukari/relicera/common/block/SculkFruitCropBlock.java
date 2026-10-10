@@ -80,7 +80,7 @@ public class SculkFruitCropBlock extends BushBlock implements EntityBlock {
             if (level.getBlockEntity(pos) instanceof SculkFruitCropBlockEntity crop) {
                 crop.resetGrowth();
             }
-            popResource(level, pos, new ItemStack(ModItems.SCULK_FRUIT_SEEDS.get()));
+            popResource(level, pos, new ItemStack(ModItems.SCULK_FRUIT.get()));
             level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
         }

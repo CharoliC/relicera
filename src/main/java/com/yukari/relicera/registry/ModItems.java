@@ -26,6 +26,7 @@ import com.yukari.relicera.common.item.RelicCurioItem;
 import com.yukari.relicera.common.item.RevivalNectarItem;
 import com.yukari.relicera.common.item.RippleheartRingItem;
 import com.yukari.relicera.common.item.RippleheartRingsItem;
+import com.yukari.relicera.common.item.SculkFruitItem;
 import com.yukari.relicera.common.item.SculkFruitSeedsItem;
 import com.yukari.relicera.common.item.SolarEmberItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
@@ -76,6 +77,12 @@ public final class ModItems {
             new SculkFruitSeedsItem(ModBlocks.SCULK_FRUIT_CROP.get(), new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> SCULK_FRUIT = ITEMS.register("sculk_fruit", () ->
+            new SculkFruitItem(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)
+                    .food(SculkFruitItem.createFoodProperties())));
 
     public static final RegistryObject<Item> SILK_OF_NIGHT = ITEMS.register("silk_of_night", () ->
             new Item(new Item.Properties()

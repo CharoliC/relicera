@@ -6,7 +6,32 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "relicera:sculk_fruit_seeds"
+          "name": "relicera:sculk_fruit",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "relicera:sculk_fruit_crop",
+              "properties": {
+                "age": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "relicera:sculk_fruit_seeds",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:block_state_property",
+                "block": "relicera:sculk_fruit_crop",
+                "properties": {
+                  "age": "4"
+                }
+              }
+            }
+          ]
         }
       ]
     }
