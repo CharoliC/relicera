@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "relicera:feysilver_ingot",
+    "relicera:warp_crystal",
+    "relicera:chalice_lining",
+    "relicera:heart_of_the_mountain",
+    "relicera:soulknot_stone",
+    "relicera:astral_lens"
+  ]
+}

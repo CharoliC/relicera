@@ -502,7 +502,7 @@
   "effect.relicera.furnace_of_war.description": "焚毁靠近的箭矢、烟花火箭、药水瓶，焚毁攻击你的剑类和斧类武器。",
   "effect.relicera.covenant_breaker": "背约",
   "effect.relicera.soul_overload": "灵魂过载",
-  "effect.relicera.soul_overload.description": "提高监守者的音爆伤害与心跳频率。达到III级时，失控释放音爆，随后崩解为魂结之石。",
+  "effect.relicera.soul_overload.description": "提高监守者的音爆伤害与心跳频率。达到III级时，监守者将死亡。",
   "effect.relicera.covenant_breaker.description": "无法订立新的契约。",
 
   "jei.relicera.info.astral_lens.line_1": "使用望远镜观察所有的月相后获得。",

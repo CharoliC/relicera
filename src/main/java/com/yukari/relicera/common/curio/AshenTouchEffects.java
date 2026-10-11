@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -62,11 +63,11 @@ public final class AshenTouchEffects {
         queueFireClear(target);
 
         AttackSnapshot snapshot = ATTACK_SNAPSHOTS.get(target.getUUID());
-        if (snapshot == null
+        if (!(target instanceof Blaze) && (snapshot == null
                 || !snapshot.attackerId().equals(player.getUUID())
                 || !snapshot.dimension().equals(player.level().dimension())
                 || player.level().getGameTime() - snapshot.gameTime() > SNAPSHOT_TTL_TICKS
-                || !snapshot.wasOnFire()) {
+                || !snapshot.wasOnFire())) {
             return;
         }
 

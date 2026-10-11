@@ -502,7 +502,7 @@
   "effect.relicera.furnace_of_war.description": "Burn the nearby arrows, fireworks, potion bottles. Burn the sword and axe weapons that attacking you.",
   "effect.relicera.covenant_breaker": "Covenant Breaker",
   "effect.relicera.soul_overload": "Soul Overload",
-  "effect.relicera.soul_overload.description": "Increases Warden sonic boom damage and heartbeat rate. At level III, unleashes uncontrolled sonic booms before collapsing into a Soulknot Stone.",
+  "effect.relicera.soul_overload.description": "Increases Warden sonic boom damage and heartbeat rate. At level III, the Warden will die.",
   "effect.relicera.covenant_breaker.description": "Cannot form new covenants.",
 
   "jei.relicera.info.astral_lens.line_1": "Obtained after observing every moon phase with a spyglass.",

@@ -147,7 +147,8 @@ public final class ModItems {
     public static final RegistryObject<Item> SOLAR_EMBER = ITEMS.register("solar_ember", () ->
             new SolarEmberItem(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.EPIC)));
+                    .rarity(Rarity.EPIC)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> EPHEMERAL_BLOOM = ITEMS.register("ephemeral_bloom", () ->
             new EphemeralBloomItem(ModBlocks.EPHEMERAL_BLOOM.get(), new Item.Properties()
@@ -347,7 +348,8 @@ public final class ModItems {
     public static final RegistryObject<Item> GRANBELLS_FURNACE = ITEMS.register("granbells_furnace", () ->
             new RelicCurioItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(ReliceraMod.LEGENDARY)));
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> WITHERED_LIFE_CHALICE = ITEMS.register("withered_life_chalice", () ->
             new Item(new Item.Properties()
@@ -357,7 +359,8 @@ public final class ModItems {
     public static final RegistryObject<Item> ILUTHIAS_CHALICE = ITEMS.register("iluthias_chalice", () ->
             new IluthiasChaliceItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(ReliceraMod.LEGENDARY)));
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> DRIED_CROWN = ITEMS.register("dried_crown", () ->
             new Item(new Item.Properties()
@@ -367,7 +370,8 @@ public final class ModItems {
     public static final RegistryObject<Item> NEREIAS_CROWN = ITEMS.register("nereias_crown", () ->
             new RelicCurioItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(ReliceraMod.LEGENDARY)));
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> WEATHERED_MOUNTAIN_COVENANT = ITEMS.register("weathered_mountain_covenant", () ->
             new Item(new Item.Properties()
@@ -375,7 +379,10 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> BAROMS_COVENANT_STONE = ITEMS.register("baroms_covenant_stone", () ->
-            new BaromsCovenantStoneItem(new Item.Properties().stacksTo(1).rarity(ReliceraMod.LEGENDARY)));
+            new BaromsCovenantStoneItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> LUMINAS_CELESTIAL_LENS = ITEMS.register("luminas_celestial_lens", () ->
             new LuminasCelestialLensItem(new Item.Properties()
