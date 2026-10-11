@@ -4,6 +4,7 @@ import com.yukari.relicera.common.effect.souloverload.SoulOverloadState;
 import com.yukari.relicera.registry.ModEffects;
 import com.yukari.relicera.registry.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.ShriekParticleOption;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
@@ -35,11 +36,10 @@ public final class SoulknotStoneEffects {
     private static final String DEATH_TAG = "ReliceraSoulknotDeath";
     private static final int EFFECT_TICKS = 90 * 20;
     private static final int FEED_COOLDOWN_TICKS = 12 * 20;
-    private static final int UNSTABLE_TICKS = 15 * 20;
-    private static final int SHOT_INTERVAL = 60;
     private static final int CHARGE_TICKS = 34;
     private static final int BURST_SHOTS = 3;
     private static final int BURST_INTERVAL_TICKS = 5;
+    private static final int LAST_SHOT_TICK = CHARGE_TICKS + (BURST_SHOTS - 1) * BURST_INTERVAL_TICKS;
     private static final double RANGE = 20.0D;
 
     private SoulknotStoneEffects() {
@@ -102,24 +102,24 @@ public final class SoulknotStoneEffects {
         }
         CompoundTag state = warden.getPersistentData().getCompound(OVERLOAD_TAG);
         holdPosition(warden, state);
+        faceUpward(warden, state);
         int elapsed = state.getInt("ElapsedTicks");
-        if (elapsed >= UNSTABLE_TICKS) {
+        if (elapsed > LAST_SHOT_TICK) {
             finish(level, warden);
             return;
         }
-        int cycleTick = elapsed % SHOT_INTERVAL;
-        int burstTick = cycleTick - CHARGE_TICKS;
-        if (cycleTick == 0) {
-            state.putFloat("Yaw", warden.getRandom().nextFloat() * 360.0F);
-            state.putFloat("Pitch", warden.getRandom().nextFloat() * 30.0F - 15.0F);
-            faceShot(warden, state);
+        int burstTick = elapsed - CHARGE_TICKS;
+        if (elapsed == 0) {
             level.broadcastEntityEvent(warden, (byte) 62);
             warden.playSound(SoundEvents.WARDEN_SONIC_CHARGE, 3.0F, 1.0F);
         } else if (burstTick >= 0 && burstTick < BURST_SHOTS * BURST_INTERVAL_TICKS
                 && burstTick % BURST_INTERVAL_TICKS == 0) {
-            fire(level, warden, state);
+            fire(level, warden);
+            if (elapsed == LAST_SHOT_TICK) {
+                finish(level, warden);
+                return;
+            }
         }
-        faceShot(warden, state);
         state.putInt("ElapsedTicks", elapsed + 1);
     }
 
@@ -138,9 +138,9 @@ public final class SoulknotStoneEffects {
         state.putDouble("Y", warden.getY());
         state.putDouble("Z", warden.getZ());
         state.putFloat("Yaw", warden.getYRot());
-        state.putFloat("Pitch", warden.getXRot());
         warden.getPersistentData().put(OVERLOAD_TAG, state);
         holdPosition(warden, state);
+        faceUpward(warden, state);
     }
 
     private static void holdPosition(Warden warden, CompoundTag state) {
@@ -160,17 +160,17 @@ public final class SoulknotStoneEffects {
         warden.zza = 0.0F;
     }
 
-    private static void faceShot(Warden warden, CompoundTag state) {
+    private static void faceUpward(Warden warden, CompoundTag state) {
         float yaw = state.getFloat("Yaw");
         warden.setYRot(yaw);
         warden.setYHeadRot(yaw);
         warden.setYBodyRot(yaw);
-        warden.setXRot(state.getFloat("Pitch"));
+        warden.setXRot(-90.0F);
     }
 
-    private static void fire(ServerLevel level, Warden warden, CompoundTag state) {
+    private static void fire(ServerLevel level, Warden warden) {
         Vec3 start = warden.position().add(0.0D, 1.6D, 0.0D);
-        Vec3 direction = Vec3.directionFromRotation(state.getFloat("Pitch"), state.getFloat("Yaw"));
+        Vec3 direction = new Vec3(0.0D, 1.0D, 0.0D);
         Vec3 end = start.add(direction.scale(RANGE));
         for (int distance = 1; distance <= RANGE; distance++) {
             Vec3 point = start.add(direction.scale(distance));
@@ -205,14 +205,14 @@ public final class SoulknotStoneEffects {
         release(warden);
         warden.getPersistentData().putBoolean(DEATH_TAG, true);
         float previousHealth = warden.getHealth();
+        Vec3 center = warden.getBoundingBox().getCenter();
         warden.kill();
         if (warden.isDeadOrDying() && warden.hasPose(Pose.DYING)) {
-            Vec3 center = warden.getBoundingBox().getCenter();
-            level.sendParticles(ParticleTypes.SCULK_SOUL, center.x, center.y, center.z,
-                    80, 0.9D, 1.0D, 0.9D, 0.08D);
+            emitSoulBurst(level, center);
             ItemEntity stone = new ItemEntity(level, warden.getX(), warden.getY() + 0.5D, warden.getZ(),
                     new ItemStack(ModItems.SOULKNOT_STONE.get()));
             stone.setDefaultPickUpDelay();
+            stone.setGlowingTag(true);
             level.addFreshEntity(stone);
         } else {
             if (warden.isDeadOrDying()) {
@@ -222,6 +222,26 @@ public final class SoulknotStoneEffects {
             warden.removeEffect(ModEffects.SOUL_OVERLOAD.get());
         }
         ((SoulOverloadState) warden).relicera$setSoulOverloadLevel(0);
+    }
+
+    private static void emitSoulBurst(ServerLevel level, Vec3 center) {
+        int rings = 5;
+        int particlesPerRing = 16;
+        for (int ring = 0; ring < rings; ring++) {
+            double y = 2.0D * (ring + 0.5D) / rings - 1.0D;
+            double radius = Math.sqrt(1.0D - y * y);
+            for (int particle = 0; particle < particlesPerRing; particle++) {
+                double angle = 2.0D * Math.PI * (particle + (ring % 2) * 0.5D) / particlesPerRing;
+                Vec3 direction = new Vec3(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
+                Vec3 position = center.add(direction.scale(0.35D));
+                level.sendParticles(ParticleTypes.SCULK_SOUL, position.x, position.y, position.z,
+                        0, direction.x, direction.y, direction.z, 0.12D);
+            }
+        }
+        for (int ring = 0; ring < 3; ring++) {
+            level.sendParticles(new ShriekParticleOption(ring * 5), center.x, center.y, center.z,
+                    1, 0.0D, 0.0D, 0.0D, 0.0D);
+        }
     }
 
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
