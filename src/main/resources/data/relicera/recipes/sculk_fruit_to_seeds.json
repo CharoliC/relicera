@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "relicera:sculk_fruit"
+    }
+  ],
+  "result": {
+    "item": "relicera:sculk_fruit_seeds",
+    "count": 2
+  }
+}

@@ -29,6 +29,7 @@ import com.yukari.relicera.common.item.RippleheartRingsItem;
 import com.yukari.relicera.common.item.SculkFruitItem;
 import com.yukari.relicera.common.item.SculkFruitSeedsItem;
 import com.yukari.relicera.common.item.SolarEmberItem;
+import com.yukari.relicera.common.item.SoulRestoringStewItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
 import com.yukari.relicera.common.item.TempestsReinsItem;
 import com.yukari.relicera.common.item.ThousandweightGauntletsItem;
@@ -73,15 +74,20 @@ public final class ModItems {
                     .stacksTo(64)
                     .rarity(Rarity.UNCOMMON)));
 
+    public static final RegistryObject<Item> SILK_OF_NIGHT = ITEMS.register("silk_of_night", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)));
+
     public static final RegistryObject<Item> SCULK_FRUIT_SEEDS = ITEMS.register("sculk_fruit_seeds", () ->
             new SculkFruitSeedsItem(ModBlocks.SCULK_FRUIT_CROP.get(), new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> SCULK_FRUIT = ITEMS.register("sculk_fruit", () ->
             new SculkFruitItem(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)
+                    .rarity(Rarity.COMMON)
                     .food(SculkFruitItem.createFoodProperties())));
 
     public static final RegistryObject<Item> SOULKNOT_STONE = ITEMS.register("soulknot_stone", () ->
@@ -89,15 +95,16 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
-    public static final RegistryObject<Item> SILK_OF_NIGHT = ITEMS.register("silk_of_night", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> SOUL_RESTORING_STEW = ITEMS.register("soul_restoring_stew", () ->
+            new SoulRestoringStewItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)
+                    .food(SoulRestoringStewItem.createFoodProperties())));
 
     public static final RegistryObject<Item> ROTTEN_TUSK = ITEMS.register("rotten_tusk", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> RAW_HALLOWED_ENAMEL = ITEMS.register("raw_hallowed_enamel", () ->
             new Item(new Item.Properties()
@@ -112,7 +119,7 @@ public final class ModItems {
     public static final RegistryObject<Item> PRIMAL_SOIL = ITEMS.register("primal_soil", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> PASTORAL_MELODY = ITEMS.register("pastoral_melody", () ->
             new PastoralMelodyItem(new Item.Properties()

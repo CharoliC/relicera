@@ -82,7 +82,6 @@ public final class ModCommonConfig {
     public static final ForgeConfigSpec.IntValue IMMORTAL_SOUL_RING_MAX_SHIELDS;
     public static final ForgeConfigSpec.DoubleValue THOUSANDWEIGHT_GAUNTLETS_ATTACK_SPEED_REDUCTION;
     public static final ForgeConfigSpec.DoubleValue THOUSANDWEIGHT_GAUNTLETS_WIND_BURST_LAUNCH_HEIGHT;
-    public static final ForgeConfigSpec.DoubleValue DEVILS_BEARSKIN_MAX_HEALTH_LOSS;
     public static final ForgeConfigSpec.IntValue RABBITS_POCKET_WATCH_COOLDOWN_TICKS;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> DIVINE_SEVERANCE_RING_HEAD_DROPS;
     public static final ForgeConfigSpec.DoubleValue STRIDER_SPURS_SPEED_BONUS;
@@ -532,14 +531,6 @@ public final class ModCommonConfig {
                         "alexsmobs:fly",
                         "alexsmobs:crimson_mosquito"
                 ), ModCommonConfig::isValidResourceLocation);
-
-        BUILDER.pop();
-
-        BUILDER.push("devils_bearskin");
-
-        DEVILS_BEARSKIN_MAX_HEALTH_LOSS = BUILDER
-                .comment("Maximum health loss if wearer dies. 0.40 = -40%.")
-                .defineInRange("maximumHealthLoss", 0.40D, 0.0D, 0.95D);
 
         BUILDER.pop();
 

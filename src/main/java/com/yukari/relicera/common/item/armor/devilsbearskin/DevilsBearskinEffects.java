@@ -1,6 +1,5 @@
 package com.yukari.relicera.common.item.armor.devilsbearskin;
 
-import com.yukari.relicera.config.ModCommonConfig;
 import com.yukari.relicera.registry.ModEffects;
 import com.yukari.relicera.registry.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
@@ -37,6 +36,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public final class DevilsBearskinEffects {
+    public static final double MAX_HEALTH_LOSS = 0.66D;
     private static final String DATA_TAG = "ReliceraDevilsBearskin";
     private static final String WEAR_TIME_TAG = "WearTime";
     private static final String PRAYERS_TAG = "Prayers";
@@ -349,6 +349,14 @@ public final class DevilsBearskinEffects {
         ));
     }
 
+    public static void restoreSoul(ServerPlayer player) {
+        player.getPersistentData().remove(SOUL_LOST_TAG);
+        AttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
+        if (maxHealth != null) {
+            maxHealth.removeModifier(SOUL_LOSS_MODIFIER_ID);
+        }
+    }
+
     private static boolean hasSoulLossModifier(Player player) {
         AttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
         return maxHealth != null && maxHealth.getModifier(SOUL_LOSS_MODIFIER_ID) != null;
@@ -364,20 +372,20 @@ public final class DevilsBearskinEffects {
             return;
         }
 
-        double configuredAmount = -ModCommonConfig.DEVILS_BEARSKIN_MAX_HEALTH_LOSS.get();
+        double amount = -MAX_HEALTH_LOSS;
         AttributeModifier existing = maxHealth.getModifier(SOUL_LOSS_MODIFIER_ID);
         if (existing != null
                 && (existing.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL
-                || Math.abs(existing.getAmount() - configuredAmount) > 0.0001D)) {
+                || Math.abs(existing.getAmount() - amount) > 0.0001D)) {
             maxHealth.removeModifier(SOUL_LOSS_MODIFIER_ID);
             existing = null;
         }
 
-        if (existing == null && configuredAmount != 0.0D) {
+        if (existing == null) {
             maxHealth.addPermanentModifier(new AttributeModifier(
                     SOUL_LOSS_MODIFIER_ID,
                     SOUL_LOSS_MODIFIER_NAME,
-                    configuredAmount,
+                    amount,
                     AttributeModifier.Operation.MULTIPLY_TOTAL
             ));
         }

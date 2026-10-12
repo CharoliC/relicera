@@ -40,6 +40,7 @@ import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
 import com.yukari.relicera.common.item.SolarEmberEffects;
 import com.yukari.relicera.common.item.SoulknotStoneEffects;
+import com.yukari.relicera.common.item.SoulRestoringStewEffects;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldEffects;
 import com.yukari.relicera.common.loot.StormscaleDrops;
@@ -103,6 +104,7 @@ public final class CommonGameEvents {
         if (event.player instanceof ServerPlayer serverPlayer) {
             AstralStorybookItem.tickDreamBubbles(serverPlayer);
             DevilsBearskinEffects.tickPlayer(serverPlayer);
+            SoulRestoringStewEffects.tickPlayer(serverPlayer);
             AstralObservationTracker.tick(serverPlayer);
             RottenTuskEffects.repelPiglins(serverPlayer);
             SolarEmberEffects.tick(serverPlayer);
@@ -140,6 +142,7 @@ public final class CommonGameEvents {
     public static void onServerStopped(ServerStoppedEvent event) {
         DreamcatcherBoxSleepRewards.clear();
         DevilsBearskinEffects.onServerStopped();
+        SoulRestoringStewEffects.onServerStopped();
         FurnaceOfWarEffects.clearPendingWeaponBurns();
         LittleTailorsBeltEffects.clearPendingReveals();
         DivineSeveranceRingEffects.clearPendingJudgments();
@@ -157,6 +160,7 @@ public final class CommonGameEvents {
         FeysilverForgingKnowledge.copy(event.getOriginal(), event.getEntity());
         GranbellsFurnaceEffects.restoreKeptInventory(event);
         DevilsBearskinEffects.handlePlayerClone(event);
+        SoulRestoringStewEffects.clearPlayer(event.getOriginal().getUUID());
     }
 
     @SubscribeEvent
@@ -190,6 +194,7 @@ public final class CommonGameEvents {
     public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             DevilsBearskinEffects.onPlayerLoggedOut(serverPlayer);
+            SoulRestoringStewEffects.clearPlayer(serverPlayer.getUUID());
             RippleheartRingEffects.forgetPlayer(serverPlayer);
             TreasureHuntersGlovesEffects.forgetPlayer(serverPlayer);
             TurncoatPatrolSpawner.forgetPlayer(serverPlayer);

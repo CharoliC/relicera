@@ -908,7 +908,7 @@ public final class ClientTooltipEvents {
         event.getToolTip().add(tooltipLine(
                 "devils_bearskin",
                 7,
-                gold(formatUnsignedPercent(ModCommonConfig.DEVILS_BEARSKIN_MAX_HEALTH_LOSS.get()))
+                gold(formatUnsignedPercent(DevilsBearskinEffects.MAX_HEALTH_LOSS))
         ));
         event.getToolTip().add(Component.empty());
         event.getToolTip().add(tooltipLine("devils_bearskin", 8));
