@@ -340,7 +340,7 @@
   "tooltip.relicera.feysilver_forging_art_volume_one.2": "§5- 使用后，习得§6精灵银镀层§5的方法",
   "tooltip.relicera.feysilver_forging_art_volume_one.3": "§5- 借由铁砧，可以让装备§6永恒不坏§5",
   "tooltip.relicera.feysilver_forging_art_volume_one.4": "§4当前已习得",
-  "tooltip.relicera.feysilver_coating.0": "§b精灵银镀层",
+  "tooltip.relicera.feysilver_coating.0": "精灵银镀层",
 
   "item.relicera.silk_of_night": "黑夜绸缎",
   "tooltip.relicera.silk_of_night.0": "§9异常轻盈的布料，几乎不会产生摩擦声。",
@@ -403,6 +403,7 @@
   "container.relicera.relic_repair_table.title": "遗物修复",
 
   "item.relicera.feysilver_ingot": "精灵银锭",
+  "tooltip.relicera.feysilver_ingot.0": "用作纹饰材料时，提升少许盔甲韧性。",
   "item.relicera.cobblestone_template_base": "圆石模板基底",
   "item.relicera.terracotta_template_base": "陶瓦模板基底",
   "item.relicera.torchflower_ember": "火把花余烬",
@@ -553,6 +554,8 @@
   "curios.identifier.relicera_relic": "遗物",
   "curios.identifier.relicera_brooch": "胸章",
   "curios.modifiers.relicera_relic": "佩戴遗物时：",
+
+  "trim_material.relicera.feysilver": "精灵银质",
 
   "rarity.relicera_legendary": "传说"
 }

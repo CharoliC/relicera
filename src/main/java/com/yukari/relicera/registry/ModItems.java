@@ -12,6 +12,7 @@ import com.yukari.relicera.common.item.EphemeralBloomItem;
 import com.yukari.relicera.common.item.EphemeralBloomPendantItem;
 import com.yukari.relicera.common.item.EnvironmentallyIndestructibleItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtVolumeOneItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverIngotItem;
 import com.yukari.relicera.common.item.ForgelingBucketItem;
 import com.yukari.relicera.common.item.FourfoldSherdPendantItem;
 import com.yukari.relicera.common.item.IluthiasChaliceItem;
@@ -50,9 +51,10 @@ public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ReliceraMod.MOD_ID);
 
     public static final RegistryObject<Item> FEYSILVER_INGOT = ITEMS.register("feysilver_ingot", () ->
-            new Item(new Item.Properties()
+            new FeysilverIngotItem(new Item.Properties()
                     .stacksTo(64)
-                    .rarity(Rarity.RARE)));
+                    .rarity(Rarity.RARE)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> COBBLESTONE_TEMPLATE_BASE = ITEMS.register("cobblestone_template_base", () ->
             new Item(new Item.Properties()

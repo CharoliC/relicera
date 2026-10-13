@@ -1,0 +1,9 @@
+{
+  "asset_name": "relicera_feysilver",
+  "description": {
+    "color": "#C0D1EB",
+    "translate": "trim_material.relicera.feysilver"
+  },
+  "ingredient": "relicera:feysilver_ingot",
+  "item_model_index": 0.2
+}

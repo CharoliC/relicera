@@ -340,7 +340,7 @@
   "tooltip.relicera.feysilver_forging_art_volume_one.2": "§5- Use to learn a forging art of Feysilver",
   "tooltip.relicera.feysilver_forging_art_volume_one.3": "§5- At an anvil, use §6Feysilver Ingots§5 to make equipment §6Unbreakable",
   "tooltip.relicera.feysilver_forging_art_volume_one.4": "§4Already learned",
-  "tooltip.relicera.feysilver_coating.0": "§bFeysilver Coating",
+  "tooltip.relicera.feysilver_coating.0": "Feysilver Coating",
 
   "item.relicera.silk_of_night": "Silk of Night",
   "tooltip.relicera.silk_of_night.0": "§9A light fabric that makes almost no sound when rubbed.",
@@ -403,6 +403,7 @@
   "container.relicera.relic_repair_table.title": "Relic Repair",
 
   "item.relicera.feysilver_ingot": "Feysilver Ingot",
+  "tooltip.relicera.feysilver_ingot.0": "Slightly increases armor toughness when used as a trim material.",
   "item.relicera.cobblestone_template_base": "Cobblestone Template Base",
   "item.relicera.terracotta_template_base": "Terracotta Template Base",
   "item.relicera.torchflower_ember": "Torchflower Ember",
@@ -553,6 +554,8 @@
   "curios.identifier.relicera_relic": "Relic",
   "curios.identifier.relicera_brooch": "Brooch",
   "curios.modifiers.relicera_relic": "When on relic:",
+
+  "trim_material.relicera.feysilver": "Feysilver Material",
 
   "rarity.relicera_legendary": "Legendary"
 }

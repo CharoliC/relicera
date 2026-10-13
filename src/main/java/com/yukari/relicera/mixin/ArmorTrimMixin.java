@@ -40,7 +40,8 @@ public abstract class ArmorTrimMixin {
             tooltip.add(UPGRADE_TITLE);
         }
         if (hasFeysilverCoating) {
-            tooltip.add(CommonComponents.space().append(Component.translatable("tooltip.relicera.feysilver_coating.0")));
+            tooltip.add(CommonComponents.space().append(Component.translatable("tooltip.relicera.feysilver_coating.0")
+                    .withStyle(style -> style.withColor(0xC0D1EB))));
         }
         if (hasSilkOfNightDecoration) {
             tooltip.add(CommonComponents.space().append(Component.translatable("tooltip.relicera.silk_of_night_decoration.0")));
