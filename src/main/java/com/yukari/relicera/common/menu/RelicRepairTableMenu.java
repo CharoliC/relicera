@@ -1,8 +1,10 @@
 package com.yukari.relicera.common.menu;
 
 import com.yukari.relicera.common.block.RelicRepairTableBlockEntity;
+import com.yukari.relicera.common.curio.CovenantTabletEffects;
 import com.yukari.relicera.common.recipe.relicrepair.RelicRepairRecipes;
 import com.yukari.relicera.registry.ModBlocks;
+import com.yukari.relicera.registry.ModItems;
 import com.yukari.relicera.registry.ModMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -15,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class RelicRepairTableMenu extends AbstractContainerMenu {
@@ -68,6 +71,14 @@ public class RelicRepairTableMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack stack) {
                 return false;
             }
+
+            @Override
+            public void onTake(Player player, ItemStack stack) {
+                super.onTake(player, stack);
+                if (!player.level().isClientSide && stack.is(ModItems.BAROMS_COVENANT_STONE.get())) {
+                    ItemHandlerHelper.giveItemToPlayer(player, CovenantTabletEffects.createFullyUnlockedStack());
+                }
+            }
         });
     }
 
@@ -110,13 +121,18 @@ public class RelicRepairTableMenu extends AbstractContainerMenu {
             return ItemStack.EMPTY;
         }
 
+        int takenCount = result.getCount() - stack.getCount();
+        if (takenCount <= 0) {
+            return ItemStack.EMPTY;
+        }
+
         if (stack.isEmpty()) {
             slot.set(ItemStack.EMPTY);
         } else {
             slot.setChanged();
         }
 
-        slot.onTake(player, stack);
+        slot.onTake(player, result.copyWithCount(takenCount));
         return result;
     }
 

@@ -46,7 +46,7 @@ public final class GlovesFirstPersonRenderer {
             PoseStack poseStack,
             MultiBufferSource buffers,
             int packedLight) {
-        if (equipped.isEmpty()) {
+        if (equipped.isEmpty() || !equipped.get().slotContext().visible()) {
             return;
         }
         CuriosRendererRegistry.getRenderer(item)
