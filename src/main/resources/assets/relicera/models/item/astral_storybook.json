@@ -15,6 +15,12 @@
         "relicera:story": 2.0
       },
       "model": "relicera:item/astral_storybook_2"
+    },
+    {
+      "predicate": {
+        "relicera:story": 3.0
+      },
+      "model": "relicera:item/astral_storybook_3"
     }
   ]
 }

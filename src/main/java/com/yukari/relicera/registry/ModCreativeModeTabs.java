@@ -24,7 +24,6 @@ public final class ModCreativeModeTabs {
                                 .map(RegistryObject::get)
                                 .filter(item -> item != ModItems.LUMINAS_CELESTIAL_LENS.get()
                                         && item != ModItems.FORGELING_SPAWN_EGG.get()
-                                        && item != ModItems.RABBITS_POCKET_WATCH.get()
                                         && item != ModItems.INSCRIBED_COVENANT_TABLET.get())
                                 .forEach(item -> {
                                     if (item == ModItems.COVENANT_TABLET.get()) {

@@ -5,6 +5,7 @@ import com.yukari.relicera.common.curio.TwoHandedSwordBroochEffects;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightDecoration;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightFallContext;
 import com.yukari.relicera.common.item.StonewallGreatshieldEffects;
+import com.yukari.relicera.common.item.chronometer.ChronometerCooldownControl;
 import com.yukari.relicera.registry.ModItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -23,6 +24,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements SilkOfNightFallContext {
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void relicera$bindChronometerCooldowns(CallbackInfo ci) {
+        Player self = (Player) (Object) this;
+        ((ChronometerCooldownControl) self.getCooldowns()).relicera$setCooldownOwner(self);
+    }
+
     @Unique
     private float relicera$primaryAttackDamage;
     @Unique

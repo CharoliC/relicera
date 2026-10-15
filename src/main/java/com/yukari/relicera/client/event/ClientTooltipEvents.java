@@ -16,6 +16,7 @@ import com.yukari.relicera.common.item.RippleheartRingItem;
 import com.yukari.relicera.common.item.RippleheartRingItem.RingSide;
 import com.yukari.relicera.common.item.TempestsReinsEffects;
 import com.yukari.relicera.common.item.armor.devilsbearskin.DevilsBearskinEffects;
+import com.yukari.relicera.common.item.chronometer.StoppedSilverChronometerEffects;
 import com.yukari.relicera.config.ModCommonConfig;
 import com.yukari.relicera.registry.ModItems;
 import com.mojang.datafixers.util.Either;
@@ -199,8 +200,8 @@ public final class ClientTooltipEvents {
             appendDevilsBearskinTooltip(event);
         }
 
-        if (event.getItemStack().is(ModItems.RABBITS_POCKET_WATCH.get())) {
-            appendRabbitsPocketWatchTooltip(event);
+        if (event.getItemStack().is(ModItems.STOPPED_SILVER_CHRONOMETER.get())) {
+            appendStoppedSilverChronometerTooltip(event);
         }
 
         if (event.getItemStack().is(ModItems.RIPPLEHEART_RINGS.get())) {
@@ -914,10 +915,14 @@ public final class ClientTooltipEvents {
         event.getToolTip().add(tooltipLine("devils_bearskin", 8));
     }
 
-    private static void appendRabbitsPocketWatchTooltip(ItemTooltipEvent event) {
-        event.getToolTip().add(tooltipLine("rabbits_pocket_watch", 0));
+    private static void appendStoppedSilverChronometerTooltip(ItemTooltipEvent event) {
+        String percent = formatSignedPercent(StoppedSilverChronometerEffects.getStep(event.getItemStack()) / 20.0D);
+        event.getToolTip().add(tooltipLine("stopped_silver_chronometer", 0));
         event.getToolTip().add(Component.empty());
-        event.getToolTip().add(tooltipLine("rabbits_pocket_watch", 1));
+        event.getToolTip().add(tooltipLine("stopped_silver_chronometer", 1, gold(percent)));
+        event.getToolTip().add(tooltipLine("stopped_silver_chronometer", 2, gold(percent)));
+        event.getToolTip().add(Component.empty());
+        event.getToolTip().add(tooltipLine("stopped_silver_chronometer", 3));
     }
 
     private static void appendRippleheartRingsTooltip(ItemTooltipEvent event) {

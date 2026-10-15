@@ -31,6 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public class AstralStorybookItem extends Item {
     public static final int LITTLE_TAILOR_STORY_ID = 1;
     public static final int DEVILS_BEARSKIN_STORY_ID = 2;
+    public static final int ALICE_IN_WONDERLAND_STORY_ID = 3;
     private static final Map<Integer, StoryDefinition> STORIES = Map.of(
             LITTLE_TAILOR_STORY_ID, new StoryDefinition(
                     LITTLE_TAILOR_STORY_ID,
@@ -41,6 +42,11 @@ public class AstralStorybookItem extends Item {
                     DEVILS_BEARSKIN_STORY_ID,
                     13,
                     ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "devils_bearskin")
+            ),
+            ALICE_IN_WONDERLAND_STORY_ID, new StoryDefinition(
+                    ALICE_IN_WONDERLAND_STORY_ID,
+                    14,
+                    ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "stopped_silver_chronometer")
             )
     );
     private static final String DATA_KEY = "AstralStorybook";

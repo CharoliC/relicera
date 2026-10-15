@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_astral_storybook": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:astral_storybook"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_astral_storybook"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "relicera:astral_storybook_3"
+    ]
+  }
+}

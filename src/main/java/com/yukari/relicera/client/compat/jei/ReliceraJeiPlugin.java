@@ -87,7 +87,7 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.MASTER_SMITHS_BROOCH.get(), "master_smiths_brooch", 1);
         addInfo(registration, ModItems.LITTLE_TAILORS_BELT.get(), "little_tailors_belt", 1);
         addInfo(registration, ModItems.DEVILS_BEARSKIN.get(), "devils_bearskin", 1);
-        addInfo(registration, ModItems.RABBITS_POCKET_WATCH.get(), "rabbits_pocket_watch", 1);
+        addInfo(registration, ModItems.STOPPED_SILVER_CHRONOMETER.get(), "stopped_silver_chronometer", 1);
         addInfo(registration, ModItems.HEART_OF_THE_MOUNTAIN.get(), "heart_of_the_mountain", 2);
         addInfo(registration, ModItems.WEATHERED_MOUNTAIN_COVENANT.get(), "weathered_mountain_covenant", 2);
         addInfo(registration, ModItems.BRUTE_BELT.get(), "brute_belt", 2);

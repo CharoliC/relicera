@@ -1,0 +1,37 @@
+{
+  "type": "relicera:astral_storybook",
+  "category": "misc",
+  "pattern": [
+    "GCG",
+    "KBM",
+    "EFE"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "K": {
+      "item": "minecraft:cake"
+    },
+    "B": {
+      "item": "relicera:astral_storybook"
+    },
+    "M": {
+      "tag": "forge:mushrooms"
+    },
+    "E": {
+      "item": "minecraft:experience_bottle"
+    },
+    "F": {
+      "item": "relicera:feysilver_ingot"
+    }
+  },
+  "result": {
+    "item": "relicera:astral_storybook",
+    "count": 1
+  },
+  "story": 3
+}

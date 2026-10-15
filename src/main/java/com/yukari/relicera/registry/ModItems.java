@@ -22,7 +22,7 @@ import com.yukari.relicera.common.item.LittleTailorsBeltItem;
 import com.yukari.relicera.common.item.LuminasCelestialLensItem;
 import com.yukari.relicera.common.item.PastoralMelodyItem;
 import com.yukari.relicera.common.item.QuickEquipCurioItem;
-import com.yukari.relicera.common.item.RabbitsPocketWatchItem;
+import com.yukari.relicera.common.item.chronometer.StoppedSilverChronometerItem;
 import com.yukari.relicera.common.item.RelicCurioItem;
 import com.yukari.relicera.common.item.RevivalNectarItem;
 import com.yukari.relicera.common.item.RippleheartRingItem;
@@ -231,10 +231,11 @@ public final class ModItems {
                     .rarity(Rarity.EPIC)
                     .setNoRepair()));
 
-    public static final RegistryObject<Item> RABBITS_POCKET_WATCH = ITEMS.register("rabbits_pocket_watch", () ->
-            new RabbitsPocketWatchItem(new Item.Properties()
+    public static final RegistryObject<Item> STOPPED_SILVER_CHRONOMETER = ITEMS.register("stopped_silver_chronometer", () ->
+            new StoppedSilverChronometerItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.RARE)));
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> EPHEMERAL_BLOOM_PENDANT = ITEMS.register("ephemeral_bloom_pendant", () ->
             new EphemeralBloomPendantItem(new Item.Properties()

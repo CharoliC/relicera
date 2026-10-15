@@ -82,7 +82,6 @@ public final class ModCommonConfig {
     public static final ForgeConfigSpec.IntValue IMMORTAL_SOUL_RING_MAX_SHIELDS;
     public static final ForgeConfigSpec.DoubleValue THOUSANDWEIGHT_GAUNTLETS_ATTACK_SPEED_REDUCTION;
     public static final ForgeConfigSpec.DoubleValue THOUSANDWEIGHT_GAUNTLETS_WIND_BURST_LAUNCH_HEIGHT;
-    public static final ForgeConfigSpec.IntValue RABBITS_POCKET_WATCH_COOLDOWN_TICKS;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> DIVINE_SEVERANCE_RING_HEAD_DROPS;
     public static final ForgeConfigSpec.DoubleValue STRIDER_SPURS_SPEED_BONUS;
     public static final ForgeConfigSpec.DoubleValue WARP_CRYSTAL_DODGE_CHANCE;
@@ -531,14 +530,6 @@ public final class ModCommonConfig {
                         "alexsmobs:fly",
                         "alexsmobs:crimson_mosquito"
                 ), ModCommonConfig::isValidResourceLocation);
-
-        BUILDER.pop();
-
-        BUILDER.push("rabbits_pocket_watch");
-
-        RABBITS_POCKET_WATCH_COOLDOWN_TICKS = BUILDER
-                .comment("Cooldown in ticks after using Rabbit's Pocket Watch, 400 ticks = 20 seconds.")
-                .defineInRange("cooldownTicks", 20 * 20, 0, Integer.MAX_VALUE);
 
         BUILDER.pop();
 
