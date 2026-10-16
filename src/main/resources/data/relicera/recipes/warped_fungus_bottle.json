@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " L ",
+    "GFG",
+    "GNG"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "F": {
+      "item": "minecraft:warped_fungus"
+    },
+    "N": {
+      "item": "minecraft:netherrack"
+    }
+  },
+  "result": {
+    "item": "relicera:warped_fungus_bottle",
+    "count": 1
+  }
+}

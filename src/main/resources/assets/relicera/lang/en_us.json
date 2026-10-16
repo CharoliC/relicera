@@ -232,6 +232,9 @@
   "tooltip.relicera.strider_spurs.0": "§5Hold %1$s§5 to see details.",
   "tooltip.relicera.strider_spurs.1": "§5- Strider movement speed %1$s",
 
+  "item.relicera.warped_fungus_bottle": "Warped Fungus Bottle",
+  "tooltip.relicera.warped_fungus_bottle.0": "§9Repels nearby Hoglins and attracts nearby Striders.",
+
   "item.relicera.brutal_plunder_badge": "Brutal Plunder Badge",
   "tooltip.relicera.brutal_plunder_badge.0": "§5Hold %1$s§5 to see details.",
   "tooltip.relicera.brutal_plunder_badge.1": "%1$s§d Looting Level",

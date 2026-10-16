@@ -2,6 +2,7 @@ package com.yukari.relicera.client.event;
 
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.client.model.BeltModel;
+import com.yukari.relicera.client.model.WarpedFungusBottleModel;
 import com.yukari.relicera.client.model.BruteBeltModel;
 import com.yukari.relicera.client.model.DevilsBearskinModel;
 import com.yukari.relicera.client.model.SurfaceGlovesModel;
@@ -9,6 +10,7 @@ import com.yukari.relicera.client.model.TreasureHuntersGlovesModel;
 import com.yukari.relicera.client.renderer.LuminasMoonRenderer;
 import com.yukari.relicera.client.renderer.BruteBeltRenderer;
 import com.yukari.relicera.client.renderer.BeltRenderer;
+import com.yukari.relicera.client.renderer.WarpedFungusBottleRenderer;
 import com.yukari.relicera.client.renderer.ForgelingRenderer;
 import com.yukari.relicera.client.particle.ElectricSparkParticle;
 import com.yukari.relicera.client.particle.DreamBubbleParticle;
@@ -81,6 +83,7 @@ public final class ClientModEvents {
             CuriosRendererRegistry.register(
                     ModItems.THOUSANDWEIGHT_GAUNTLETS.get(), SurfaceGlovesRenderer::thousandweightGauntlets);
             CuriosRendererRegistry.register(ModItems.BRUTE_BELT.get(), BruteBeltRenderer::new);
+            CuriosRendererRegistry.register(ModItems.WARPED_FUNGUS_BOTTLE.get(), WarpedFungusBottleRenderer::new);
             CuriosRendererRegistry.register(ModItems.WARRIOR_BELT.get(), BeltRenderer::warriorBelt);
             CuriosRendererRegistry.register(ModItems.LITTLE_TAILORS_BELT.get(), BeltRenderer::littleTailorsBelt);
             if (ModItems.VERDANT_SCALE_BELT.isPresent()) {
@@ -98,6 +101,7 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(BruteBeltModel.LAYER_LOCATION, BruteBeltModel::createBodyLayer);
+        event.registerLayerDefinition(WarpedFungusBottleModel.LAYER_LOCATION, WarpedFungusBottleModel::createBodyLayer);
         event.registerLayerDefinition(BeltModel.WARRIOR_LAYER_LOCATION, BeltModel::createWarriorBodyLayer);
         event.registerLayerDefinition(BeltModel.LITTLE_TAILORS_LAYER_LOCATION, BeltModel::createLittleTailorsBodyLayer);
         if (ModItems.VERDANT_SCALE_BELT.isPresent()) {

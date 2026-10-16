@@ -232,6 +232,9 @@
   "tooltip.relicera.strider_spurs.0": "§5按住 %1$s§5 查看详情。",
   "tooltip.relicera.strider_spurs.1": "§5- 骑乘炽足兽的移动速度 %1$s",
 
+  "item.relicera.warped_fungus_bottle": "诡异菌瓶",
+  "tooltip.relicera.warped_fungus_bottle.0": "§9驱散附近的疣猪兽，吸引附近的炽足兽。",
+
   "item.relicera.brutal_plunder_badge": "残暴掠夺徽章",
   "tooltip.relicera.brutal_plunder_badge.0": "§5按住 %1$s§5 查看详情。",
   "tooltip.relicera.brutal_plunder_badge.1": "%1$s§d 抢夺等级",

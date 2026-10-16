@@ -36,6 +36,7 @@ import com.yukari.relicera.common.item.TempestsReinsItem;
 import com.yukari.relicera.common.item.ThousandweightGauntletsItem;
 import com.yukari.relicera.common.item.TorchflowerEmberItem;
 import com.yukari.relicera.common.item.TurncoatsMedalItem;
+import com.yukari.relicera.common.item.WarpedFungusBottleItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -309,6 +310,11 @@ public final class ModItems {
             new QuickEquipCurioItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> WARPED_FUNGUS_BOTTLE = ITEMS.register("warped_fungus_bottle", () ->
+            new WarpedFungusBottleItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> COVENANT_TABLET = ITEMS.register("covenant_tablet", () ->
             new CovenantTabletItem(new Item.Properties()
