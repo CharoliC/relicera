@@ -1,7 +1,10 @@
 package com.yukari.relicera.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.yukari.relicera.common.curio.ThousandweightGauntletsEffects;
 import com.yukari.relicera.common.curio.TwoHandedSwordBroochEffects;
+import com.yukari.relicera.common.curio.SufferersExultationEffects;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightDecoration;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightFallContext;
 import com.yukari.relicera.common.item.StonewallGreatshieldEffects;
@@ -18,12 +21,23 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements SilkOfNightFallContext {
+    @Inject(method = "actuallyHurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/player/Player;setHealth(F)V"))
+    private void relicera$beforeExultationPlayerHealthLoss(DamageSource source, float amount, CallbackInfo ci) {
+        SufferersExultationEffects.beforeHealthChange((Player) (Object) this, source);
+    }
+
+    @Inject(method = "actuallyHurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/player/Player;setHealth(F)V", shift = At.Shift.AFTER))
+    private void relicera$afterExultationPlayerHealthLoss(DamageSource source, float amount, CallbackInfo ci) {
+        SufferersExultationEffects.afterHealthChange((Player) (Object) this, source);
+    }
+
     @Inject(method = "<init>", at = @At("RETURN"))
     private void relicera$bindChronometerCooldowns(CallbackInfo ci) {
         Player self = (Player) (Object) this;
@@ -145,19 +159,20 @@ public abstract class PlayerMixin implements SilkOfNightFallContext {
         return damage;
     }
 
-    @Redirect(
+    @WrapOperation(
             method = "attack",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
-    private boolean relicera$handlePrimaryAttack(Entity target, DamageSource source, float damage) {
+    private boolean relicera$handlePrimaryAttack(Entity target, DamageSource source, float damage,
+                                                 Operation<Boolean> original) {
         relicera$primaryAttackDamage = damage;
         float smashFallDistance = relicera$smashFallDistance;
         relicera$smashFallDistance = 0.0F;
 
-        boolean hurt = target.hurt(source, damage);
+        boolean hurt = original.call(target, source, damage);
         if (hurt) {
             ThousandweightGauntletsEffects.handleSuccessfulAttack((Player) (Object) this, target, smashFallDistance);
         }

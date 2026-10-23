@@ -11,8 +11,11 @@ import com.yukari.relicera.common.item.armor.devilsbearskin.DevilsBearskinItem;
 import com.yukari.relicera.common.item.EphemeralBloomItem;
 import com.yukari.relicera.common.item.EphemeralBloomPendantItem;
 import com.yukari.relicera.common.item.EnvironmentallyIndestructibleItem;
+import com.yukari.relicera.common.item.PhilosophersStoneItem;
+import com.yukari.relicera.common.item.AultiasBloodItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtVolumeOneItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverIngotItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverSwordItem;
 import com.yukari.relicera.common.item.ForgelingBucketItem;
 import com.yukari.relicera.common.item.FourfoldSherdPendantItem;
 import com.yukari.relicera.common.item.IluthiasChaliceItem;
@@ -51,11 +54,28 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ReliceraMod.MOD_ID);
 
+    public static final RegistryObject<Item> PHILOSOPHERS_STONE = ITEMS.register("philosophers_stone", () ->
+            new PhilosophersStoneItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> AULTIAS_BLOOD = ITEMS.register("aultias_blood", () ->
+            new AultiasBloodItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
+
     public static final RegistryObject<Item> FEYSILVER_INGOT = ITEMS.register("feysilver_ingot", () ->
             new FeysilverIngotItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.RARE)
                     .fireResistant()));
+
+    public static final RegistryObject<Item> ALCHEMICAL_RESIDUE = ITEMS.register("alchemical_residue", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> COBBLESTONE_TEMPLATE_BASE = ITEMS.register("cobblestone_template_base", () ->
             new Item(new Item.Properties()
@@ -199,6 +219,11 @@ public final class ModItems {
                     .durability(StonewallGreatshieldItem.MAX_DURABILITY)
                     .rarity(Rarity.EPIC)));
 
+    public static final RegistryObject<Item> FEYSILVER_SWORD = ITEMS.register("feysilver_sword", () ->
+            new FeysilverSwordItem(new Item.Properties()
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
+
     public static final RegistryObject<Item> DEPTHBREAKER = ModList.get().isLoaded("twilightforest")
             ? ITEMS.register("depthbreaker", DepthbreakerItem::create)
             : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "depthbreaker"),
@@ -306,15 +331,15 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC), RippleheartRingItem.RingSide.BLUE));
 
-    public static final RegistryObject<Item> STRIDER_SPURS = ITEMS.register("strider_spurs", () ->
-            new QuickEquipCurioItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)));
-
     public static final RegistryObject<Item> WARPED_FUNGUS_BOTTLE = ITEMS.register("warped_fungus_bottle", () ->
             new WarpedFungusBottleItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> STRIDER_SPURS = ITEMS.register("strider_spurs", () ->
+            new QuickEquipCurioItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> COVENANT_TABLET = ITEMS.register("covenant_tablet", () ->
             new CovenantTabletItem(new Item.Properties()
@@ -330,6 +355,16 @@ public final class ModItems {
             new QuickEquipCurioItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> CURATIVE_TALISMAN = ITEMS.register("curative_talisman", () ->
+            new QuickEquipCurioItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> SUFFERERS_EXULTATION = ITEMS.register("sufferers_exultation", () ->
+            new QuickEquipCurioItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> BRUTAL_PLUNDER_BADGE = ITEMS.register("brutal_plunder_badge", () ->
             new BrutalPlunderBadgeItem(new Item.Properties()

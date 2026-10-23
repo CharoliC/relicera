@@ -4,9 +4,12 @@
   "pattern": [
     "GFG",
     "DLD",
-    " A "
+    "RAR"
   ],
   "key": {
+    "R": {
+      "item": "relicera:alchemical_residue"
+    },
     "G": {
       "item": "minecraft:gold_ingot"
     },

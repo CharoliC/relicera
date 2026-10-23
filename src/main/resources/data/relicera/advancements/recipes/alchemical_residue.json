@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alchemical_residue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:alchemical_residue"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "relicera:feysilver_sword",
+      "relicera:treasure_hunters_gloves",
+      "relicera:ashen_touch",
+      "relicera:brutal_plunder_badge"
+    ]
+  }
+}

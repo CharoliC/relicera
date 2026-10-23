@@ -11,7 +11,7 @@
       "item": "minecraft:brick"
     },
     "T": {
-      "item": "relicera:forgotten_thread"
+      "tag": "forge:string"
     },
     "E": {
       "item": "relicera:hallowed_enamel"

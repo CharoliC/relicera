@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "CRC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "R": {
+      "item": "relicera:alchemical_residue"
+    }
+  },
+  "result": {
+    "item": "minecraft:amethyst_shard",
+    "count": 8
+  }
+}

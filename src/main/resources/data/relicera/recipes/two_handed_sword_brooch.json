@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "EWE",
+    "EDE",
+    "OGO"
+  ],
+  "key": {
+    "E": {
+      "item": "relicera:hallowed_enamel"
+    },
+    "W": {
+      "item": "relicera:warfire_fragment"
+    },
+    "O": {
+      "item": "minecraft:orange_wool"
+    },
+    "D": {
+      "item": "minecraft:diamond_sword"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "relicera:two_handed_sword_brooch"
+  }
+}

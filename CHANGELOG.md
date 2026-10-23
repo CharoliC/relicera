@@ -1,22 +1,23 @@
-给很多物品加了 tag
 
-烬灭之触对烈焰人始终生效
 
-给一些物品加了免火
+#### 1.2.4
 
-给遗物加了不会被环境损坏
-
-幽光果，幽光果种子，魂结之石
-
-改了大量材质
-
-精灵银锭可以纹饰，且 +1 盔甲韧性
-
-修复手套饰品关闭显示后第一人称仍然存在的问题
-
-让伊露缇雅的圣杯触发的不死图腾额外拥有 45 秒生命恢复 II
-
-让修复巴洛姆的契约石后返还该契约石板
++ Added equipment: Feysilver Sword.
++ Added curios: Warped Fungus Bottle, Curative Talisman, Sufferers Exultation.
++ Added items: Sculk Fruit, Sculk Fruit Seed, Soulknot Stone, Residue, Rabbit's Pocketwatch.
++ Added a story for Astral Story book.
++ Added an advancement.
++ Two-handed Brooch can be obtained.
++ Feysilver can trim.
++ Ashen Touch always takes effect on blaze.
++ Bearskin will reduce 66% maxhealth.
++ Added fire/environment protection for some items.
++ Added proper tags for items.
++ Changed many textures.
++ Changed some crafting table.
++ A completed Covenant Stone will returned after repairing Barom's Stone.
++ Iluthia's Chalice will give regenerationⅡ after triggering totem.
++ Fixed gloves display problem.
 
 
 

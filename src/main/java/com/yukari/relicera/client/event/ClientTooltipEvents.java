@@ -25,6 +25,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.StringDecomposer;
 import net.minecraft.network.chat.contents.LiteralContents;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
@@ -109,6 +112,14 @@ public final class ClientTooltipEvents {
 
         if (event.getItemStack().is(ModItems.COVENANT_TABLET.get())) {
             appendCovenantTabletTooltip(event);
+        }
+
+        if (event.getItemStack().is(ModItems.CURATIVE_TALISMAN.get())) {
+            appendCurativeTalismanTooltip(event);
+        }
+
+        if (event.getItemStack().is(ModItems.SUFFERERS_EXULTATION.get())) {
+            appendSufferersExultationTooltip(event);
         }
 
         if (event.getItemStack().is(ModItems.EPHEMERAL_BLOOM_PENDANT.get())) {
@@ -466,6 +477,46 @@ public final class ClientTooltipEvents {
                 4,
                 gold(formatSignedNumber(ModCommonConfig.TWO_HANDED_SWORD_BROOCH_ENTITY_REACH_BONUS.get()))
         ));
+    }
+
+    private static void appendCurativeTalismanTooltip(ItemTooltipEvent event) {
+        event.getToolTip().add(Component.empty());
+        if (!Screen.hasShiftDown()) {
+            event.getToolTip().add(holdShiftLine("curative_talisman"));
+            return;
+        }
+
+        event.getToolTip().add(tooltipLine("curative_talisman", 1));
+        event.getToolTip().add(tooltipLine("curative_talisman", 2));
+    }
+
+    private static void appendSufferersExultationTooltip(ItemTooltipEvent event) {
+        event.getToolTip().add(Component.empty());
+        if (!Screen.hasShiftDown()) {
+            event.getToolTip().add(holdShiftLine("sufferers_exultation"));
+            return;
+        }
+
+        event.getToolTip().add(tooltipLine("sufferers_exultation", 1));
+        event.getToolTip().add(tooltipLine("sufferers_exultation", 2));
+        event.getToolTip().add(Component.empty());
+        event.getToolTip().add(tooltipLine(
+                "sufferers_exultation",
+                3,
+                gold(formatSignedPercent(ModCommonConfig.SUFFERERS_EXULTATION_DAMAGE_BONUS_PER_EFFECT.get()))
+        ));
+        event.getToolTip().add(tooltipLine(
+                "sufferers_exultation",
+                4,
+                gold(formatSignedPercent(ModCommonConfig.SUFFERERS_EXULTATION_CRITICAL_BONUS_PER_EFFECT.get()))
+        ));
+        event.getToolTip().add(tooltipLine(
+                "sufferers_exultation",
+                5,
+                gold(formatSignedPercent(ModCommonConfig.SUFFERERS_EXULTATION_DAMAGE_TAKEN_PER_EFFECT.get()))
+        ));
+        event.getToolTip().add(Component.empty());
+        event.getToolTip().add(tooltipLine("sufferers_exultation", 6));
     }
 
     private static void appendVindicatorsMedalTooltip(ItemTooltipEvent event) {
@@ -1149,6 +1200,20 @@ public final class ClientTooltipEvents {
                 elements.add(element);
             }
         }
+        ItemStack stack = event.getItemStack();
+        if (stack.is(ModItems.PHILOSOPHERS_STONE.get()) || stack.is(ModItems.AULTIAS_BLOOD.get())) {
+            elements.replaceAll(element -> element.mapLeft(ClientTooltipEvents::obfuscateLegendaryMaterialText));
+        }
+    }
+
+    private static FormattedText obfuscateLegendaryMaterialText(FormattedText text) {
+        MutableComponent result = Component.empty();
+        StringDecomposer.iterateFormatted(text, Style.EMPTY, (index, style, codePoint) -> {
+            result.append(Component.literal(new String(Character.toChars(codePoint)))
+                    .setStyle(style.withObfuscated(true)));
+            return true;
+        });
+        return result;
     }
 
     private static void moveReliceraModNameToEnd(List<Component> tooltip) {

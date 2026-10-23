@@ -81,6 +81,7 @@ public class SculkFruitItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         PotionUtils.addPotionTooltip(List.of(createDarknessEffect()), tooltip, 1.0F);
+        tooltip.add(Component.translatable("tooltip.relicera.sculk_fruit.0"));
     }
 
     private static MobEffectInstance createDarknessEffect() {

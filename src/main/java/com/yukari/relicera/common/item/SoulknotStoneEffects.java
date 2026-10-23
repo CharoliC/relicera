@@ -83,10 +83,6 @@ public final class SoulknotStoneEffects {
         return effect == null ? 0 : effect.getAmplifier() + 1;
     }
 
-    public static float damageBonus(Warden warden) {
-        return 4.0F * getLevel(warden);
-    }
-
     public static void tick(Warden warden) {
         if (!(warden.level() instanceof ServerLevel level)) {
             return;
@@ -185,7 +181,7 @@ public final class SoulknotStoneEffects {
             if (!box.contains(start) && box.clip(start, end).isEmpty()) {
                 continue;
             }
-            victim.hurt(source, 10.0F + damageBonus(warden));
+            victim.hurt(source, 10.0F);
             double resistance = 1.0D - victim.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
             victim.push(direction.x * 2.5D * resistance, direction.y * 0.5D * resistance,
                     direction.z * 2.5D * resistance);

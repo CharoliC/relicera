@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "pattern": [
-    "SAS",
-    "BLB",
-    "GIG"
+    "BSB",
+    "AIL",
+    "RSR"
   ],
   "key": {
     "S": {
@@ -19,8 +19,8 @@
     "L": {
       "item": "relicera:rotten_tusk"
     },
-    "G": {
-      "item": "minecraft:gold_block"
+    "R": {
+      "item": "relicera:alchemical_residue"
     },
     "I": {
       "item": "minecraft:netherite_ingot"

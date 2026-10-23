@@ -3,6 +3,7 @@ package com.yukari.relicera.common.network;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.network.packet.CameraShakePacket;
 import com.yukari.relicera.common.network.packet.CovenantToastPacket;
+import com.yukari.relicera.common.network.packet.ItemActivationPacket;
 import com.yukari.relicera.common.network.packet.OpenAstralStorybookPacket;
 import com.yukari.relicera.common.network.packet.SyncAstralObservationPacket;
 import com.yukari.relicera.common.network.packet.SyncAttackStrengthPacket;
@@ -21,7 +22,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetworking {
-    private static final String PROTOCOL_VERSION = "10";
+    private static final String PROTOCOL_VERSION = "12";
     private static int messageId;
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -99,6 +100,12 @@ public final class ModNetworking {
                 .encoder(SelectItemContentsSlotPacket::encode)
                 .decoder(SelectItemContentsSlotPacket::decode)
                 .consumerMainThread(SelectItemContentsSlotPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(ItemActivationPacket.class, nextMessageId(), NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(ItemActivationPacket::encode)
+                .decoder(ItemActivationPacket::decode)
+                .consumerMainThread(ItemActivationPacket::handle)
                 .add();
     }
 

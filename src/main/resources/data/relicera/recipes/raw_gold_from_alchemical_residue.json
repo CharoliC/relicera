@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "SRS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "R": {
+      "item": "relicera:alchemical_residue"
+    }
+  },
+  "result": {
+    "item": "minecraft:raw_gold",
+    "count": 8
+  }
+}

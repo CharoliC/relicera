@@ -1,0 +1,26 @@
+{
+  "parent": "relicera:feysilver",
+  "display": {
+    "icon": {
+      "item": "relicera:sufferers_exultation"
+    },
+    "title": {
+      "translate": "advancements.relicera.sufferers_exultation.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.sufferers_exultation.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "transformed_talisman": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

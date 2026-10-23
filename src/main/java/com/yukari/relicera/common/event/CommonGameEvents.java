@@ -9,6 +9,9 @@ import com.yukari.relicera.common.curio.AshenTouchEffects;
 import com.yukari.relicera.common.curio.BrutalPlunderBadgeEffects;
 import com.yukari.relicera.common.curio.BruteBeltEffects;
 import com.yukari.relicera.common.curio.CovenantTabletEffects;
+import com.yukari.relicera.common.curio.CurativeTalismanEffects;
+import com.yukari.relicera.common.curio.SufferersExultationEffects;
+import com.yukari.relicera.common.curio.TalismanEffectOwnership;
 import com.yukari.relicera.common.curio.DivineSeveranceRingEffects;
 import com.yukari.relicera.common.curio.FourfoldSherdPendantEffects;
 import com.yukari.relicera.common.curio.GranbellsFurnaceEffects;
@@ -35,6 +38,7 @@ import com.yukari.relicera.common.effect.tempestsprint.TempestSprintEffects;
 import com.yukari.relicera.common.entity.forgeling.ForgelingWorksiteManager;
 import com.yukari.relicera.common.item.AstralStorybookItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingKnowledge;
+import com.yukari.relicera.common.item.feysilver.FeysilverSwordAnvil;
 import com.yukari.relicera.common.item.PastoralMelodyEffects;
 import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
@@ -133,6 +137,7 @@ public final class CommonGameEvents {
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
+        CurativeTalismanEffects.processPendingRecoveries(event);
         FurnaceOfWarEffects.processPendingWeaponBurns(event);
         LittleTailorsBeltEffects.processPendingReveals(event);
         DivineSeveranceRingEffects.processPendingJudgments(event);
@@ -140,6 +145,7 @@ public final class CommonGameEvents {
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
+        CurativeTalismanEffects.clearPendingRecoveries();
         DreamcatcherBoxSleepRewards.clear();
         DevilsBearskinEffects.onServerStopped();
         SoulRestoringStewEffects.onServerStopped();
@@ -225,6 +231,7 @@ public final class CommonGameEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onCriticalHit(CriticalHitEvent event) {
         WarriorBeltEffects.increaseVanillaCriticalDamage(event);
+        SufferersExultationEffects.increaseVanillaCriticalDamage(event);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -258,6 +265,7 @@ public final class CommonGameEvents {
         NightGlovesEffects.applyNightMeleeDamageBonus(event);
         BrutalPlunderBadgeEffects.applyDamageBonus(event);
         TurncoatsMedalEffects.applyHeroDamageBonus(event);
+        SufferersExultationEffects.modifyDamage(event);
         AshenTouchEffects.applyMeleeFireEffects(event);
         RippleheartRingEffects.modifyCombatDamage(event);
         FourfoldSherdPendantEffects.applyDamageEffects(event);
@@ -436,6 +444,7 @@ public final class CommonGameEvents {
         FeysilverForgingKnowledge.updateAnvilResult(event);
         SilkOfNightDecoration.updateAnvilResult(event);
         StonewallGreatshieldItem.updateAnvilRepair(event);
+        FeysilverSwordAnvil.updateResult(event);
     }
 
     @SubscribeEvent
@@ -445,6 +454,8 @@ public final class CommonGameEvents {
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        CurativeTalismanEffects.tick(event.getEntity());
+        SufferersExultationEffects.tick(event.getEntity());
         LittleTailorsBeltEffects.clearIntimidatedTarget(event.getEntity());
         WarriorBeltEffects.tickAttributes(event.getEntity());
         BruteBeltEffects.tickAttributes(event.getEntity());
@@ -485,6 +496,11 @@ public final class CommonGameEvents {
     public static void onMobEffectApplicable(MobEffectEvent.Applicable event) {
         LuminasCelestialLensEffects.preventDarknessAndBlindness(event);
         RippleheartRingEffects.transferHarmfulEffect(event);
+    }
+
+    @SubscribeEvent
+    public static void onMobEffectAdded(MobEffectEvent.Added event) {
+        TalismanEffectOwnership.rememberExternalEffect(event);
     }
 
     @SubscribeEvent

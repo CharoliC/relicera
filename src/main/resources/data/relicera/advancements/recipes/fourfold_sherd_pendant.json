@@ -1,18 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_forgotten_thread": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "relicera:forgotten_thread"
-            ]
-          }
-        ]
-      }
-    },
     "has_hallowed_enamel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -40,7 +28,6 @@
   },
   "requirements": [
     [
-      "has_forgotten_thread",
       "has_hallowed_enamel",
       "has_feysilver_ingot"
     ]

@@ -3,6 +3,7 @@ package com.yukari.relicera.registry;
 import com.mojang.serialization.Codec;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.loot.AddAstralStorybookLootModifier;
+import com.yukari.relicera.common.loot.AddAlchemicalResidueLootModifier;
 import com.yukari.relicera.common.loot.AddBruteBeltLootModifier;
 import com.yukari.relicera.common.loot.AddDriedCrownLootModifier;
 import com.yukari.relicera.common.loot.AddEphemeralBloomLootModifier;
@@ -12,6 +13,7 @@ import com.yukari.relicera.common.loot.AddForgottenThreadLootModifier;
 import com.yukari.relicera.common.loot.AddHeartOfTheMountainLootModifier;
 import com.yukari.relicera.common.loot.AddOceanRuinArchaeologyLootModifier;
 import com.yukari.relicera.common.loot.AddReinforcedDeepslateLootModifier;
+import com.yukari.relicera.common.loot.AddSculkFruitLootModifier;
 import com.yukari.relicera.common.loot.AddWitheredLifeChaliceLootModifier;
 import com.yukari.relicera.common.loot.AddVindicatorsMedalLootModifier;
 import com.yukari.relicera.common.loot.AddWeatheredMountainCovenantLootModifier;
@@ -64,6 +66,12 @@ public final class ModLootModifiers {
 
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ADD_REINFORCED_DEEPSLATE =
             LOOT_MODIFIER_SERIALIZERS.register("add_reinforced_deepslate", () -> AddReinforcedDeepslateLootModifier.CODEC);
+
+    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ADD_ALCHEMICAL_RESIDUE =
+            LOOT_MODIFIER_SERIALIZERS.register("add_alchemical_residue", () -> AddAlchemicalResidueLootModifier.CODEC);
+
+    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ADD_SCULK_FRUIT =
+            LOOT_MODIFIER_SERIALIZERS.register("add_sculk_fruit", () -> AddSculkFruitLootModifier.CODEC);
 
     private ModLootModifiers() {
     }

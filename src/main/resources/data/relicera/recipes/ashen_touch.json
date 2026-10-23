@@ -4,9 +4,12 @@
   "pattern": [
     "GIN",
     "IEI",
-    "NIN"
+    "NIR"
   ],
   "key": {
+    "R": {
+      "item": "relicera:alchemical_residue"
+    },
     "G": {
       "item": "minecraft:ghast_tear"
     },

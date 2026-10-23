@@ -109,9 +109,18 @@ public final class ModCommonConfig {
     public static final ForgeConfigSpec.DoubleValue TEMPEST_SPRINT_FULL_JUMP_SHOCKWAVE_RANGE;
     public static final ForgeConfigSpec.DoubleValue TEMPEST_SPRINT_FULL_JUMP_SHOCKWAVE_DAMAGE;
     public static final ForgeConfigSpec.DoubleValue TEMPEST_SPRINT_FULL_JUMP_SHOCKWAVE_KNOCKBACK;
+    public static final ForgeConfigSpec.IntValue CURATIVE_TALISMAN_EFFECTS_PER_REGENERATION_LEVEL;
+    public static final ForgeConfigSpec.IntValue CURATIVE_TALISMAN_TRANSFORMATION_THRESHOLD;
+    public static final ForgeConfigSpec.IntValue CURATIVE_TALISMAN_RESISTANCE_DURATION_TICKS;
+    public static final ForgeConfigSpec.IntValue CURATIVE_TALISMAN_REMOVALS_PER_RESISTANCE_LEVEL;
+    public static final ForgeConfigSpec.DoubleValue SUFFERERS_EXULTATION_HEALING_MULTIPLIER;
+    public static final ForgeConfigSpec.DoubleValue SUFFERERS_EXULTATION_DAMAGE_BONUS_PER_EFFECT;
+    public static final ForgeConfigSpec.DoubleValue SUFFERERS_EXULTATION_CRITICAL_BONUS_PER_EFFECT;
+    public static final ForgeConfigSpec.DoubleValue SUFFERERS_EXULTATION_DAMAGE_TAKEN_PER_EFFECT;
     public static final ForgeConfigSpec SPEC;
 
     static {
+
         BUILDER.push("sculk_fruit");
         SCULK_FRUIT_EXPERIENCE_PER_STAGE = BUILDER
                 .comment("Sculk Catalyst charge consumed per growth stage.")
@@ -579,6 +588,36 @@ public final class ModCommonConfig {
                 .comment("Villager discount for third task. 0.15 = -15%.")
                 .defineInRange("villagerTradeDiscount", 0.15D, 0.0D, 1.0D);
 
+        BUILDER.pop();
+
+        BUILDER.push("curative_talisman");
+        CURATIVE_TALISMAN_EFFECTS_PER_REGENERATION_LEVEL = BUILDER
+                .comment("Number of harmful effects per Regeneration level.")
+                .defineInRange("effectsPerRegenerationLevel", 2, 1, 1024);
+        CURATIVE_TALISMAN_TRANSFORMATION_THRESHOLD = BUILDER
+                .comment("Number of harmful effects required to transform (while the wearer is burning).")
+                .defineInRange("transformationThreshold", 8, 1, 1024);
+        CURATIVE_TALISMAN_RESISTANCE_DURATION_TICKS = BUILDER
+                .comment("Resistance duration in ticks.")
+                .defineInRange("resistanceDurationTicks", 1200, 1, 1000000);
+        CURATIVE_TALISMAN_REMOVALS_PER_RESISTANCE_LEVEL = BUILDER
+                .comment("Number of harmful effects removal per Resistance upgrade.")
+                .defineInRange("removalsPerResistanceLevel", 2, 1, 1024);
+        BUILDER.pop();
+
+        BUILDER.push("sufferers_exultation");
+        SUFFERERS_EXULTATION_HEALING_MULTIPLIER = BUILDER
+                .comment("Healing multiplier for nearby poison/wither damage. For example, 1.5 = heal 1 * 1.5 when nearby poison/wither deal 1 damage.")
+                .defineInRange("healingMultiplier", 1.0D, 0.0D, 100.0D);
+        SUFFERERS_EXULTATION_DAMAGE_BONUS_PER_EFFECT = BUILDER
+                .comment("Damage bonus per harmful effect.")
+                .defineInRange("damageBonusPerEffect", 0.18D, 0.0D, 10.0D);
+        SUFFERERS_EXULTATION_CRITICAL_BONUS_PER_EFFECT = BUILDER
+                .comment("Vanilla critical hit bonus per harmful effect.")
+                .defineInRange("criticalBonusPerEffect", 0.15D, 0.0D, 10.0D);
+        SUFFERERS_EXULTATION_DAMAGE_TAKEN_PER_EFFECT = BUILDER
+                .comment("Damage taken bonus per harmful effect.")
+                .defineInRange("damageTakenPerEffect", 0.12D, 0.0D, 10.0D);
         BUILDER.pop();
 
         BUILDER.push("granbells_furnace");

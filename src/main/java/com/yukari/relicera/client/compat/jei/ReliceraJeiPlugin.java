@@ -3,6 +3,7 @@ package com.yukari.relicera.client.compat.jei;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.client.screen.RelicRepairTableScreen;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverSwordItem;
 import com.yukari.relicera.common.recipe.TemplatelessSmithingRecipe;
 import com.yukari.relicera.config.ModClientConfig;
 import com.yukari.relicera.registry.ModBlocks;
@@ -91,8 +92,12 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.HEART_OF_THE_MOUNTAIN.get(), "heart_of_the_mountain", 2);
         addInfo(registration, ModItems.WEATHERED_MOUNTAIN_COVENANT.get(), "weathered_mountain_covenant", 2);
         addInfo(registration, ModItems.BRUTE_BELT.get(), "brute_belt", 2);
+        addInfo(registration, ModItems.SCULK_FRUIT_SEEDS.get(), "sculk_fruit_seeds", 1);
+        addInfo(registration, ModItems.SUFFERERS_EXULTATION.get(), "sufferers_exultation", 1);
+        addInfo(registration, ModItems.ALCHEMICAL_RESIDUE.get(), "alchemical_residue", 1);
         registerStonewallGreatshieldRepair(registration);
         registerDepthbreakerRepair(registration);
+        registerFeysilverSwordRepair(registration);
     }
 
     @Override
@@ -155,6 +160,18 @@ public final class ReliceraJeiPlugin implements IModPlugin {
                 List.of(new ItemStack(Items.EMERALD)),
                 List.of(repairedPickaxe),
                 ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil.depthbreaker_repair")
+        );
+        registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
+    }
+
+    private static void registerFeysilverSwordRepair(IRecipeRegistration registration) {
+        ItemStack damagedSword = new ItemStack(ModItems.FEYSILVER_SWORD.get());
+        damagedSword.setDamageValue(damagedSword.getMaxDamage() - 1);
+        var recipe = registration.getVanillaRecipeFactory().createAnvilRecipe(
+                damagedSword,
+                List.of(new ItemStack(Items.NETHERITE_SCRAP)),
+                List.of(FeysilverSwordItem.createRepairedCopy(damagedSword, 1)),
+                ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil.feysilver_sword_repair")
         );
         registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
     }

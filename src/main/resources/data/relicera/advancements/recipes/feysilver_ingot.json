@@ -17,7 +17,8 @@
   "rewards": {
     "recipes": [
       "relicera:relic_repair_table",
-      "relicera:treasure_hunters_gloves"
+      "relicera:treasure_hunters_gloves",
+      "relicera:feysilver_sword"
     ]
   }
 }

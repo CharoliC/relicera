@@ -2,6 +2,8 @@ package com.yukari.relicera.common.raid;
 
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.curio.CovenantTabletEffects;
+import com.yukari.relicera.common.network.ModNetworking;
+import com.yukari.relicera.common.network.packet.ItemActivationPacket;
 import com.yukari.relicera.registry.ModItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +24,7 @@ public final class RaidVictoryRewards {
         CovenantTabletEffects.completeRaidTask(player);
         if (transformVindicatorsMedal(player)) {
             awardTurncoatsMedalAdvancement(player);
+            ModNetworking.sendToPlayer(new ItemActivationPacket(new ItemStack(ModItems.TURNCOATS_MEDAL.get())), player);
         }
     }
 

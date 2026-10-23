@@ -3,11 +3,14 @@ package com.yukari.relicera.mixin;
 import com.yukari.relicera.common.curio.GranbellsFurnaceEffects;
 import com.yukari.relicera.common.curio.IluthiasChaliceEffects;
 import com.yukari.relicera.common.curio.WarpCrystalEffects;
+import com.yukari.relicera.common.curio.SufferersExultationEffects;
+import com.yukari.relicera.common.curio.CurativeTalismanEffects;
 import com.yukari.relicera.common.item.TempestsReinsEffects;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightDecoration;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.material.FluidState;
@@ -22,6 +25,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class LivingEntityMixin {
     @Shadow
     protected float lastHurt;
+
+    @Inject(method = "onEffectRemoved", at = @At("TAIL"))
+    private void relicera$recordCurativeRecovery(MobEffectInstance effect, CallbackInfo ci) {
+        CurativeTalismanEffects.onEffectRemoved((LivingEntity) (Object) this, effect);
+    }
+
+    @Inject(method = "actuallyHurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/LivingEntity;setHealth(F)V"))
+    private void relicera$beforeExultationHealthLoss(DamageSource source, float amount, CallbackInfo ci) {
+        SufferersExultationEffects.beforeHealthChange((LivingEntity) (Object) this, source);
+    }
+
+    @Inject(method = "actuallyHurt", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/LivingEntity;setHealth(F)V", shift = At.Shift.AFTER))
+    private void relicera$afterExultationHealthLoss(DamageSource source, float amount, CallbackInfo ci) {
+        SufferersExultationEffects.afterHealthChange((LivingEntity) (Object) this, source);
+    }
 
     @Inject(method = "hurt", at = @At("HEAD"))
     private void relicera$rememberWarpCrystalPreHurtState(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
