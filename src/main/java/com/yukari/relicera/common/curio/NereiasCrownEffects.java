@@ -8,14 +8,12 @@ import java.util.Map;
 import java.util.UUID;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,7 +29,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
@@ -189,22 +186,6 @@ public final class NereiasCrownEffects {
         dropAndClearHeldItem(drowned, EquipmentSlot.OFFHAND, offhand);
         drowned.level().playSound(null, drowned.getX(), drowned.getY(), drowned.getZ(),
                 SoundEvents.ITEM_PICKUP, SoundSource.HOSTILE, 0.8F, 0.9F + drowned.getRandom().nextFloat() * 0.2F);
-    }
-
-    public static List<ServerPlayer> addElderGuardianMiningFatigueToNonWearers(ServerLevel level, Entity source,
-                                                                               Vec3 position, double radius,
-                                                                               MobEffectInstance effect,
-                                                                               int displayLimit) {
-        MobEffect mobEffect = effect.getEffect();
-        List<ServerPlayer> players = level.getPlayers(player -> player.gameMode.isSurvival()
-                && !isEquipped(player)
-                && (source == null || !source.isAlliedTo(player))
-                && position.closerThan(player.position(), radius)
-                && (!player.hasEffect(mobEffect)
-                || player.getEffect(mobEffect).getAmplifier() < effect.getAmplifier()
-                || player.getEffect(mobEffect).endsWithin(displayLimit - 1)));
-        players.forEach(player -> player.addEffect(new MobEffectInstance(effect), source));
-        return players;
     }
 
     public static void reduceActiveDamage(LivingHurtEvent event) {

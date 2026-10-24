@@ -1,5 +1,7 @@
 package com.yukari.relicera.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.yukari.relicera.common.block.SculkFruitCropBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,23 +13,23 @@ import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(SculkCatalystBlockEntity.CatalystListener.class)
 public abstract class SculkCatalystListenerMixin {
     @Shadow
     public abstract PositionSource getListenerSource();
 
-    @Redirect(method = "handleGameEvent", at = @At(value = "INVOKE",
+    @WrapOperation(method = "handleGameEvent", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/level/block/SculkSpreader;addCursors(Lnet/minecraft/core/BlockPos;I)V"))
     private void relicera$feedSculkFruit(SculkSpreader spreader, BlockPos sourcePos, int charge,
+                                       Operation<Void> original,
                                        ServerLevel level, GameEvent event, GameEvent.Context context, Vec3 eventPos) {
         int remaining = getListenerSource().getPosition(level)
                 .map(position -> level.getBlockEntity(BlockPos.containing(position).above())
                         instanceof SculkFruitCropBlockEntity crop ? crop.absorbCharge(charge) : charge)
                 .orElse(charge);
         if (remaining > 0) {
-            spreader.addCursors(sourcePos, remaining);
+            original.call(spreader, sourcePos, remaining);
         }
     }
 }
