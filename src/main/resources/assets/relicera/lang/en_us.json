@@ -392,6 +392,7 @@
   "tooltip.relicera.rippleheart_pearl.3": "§5- Feed to §6foxes§5 to gain their trust",
 
   "item.relicera.feysilver_sword": "Feysilver Sword",
+  "item.relicera.feysilver_pickaxe": "Feysilver Pickaxe",
   "item.relicera.stonewall_greatshield": "Stonewall Greatshield",
   "tooltip.relicera.stonewall_greatshield.0": "§5Hold %1$s§5 to see details.",
   "tooltip.relicera.stonewall_greatshield.1": "§5- Immune to §6shield disabling§5 effects",
@@ -455,7 +456,6 @@
   "item.relicera.stormscale": "Stormscale",
   "item.relicera.forgotten_thread": "Forgotten Thread",
   "item.relicera.revival_nectar": "Revival Nectar",
-  "item.relicera.primal_soil": "Primal Soil",
   "item.relicera.heart_of_the_mountain": "Heart of the Mountain",
   "item.relicera.depthbreaker": "Depthbreaker",
   "item.relicera.rotten_tusk": "Rotten Tusk",

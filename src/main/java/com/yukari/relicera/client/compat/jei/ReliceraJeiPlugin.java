@@ -3,7 +3,7 @@ package com.yukari.relicera.client.compat.jei;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.client.screen.RelicRepairTableScreen;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
-import com.yukari.relicera.common.item.feysilver.FeysilverSwordItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverToolAnvil;
 import com.yukari.relicera.common.recipe.TemplatelessSmithingRecipe;
 import com.yukari.relicera.config.ModClientConfig;
 import com.yukari.relicera.registry.ModBlocks;
@@ -97,7 +97,8 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.ALCHEMICAL_RESIDUE.get(), "alchemical_residue", 1);
         registerStonewallGreatshieldRepair(registration);
         registerDepthbreakerRepair(registration);
-        registerFeysilverSwordRepair(registration);
+        registerFeysilverToolRepair(registration, new ItemStack(ModItems.FEYSILVER_SWORD.get()), "feysilver_sword");
+        registerFeysilverToolRepair(registration, new ItemStack(ModItems.FEYSILVER_PICKAXE.get()), "feysilver_pickaxe");
     }
 
     @Override
@@ -164,14 +165,13 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
     }
 
-    private static void registerFeysilverSwordRepair(IRecipeRegistration registration) {
-        ItemStack damagedSword = new ItemStack(ModItems.FEYSILVER_SWORD.get());
-        damagedSword.setDamageValue(damagedSword.getMaxDamage() - 1);
+    private static void registerFeysilverToolRepair(IRecipeRegistration registration, ItemStack damagedTool, String id) {
+        damagedTool.setDamageValue(damagedTool.getMaxDamage() - 1);
         var recipe = registration.getVanillaRecipeFactory().createAnvilRecipe(
-                damagedSword,
+                damagedTool,
                 List.of(new ItemStack(Items.NETHERITE_SCRAP)),
-                List.of(FeysilverSwordItem.createRepairedCopy(damagedSword, 1)),
-                ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil.feysilver_sword_repair")
+                List.of(FeysilverToolAnvil.createRepairedCopy(damagedTool, 1)),
+                ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil." + id + "_repair")
         );
         registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
     }

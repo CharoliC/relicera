@@ -392,6 +392,7 @@
   "tooltip.relicera.rippleheart_pearl.3": "§5- 喂食给§6狐狸§5，可以获得其信任",
 
   "item.relicera.feysilver_sword": "精灵银剑",
+  "item.relicera.feysilver_pickaxe": "精灵银镐",
   "item.relicera.stonewall_greatshield": "磐石大盾",
   "tooltip.relicera.stonewall_greatshield.0": "§5按住 %1$s§5 查看详情。",
   "tooltip.relicera.stonewall_greatshield.1": "§5- 免疫大多数§6破盾§5效果",
@@ -455,7 +456,6 @@
   "item.relicera.stormscale": "风暴鳞片",
   "item.relicera.forgotten_thread": "遗忘丝线",
   "item.relicera.revival_nectar": "复苏花蜜",
-  "item.relicera.primal_soil": "原初之土",
   "item.relicera.heart_of_the_mountain": "山脉之心",
   "item.relicera.depthbreaker": "深层击穿者",
   "item.relicera.rotten_tusk": "腐化獠牙",

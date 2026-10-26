@@ -16,6 +16,7 @@ import com.yukari.relicera.common.item.AultiasBloodItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtVolumeOneItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverIngotItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverSwordItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverPickaxeItem;
 import com.yukari.relicera.common.item.ForgelingBucketItem;
 import com.yukari.relicera.common.item.FourfoldSherdPendantItem;
 import com.yukari.relicera.common.item.IluthiasChaliceItem;
@@ -139,11 +140,6 @@ public final class ModItems {
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)));
 
-    public static final RegistryObject<Item> PRIMAL_SOIL = ITEMS.register("primal_soil", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)));
-
     public static final RegistryObject<Item> PASTORAL_MELODY = ITEMS.register("pastoral_melody", () ->
             new PastoralMelodyItem(new Item.Properties()
                     .stacksTo(1)
@@ -221,6 +217,11 @@ public final class ModItems {
 
     public static final RegistryObject<Item> FEYSILVER_SWORD = ITEMS.register("feysilver_sword", () ->
             new FeysilverSwordItem(new Item.Properties()
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> FEYSILVER_PICKAXE = ITEMS.register("feysilver_pickaxe", () ->
+            new FeysilverPickaxeItem(new Item.Properties()
                     .rarity(Rarity.UNCOMMON)
                     .fireResistant()));
 

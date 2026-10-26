@@ -3,13 +3,16 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "relicera:primal_soil"
+      "item": "relicera:alchemical_residue"
     },
     {
-      "item": "minecraft:black_dye"
+      "item": "minecraft:experience_bottle"
     },
     {
-      "item": "minecraft:bone"
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "item": "minecraft:slime_ball"
     },
     {
       "type": "forge:partial_nbt",
@@ -18,7 +21,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:wither_rose",
+    "item": "minecraft:pitcher_plant",
     "count": 1
   }
 }

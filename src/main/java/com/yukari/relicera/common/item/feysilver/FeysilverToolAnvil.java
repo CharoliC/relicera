@@ -1,6 +1,5 @@
 package com.yukari.relicera.common.item.feysilver;
 
-import com.yukari.relicera.registry.ModItems;
 import java.util.Map;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
@@ -12,17 +11,17 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.AnvilUpdateEvent;
 
-public final class FeysilverSwordAnvil {
-    private FeysilverSwordAnvil() {
+public final class FeysilverToolAnvil {
+    private FeysilverToolAnvil() {
     }
 
     public static void updateResult(AnvilUpdateEvent event) {
         ItemStack left = event.getLeft();
-        if (event.isCanceled() || !left.is(ModItems.FEYSILVER_SWORD.get())) {
+        if (event.isCanceled() || !isFeysilverTool(left)) {
             return;
         }
         if (!event.getOutput().isEmpty()) {
-            if (event.getOutput().is(ModItems.FEYSILVER_SWORD.get())) {
+            if (isFeysilverTool(event.getOutput())) {
                 event.getOutput().removeTagKey("RepairCost");
             }
             return;
@@ -43,7 +42,7 @@ public final class FeysilverSwordAnvil {
                     return;
                 }
                 materialCost = Math.min(right.getCount(), (output.getDamageValue() + repair - 1) / repair);
-                output = FeysilverSwordItem.createRepairedCopy(left, materialCost);
+                output = createRepairedCopy(left, materialCost);
                 operationCost += materialCost;
             } else {
                 if (!enchantedBook && (!right.is(left.getItem()) || !output.isDamageableItem())) {
@@ -101,7 +100,7 @@ public final class FeysilverSwordAnvil {
 
         int renameCost = applyName(event.getName(), left, output);
         operationCost += renameCost;
-        int priorWorkCost = right.isEmpty() || right.is(ModItems.FEYSILVER_SWORD.get())
+        int priorWorkCost = right.isEmpty() || isFeysilverTool(right)
                 ? 0 : right.getBaseRepairCost();
         int totalCost = priorWorkCost + operationCost;
         if (renameCost == operationCost && renameCost > 0 && totalCost >= 40) {
@@ -117,6 +116,17 @@ public final class FeysilverSwordAnvil {
         event.setOutput(output);
         event.setCost(totalCost);
         event.setMaterialCost(materialCost);
+    }
+
+    private static boolean isFeysilverTool(ItemStack stack) {
+        return stack.getItem() instanceof FeysilverSwordItem || stack.getItem() instanceof FeysilverPickaxeItem;
+    }
+
+    public static ItemStack createRepairedCopy(ItemStack stack, int materialCount) {
+        ItemStack output = stack.copy();
+        output.setDamageValue(Math.max(0, stack.getDamageValue() - stack.getMaxDamage() / 4 * materialCount));
+        output.removeTagKey("RepairCost");
+        return output;
     }
 
     private static int applyName(String name, ItemStack input, ItemStack output) {

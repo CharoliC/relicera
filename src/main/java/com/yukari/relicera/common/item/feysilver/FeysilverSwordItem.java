@@ -19,11 +19,4 @@ public final class FeysilverSwordItem extends SwordItem {
     public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
         return ingredient.is(Items.NETHERITE_SCRAP);
     }
-
-    public static ItemStack createRepairedCopy(ItemStack stack, int materialCount) {
-        ItemStack output = stack.copy();
-        output.setDamageValue(Math.max(0, stack.getDamageValue() - stack.getMaxDamage() / 4 * materialCount));
-        output.removeTagKey("RepairCost");
-        return output;
-    }
 }

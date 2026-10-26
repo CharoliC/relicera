@@ -3,13 +3,16 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "relicera:primal_soil"
+      "item": "relicera:alchemical_residue"
     },
     {
-      "item": "minecraft:cyan_dye"
+      "item": "minecraft:experience_bottle"
     },
     {
-      "item": "minecraft:slime_ball"
+      "item": "minecraft:orange_dye"
+    },
+    {
+      "item": "minecraft:blaze_powder"
     },
     {
       "type": "forge:partial_nbt",
@@ -18,7 +21,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:pitcher_plant",
+    "item": "minecraft:torchflower",
     "count": 1
   }
 }

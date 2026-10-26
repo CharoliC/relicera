@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "relicera:feysilver_pickaxe",
     {
       "id": "relicera:depthbreaker",
       "required": false

@@ -1,15 +1,36 @@
 {
-  "type": "minecraft:smithing_transform",
-  "template": {
-    "item": "minecraft:raiser_armor_trim_smithing_template"
-  },
-  "base": {
-    "item": "minecraft:goat_horn"
-  },
-  "addition": {
-    "item": "relicera:primal_soil"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "HTH",
+    "PGC",
+    "IRI"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "T": {
+      "item": "minecraft:raiser_armor_trim_smithing_template"
+    },
+    "P": {
+      "item": "minecraft:potato"
+    },
+    "G": {
+      "item": "minecraft:goat_horn"
+    },
+    "C": {
+      "item": "minecraft:carrot"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "relicera:alchemical_residue"
+    }
   },
   "result": {
-    "item": "relicera:pastoral_melody"
+    "item": "relicera:pastoral_melody",
+    "count": 1
   }
 }

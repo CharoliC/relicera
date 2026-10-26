@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " RF",
+    "SDR",
+    "PS "
+  ],
+  "key": {
+    "R": {
+      "item": "relicera:alchemical_residue"
+    },
+    "F": {
+      "item": "relicera:feysilver_ingot"
+    },
+    "S": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "minecraft:netherite_pickaxe"
+    }
+  },
+  "result": {
+    "item": "relicera:feysilver_pickaxe",
+    "count": 1
+  }
+}

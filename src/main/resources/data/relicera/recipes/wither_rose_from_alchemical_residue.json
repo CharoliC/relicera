@@ -3,13 +3,16 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "relicera:primal_soil"
+      "item": "relicera:alchemical_residue"
     },
     {
-      "item": "minecraft:orange_dye"
+      "item": "minecraft:experience_bottle"
     },
     {
-      "item": "minecraft:blaze_powder"
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "minecraft:bone"
     },
     {
       "type": "forge:partial_nbt",
@@ -18,7 +21,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:torchflower",
+    "item": "minecraft:wither_rose",
     "count": 1
   }
 }

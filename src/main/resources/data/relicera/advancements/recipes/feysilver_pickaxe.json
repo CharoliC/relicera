@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alchemical_residue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:alchemical_residue"
+            ]
+          }
+        ]
+      }
+    },
+    "has_feysilver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:feysilver_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alchemical_residue",
+      "has_feysilver_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "relicera:feysilver_pickaxe"
+    ]
+  }
+}

@@ -38,7 +38,7 @@ import com.yukari.relicera.common.effect.tempestsprint.TempestSprintEffects;
 import com.yukari.relicera.common.entity.forgeling.ForgelingWorksiteManager;
 import com.yukari.relicera.common.item.AstralStorybookItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingKnowledge;
-import com.yukari.relicera.common.item.feysilver.FeysilverSwordAnvil;
+import com.yukari.relicera.common.item.feysilver.FeysilverToolAnvil;
 import com.yukari.relicera.common.item.PastoralMelodyEffects;
 import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
@@ -444,7 +444,7 @@ public final class CommonGameEvents {
         FeysilverForgingKnowledge.updateAnvilResult(event);
         SilkOfNightDecoration.updateAnvilResult(event);
         StonewallGreatshieldItem.updateAnvilRepair(event);
-        FeysilverSwordAnvil.updateResult(event);
+        FeysilverToolAnvil.updateResult(event);
     }
 
     @SubscribeEvent

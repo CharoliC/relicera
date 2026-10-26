@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_primal_soil": {
+    "has_alchemical_residue": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "relicera:primal_soil"
+              "relicera:alchemical_residue"
             ]
           }
         ]
@@ -16,9 +16,6 @@
   },
   "rewards": {
     "recipes": [
-      "relicera:primal_soil_to_torchflower",
-      "relicera:primal_soil_to_pitcher_plant",
-      "relicera:primal_soil_to_wither_rose",
       "relicera:pastoral_melody"
     ]
   }
