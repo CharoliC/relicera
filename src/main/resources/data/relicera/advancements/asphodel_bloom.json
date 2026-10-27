@@ -1,0 +1,26 @@
+{
+  "parent": "relicera:noctis_3",
+  "display": {
+    "icon": {
+      "item": "relicera:asphodel_bloom"
+    },
+    "title": {
+      "translate": "advancements.relicera.asphodel_bloom.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.asphodel_bloom.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "used_asphodel_bloom": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

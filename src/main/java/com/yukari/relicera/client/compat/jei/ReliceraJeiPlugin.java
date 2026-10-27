@@ -95,6 +95,7 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.SCULK_FRUIT_SEEDS.get(), "sculk_fruit_seeds", 1);
         addInfo(registration, ModItems.SUFFERERS_EXULTATION.get(), "sufferers_exultation", 1);
         addInfo(registration, ModItems.ALCHEMICAL_RESIDUE.get(), "alchemical_residue", 1);
+        addInfo(registration, ModItems.SIRENS_EYE.get(), "sirens_eye", 1);
         registerStonewallGreatshieldRepair(registration);
         registerDepthbreakerRepair(registration);
         registerFeysilverToolRepair(registration, new ItemStack(ModItems.FEYSILVER_SWORD.get()), "feysilver_sword");

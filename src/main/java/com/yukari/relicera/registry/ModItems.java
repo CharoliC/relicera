@@ -4,6 +4,8 @@ import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.compat.twilightforest.DepthbreakerItem;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem;
 import com.yukari.relicera.common.item.AstralLensItem;
+import com.yukari.relicera.common.item.AsphodelBloomItem;
+import com.yukari.relicera.common.item.SirensEyeItem;
 import com.yukari.relicera.common.item.AstralStorybookItem;
 import com.yukari.relicera.common.item.BrutalPlunderBadgeItem;
 import com.yukari.relicera.common.item.CovenantTabletItem;
@@ -116,6 +118,17 @@ public final class ModItems {
 
     public static final RegistryObject<Item> SOULKNOT_STONE = ITEMS.register("soulknot_stone", () ->
             new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> SIRENS_EYE = ITEMS.register("sirens_eye", () ->
+            new SirensEyeItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)
+                    .food(SirensEyeItem.createFoodProperties())));
+
+    public static final RegistryObject<Item> ASPHODEL_BLOOM = ITEMS.register("asphodel_bloom", () ->
+            new AsphodelBloomItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
@@ -435,6 +448,11 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(ReliceraMod.LEGENDARY)
                     .fireResistant()));
+
+    public static final RegistryObject<Item> FORGOTTEN_NIGHT_VEIL = ITEMS.register("forgotten_night_veil", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> LUMINAS_CELESTIAL_LENS = ITEMS.register("luminas_celestial_lens", () ->
             new LuminasCelestialLensItem(new Item.Properties()

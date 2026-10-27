@@ -1,10 +1,12 @@
-精灵银镐
+#### 1.2.5
 
-删除原初之土，所有相关配方改为炼金残渣
-
-牧野悠歌手持可以吸引动物
-
-
++ Added items: Feysilver Pickaxe, Siren's Eye, Asphodel Bloom.
++ Deleted item: Primal Soil. All usage is replaced by Residue.
++ Changed textures: Withered Life Chalice, Iluthia's Chalice, Pastoral Melody.
++ Added 6 advancements.
++ Pastoral Melody can attract animals while in hand.
++ Using Forging Art Scroll will show toast instead of message.
++ Improved compatibility.
 
 
 

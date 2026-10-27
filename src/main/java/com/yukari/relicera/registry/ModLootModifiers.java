@@ -14,6 +14,7 @@ import com.yukari.relicera.common.loot.AddHeartOfTheMountainLootModifier;
 import com.yukari.relicera.common.loot.AddOceanRuinArchaeologyLootModifier;
 import com.yukari.relicera.common.loot.AddReinforcedDeepslateLootModifier;
 import com.yukari.relicera.common.loot.AddSculkFruitLootModifier;
+import com.yukari.relicera.common.loot.AddSirensEyeLootModifier;
 import com.yukari.relicera.common.loot.AddWitheredLifeChaliceLootModifier;
 import com.yukari.relicera.common.loot.AddVindicatorsMedalLootModifier;
 import com.yukari.relicera.common.loot.AddWeatheredMountainCovenantLootModifier;
@@ -72,6 +73,9 @@ public final class ModLootModifiers {
 
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ADD_SCULK_FRUIT =
             LOOT_MODIFIER_SERIALIZERS.register("add_sculk_fruit", () -> AddSculkFruitLootModifier.CODEC);
+
+    public static final RegistryObject<Codec<? extends IGlobalLootModifier>> ADD_SIRENS_EYE =
+            LOOT_MODIFIER_SERIALIZERS.register("add_sirens_eye", () -> AddSirensEyeLootModifier.CODEC);
 
     private ModLootModifiers() {
     }

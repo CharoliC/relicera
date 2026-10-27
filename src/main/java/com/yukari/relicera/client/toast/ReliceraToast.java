@@ -16,7 +16,7 @@ public final class ReliceraToast implements Toast {
     private final int width;
 
     private ReliceraToast(Component title, Component description, ItemStack icon) {
-        this.title = title.copy().withStyle(ChatFormatting.DARK_PURPLE);
+        this.title = title.copy().withStyle(ChatFormatting.LIGHT_PURPLE);
         this.description = description.copy().withStyle(ChatFormatting.WHITE);
         this.icon = icon.copy();
         var font = Minecraft.getInstance().font;

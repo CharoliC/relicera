@@ -1,0 +1,32 @@
+{
+  "parent": "relicera:noctis",
+  "display": {
+    "icon": {
+      "item": "relicera:sculk_fruit"
+    },
+    "title": {
+      "translate": "advancements.relicera.noctis_2.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.noctis_2.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_sculk_fruit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:sculk_fruit"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

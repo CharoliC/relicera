@@ -1,0 +1,27 @@
+{
+  "type": "relicera:water_bottle_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "relicera:alchemical_residue"
+    },
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    {
+      "item": "minecraft:purple_dye"
+    },
+    {
+      "item": "relicera:soulknot_stone"
+    },
+    {
+      "type": "forge:partial_nbt",
+      "item": "minecraft:potion",
+      "nbt": "{Potion:\"minecraft:water\"}"
+    }
+  ],
+  "result": {
+    "item": "relicera:asphodel_bloom",
+    "count": 1
+  }
+}

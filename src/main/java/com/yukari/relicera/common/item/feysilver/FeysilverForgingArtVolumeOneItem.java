@@ -1,7 +1,8 @@
 package com.yukari.relicera.common.item.feysilver;
-import net.minecraft.ChatFormatting;
+
+import com.yukari.relicera.common.network.ModNetworking;
+import com.yukari.relicera.common.network.packet.ForgingLearnedToastPacket;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -37,10 +38,7 @@ public class FeysilverForgingArtVolumeOneItem extends Item {
             serverPlayer.playNotifySound(SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS, 1.0F, 1.0F);
             serverPlayer.playNotifySound(SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
             spawnLearnParticles(serverPlayer);
-            serverPlayer.displayClientMessage(Component.translatable(
-                    "message.relicera.feysilver_forging_art_volume_one.learned",
-                    Component.translatable("item.relicera.feysilver_forging_art_volume_one")
-            ).withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD), true);
+            ModNetworking.sendToPlayer(new ForgingLearnedToastPacket(), serverPlayer);
         }
         return InteractionResultHolder.consume(stack);
     }

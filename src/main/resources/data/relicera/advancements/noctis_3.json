@@ -1,0 +1,32 @@
+{
+  "parent": "relicera:noctis_2",
+  "display": {
+    "icon": {
+      "item": "relicera:soulknot_stone"
+    },
+    "title": {
+      "translate": "advancements.relicera.noctis_3.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.noctis_3.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_soulknot_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:soulknot_stone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

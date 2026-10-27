@@ -4,6 +4,8 @@ import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.network.packet.CameraShakePacket;
 import com.yukari.relicera.common.network.packet.CovenantToastPacket;
 import com.yukari.relicera.common.network.packet.ItemActivationPacket;
+import com.yukari.relicera.common.network.packet.SlotUnlockToastPacket;
+import com.yukari.relicera.common.network.packet.ForgingLearnedToastPacket;
 import com.yukari.relicera.common.network.packet.OpenAstralStorybookPacket;
 import com.yukari.relicera.common.network.packet.SyncAstralObservationPacket;
 import com.yukari.relicera.common.network.packet.SyncAttackStrengthPacket;
@@ -22,7 +24,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetworking {
-    private static final String PROTOCOL_VERSION = "12";
+    private static final String PROTOCOL_VERSION = "14";
     private static int messageId;
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -106,6 +108,18 @@ public final class ModNetworking {
                 .encoder(ItemActivationPacket::encode)
                 .decoder(ItemActivationPacket::decode)
                 .consumerMainThread(ItemActivationPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(SlotUnlockToastPacket.class, nextMessageId(), NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(SlotUnlockToastPacket::encode)
+                .decoder(SlotUnlockToastPacket::decode)
+                .consumerMainThread(SlotUnlockToastPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(ForgingLearnedToastPacket.class, nextMessageId(), NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(ForgingLearnedToastPacket::encode)
+                .decoder(ForgingLearnedToastPacket::decode)
+                .consumerMainThread(ForgingLearnedToastPacket::handle)
                 .add();
     }
 

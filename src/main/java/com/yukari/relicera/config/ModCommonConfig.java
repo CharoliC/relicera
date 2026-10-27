@@ -51,6 +51,7 @@ public final class ModCommonConfig {
     public static final ForgeConfigSpec.DoubleValue WITHERED_LIFE_CHALICE_JUNGLE_TEMPLE_CHEST_CHANCE;
     public static final ForgeConfigSpec.DoubleValue WITHERED_LIFE_CHALICE_SIMPLE_DUNGEON_CHEST_CHANCE;
     public static final ForgeConfigSpec.DoubleValue DRIED_CROWN_SHIPWRECK_TREASURE_CHEST_CHANCE;
+    public static final ForgeConfigSpec.DoubleValue SIRENS_EYE_CHEST_CHANCE;
     public static final ForgeConfigSpec.DoubleValue DRIED_CROWN_UNDERWATER_RUIN_CHEST_CHANCE;
     public static final ForgeConfigSpec.DoubleValue DRIED_CROWN_BURIED_TREASURE_CHEST_CHANCE;
     public static final ForgeConfigSpec.DoubleValue DRIED_CROWN_OCEAN_RUIN_ARCHAEOLOGY_CHANCE;
@@ -416,6 +417,14 @@ public final class ModCommonConfig {
         WITHERED_LIFE_CHALICE_SIMPLE_DUNGEON_CHEST_CHANCE = BUILDER
                 .comment("Chance for Withered Life Chalice to be added to each dungeon chest. 1.6%")
                 .defineInRange("simpleDungeonChestChance", 0.016D, 0.0D, 1.0D);
+
+        BUILDER.pop();
+
+        BUILDER.push("sirens_eye");
+
+        SIRENS_EYE_CHEST_CHANCE = BUILDER
+                .comment("Chance for Siren's Eye to be added to each ocean chest. 0.014 = 1.4%.")
+                .defineInRange("chestChance", 0.014D, 0.0D, 1.0D);
 
         BUILDER.pop();
 
