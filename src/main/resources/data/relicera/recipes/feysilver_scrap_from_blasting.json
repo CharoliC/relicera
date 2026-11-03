@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": {
+    "item": "relicera:silvered_debris"
+  },
+  "result": "relicera:feysilver_scrap",
+  "experience": 2.6,
+  "cookingtime": 100
+}

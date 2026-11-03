@@ -1,6 +1,7 @@
 package com.yukari.relicera.common.entity.forgeling;
 
 import com.yukari.relicera.registry.ModItems;
+import com.yukari.relicera.common.item.SilveringSolutionEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -68,6 +69,11 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
             Forgeling.class,
             EntityDataSerializers.BOOLEAN
     );
+    private static final EntityDataAccessor<Boolean> SILVERED = SynchedEntityData.defineId(
+            Forgeling.class,
+            EntityDataSerializers.BOOLEAN
+    );
+    public static final String TAG_SILVERED = "Silvered";
     private static final String TAG_BOUND_TABLE = "BoundSmithingTable";
     private static final String TAG_BOUND_WORK_POSITION = "BoundWorkPosition";
     private static final String TAG_FROM_BUCKET = "FromBucket";
@@ -80,6 +86,7 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
     private boolean wasOnGround;
     private boolean wasWorkIdleForAnimation;
     private int idleAnimationCooldown;
+    private long silveringCompletionTime = -1L;
     @Nullable
     private BlockPos boundTablePos;
     @Nullable
@@ -114,6 +121,7 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
         this.entityData.define(IDLE_ANIMATION, IDLE_ANIMATION_NONE);
         this.entityData.define(IDLE_ANIMATION_START_TIME, 0);
         this.entityData.define(FROM_BUCKET, false);
+        this.entityData.define(SILVERED, false);
     }
 
     @Override
@@ -124,6 +132,7 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
             tag.putLong(TAG_BOUND_WORK_POSITION, this.boundWorkPos.asLong());
         }
         tag.putBoolean(TAG_FROM_BUCKET, this.fromBucket());
+        tag.putBoolean(TAG_SILVERED, this.isSilvered());
     }
 
     @Override
@@ -137,6 +146,8 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
             this.clearWorksite();
         }
         this.setFromBucket(tag.getBoolean(TAG_FROM_BUCKET));
+        this.entityData.set(SILVERED, tag.getBoolean(TAG_SILVERED));
+        this.silveringCompletionTime = -1L;
     }
 
     @Override
@@ -146,6 +157,7 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
 
     @Override
     public void remove(RemovalReason reason) {
+        this.silveringCompletionTime = -1L;
         if (reason != RemovalReason.UNLOADED_TO_CHUNK && reason != RemovalReason.UNLOADED_WITH_PLAYER) {
             ForgelingWorksiteManager.releaseBinding(this);
         }
@@ -202,6 +214,7 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
         this.squish += (this.targetSquish - this.squish) * 0.5F;
         this.oldSquish = this.squish;
         super.tick();
+        tickSilvering();
 
         if (this.onGround() && !this.wasOnGround) {
             spawnLandingParticles();
@@ -221,6 +234,40 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
             this.targetSquish = -Mth.sin(progress * Mth.TWO_PI * 1.5F) * 0.3F * envelope;
         } else {
             this.targetSquish *= 0.9F;
+        }
+    }
+
+    public boolean isSilvered() {
+        return this.entityData.get(SILVERED);
+    }
+
+    public boolean startSilvering() {
+        if (!(this.level() instanceof ServerLevel level) || !this.isAlive() || this.isRemoved()
+                || this.isSilvered() || this.silveringCompletionTime >= 0L) {
+            return false;
+        }
+        this.silveringCompletionTime = level.getGameTime() + SilveringSolutionEffects.DURATION_TICKS;
+        SilveringSolutionEffects.playStartSound(level, this.getBoundingBox().getCenter());
+        SilveringSolutionEffects.spawnParticles(level, this);
+        return true;
+    }
+
+    private void tickSilvering() {
+        if (!(this.level() instanceof ServerLevel level) || this.silveringCompletionTime < 0L) {
+            return;
+        }
+        if (!this.isAlive() || this.isRemoved() || this.isSilvered()) {
+            this.silveringCompletionTime = -1L;
+            return;
+        }
+        long remaining = this.silveringCompletionTime - level.getGameTime();
+        if (remaining <= 0L) {
+            this.silveringCompletionTime = -1L;
+            this.entityData.set(SILVERED, true);
+            SilveringSolutionEffects.playCompletionEffects(level, this.getBoundingBox().getCenter());
+        } else if (remaining < SilveringSolutionEffects.DURATION_TICKS
+                && remaining % SilveringSolutionEffects.PARTICLE_INTERVAL_TICKS == 0L) {
+            SilveringSolutionEffects.spawnParticles(level, this);
         }
     }
 
@@ -342,10 +389,13 @@ public final class Forgeling extends PathfinderMob implements Bucketable {
             bucketStack.setHoverName(this.getCustomName());
         }
         bucketStack.getOrCreateTag().putFloat(TAG_BUCKET_HEALTH, this.getHealth());
+        bucketStack.getOrCreateTag().putBoolean(TAG_SILVERED, this.isSilvered());
     }
 
     @Override
     public void loadFromBucketTag(CompoundTag tag) {
+        this.entityData.set(SILVERED, tag.getBoolean(TAG_SILVERED));
+        this.silveringCompletionTime = -1L;
         if (tag.contains(TAG_BUCKET_HEALTH, Tag.TAG_ANY_NUMERIC)) {
             this.setHealth(tag.getFloat(TAG_BUCKET_HEALTH));
         }

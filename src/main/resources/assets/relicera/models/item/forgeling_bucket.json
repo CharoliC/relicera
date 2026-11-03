@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "relicera:item/forgeling_bucket"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "relicera:silvered": 1.0
+      },
+      "model": "relicera:item/forgeling_bucket_silvered"
+    }
+  ]
 }

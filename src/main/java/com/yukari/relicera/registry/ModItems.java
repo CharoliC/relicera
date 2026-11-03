@@ -36,6 +36,7 @@ import com.yukari.relicera.common.item.RippleheartRingsItem;
 import com.yukari.relicera.common.item.SculkFruitItem;
 import com.yukari.relicera.common.item.SculkFruitSeedsItem;
 import com.yukari.relicera.common.item.SolarEmberItem;
+import com.yukari.relicera.common.item.SilveringSolutionItem;
 import com.yukari.relicera.common.item.SoulRestoringStewItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
 import com.yukari.relicera.common.item.TempestsReinsItem;
@@ -69,11 +70,22 @@ public final class ModItems {
                     .rarity(ReliceraMod.LEGENDARY)
                     .fireResistant()));
 
+    public static final RegistryObject<Item> FEYSILVER_SCRAP = ITEMS.register("feysilver_scrap", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)
+                    .fireResistant()));
+
     public static final RegistryObject<Item> FEYSILVER_INGOT = ITEMS.register("feysilver_ingot", () ->
             new FeysilverIngotItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.RARE)
                     .fireResistant()));
+
+    public static final RegistryObject<Item> SILVERING_SOLUTION = ITEMS.register("silvering_solution", () ->
+            new SilveringSolutionItem(new Item.Properties()
+                    .stacksTo(16)
+                    .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> ALCHEMICAL_RESIDUE = ITEMS.register("alchemical_residue", () ->
             new Item(new Item.Properties()
@@ -458,6 +470,12 @@ public final class ModItems {
             new LuminasCelestialLensItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(ReliceraMod.LEGENDARY)));
+
+    public static final RegistryObject<Item> SILVERED_DEBRIS = ITEMS.register("silvered_debris", () ->
+            new BlockItem(ModBlocks.SILVERED_DEBRIS.get(), new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> RELIC_REPAIR_TABLE = ITEMS.register("relic_repair_table", () ->
             new BlockItem(ModBlocks.RELIC_REPAIR_TABLE.get(), new Item.Properties()

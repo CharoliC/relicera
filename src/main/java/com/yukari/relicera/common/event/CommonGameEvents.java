@@ -43,6 +43,7 @@ import com.yukari.relicera.common.item.PastoralMelodyEffects;
 import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
 import com.yukari.relicera.common.item.SolarEmberEffects;
+import com.yukari.relicera.common.item.SilveringSolutionEffects;
 import com.yukari.relicera.common.item.SoulknotStoneEffects;
 import com.yukari.relicera.common.item.SoulRestoringStewEffects;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
@@ -87,6 +88,8 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 import net.minecraftforge.event.level.SleepFinishedTimeEvent;
+import net.minecraftforge.event.level.ChunkEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -128,6 +131,7 @@ public final class CommonGameEvents {
             AshenTouchEffects.clearQueuedFires(serverLevel);
             DreamcatcherBoxSleepRewards.tickLevel(serverLevel);
             PastoralMelodyEffects.tickLevel(serverLevel);
+            SilveringSolutionEffects.tickLevel(serverLevel);
             if (serverLevel.getGameTime() % 20L == 0L) {
                 ForgelingWorksiteManager.cleanupInvalidBindings(serverLevel);
             }
@@ -153,6 +157,21 @@ public final class CommonGameEvents {
         LittleTailorsBeltEffects.clearPendingReveals();
         DivineSeveranceRingEffects.clearPendingJudgments();
         TurncoatPatrolSpawner.clear();
+        SilveringSolutionEffects.clear();
+    }
+
+    @SubscribeEvent
+    public static void onChunkUnload(ChunkEvent.Unload event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            SilveringSolutionEffects.cancelChunk(serverLevel, event.getChunk().getPos());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLevelUnload(LevelEvent.Unload event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            SilveringSolutionEffects.clearLevel(serverLevel);
+        }
     }
 
     @SubscribeEvent

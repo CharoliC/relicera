@@ -16,46 +16,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class RelicRepairTableBlock extends Block implements EntityBlock {
-    private static final VoxelShape COLLISION_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
-    private static final VoxelShape OUTLINE_SHAPE = Shapes.or(
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D),
-            Block.box(0.0D, 9.0D, 0.0D, 16.0D, 11.0D, 16.0D),
-            Block.box(4.0D, 11.0D, 12.0D, 16.0D, 12.0D, 16.0D),
-            Block.box(0.0D, 11.0D, 4.0D, 4.0D, 12.0D, 16.0D),
-            Block.box(0.0D, 11.0D, 0.0D, 12.0D, 12.0D, 4.0D),
-            Block.box(12.0D, 11.0D, 0.0D, 16.0D, 12.0D, 12.0D),
-            Block.box(12.0D, 3.0D, 1.0D, 14.0D, 9.0D, 2.0D),
-            Block.box(1.0D, 3.0D, 1.0D, 4.0D, 9.0D, 2.0D),
-            Block.box(4.0D, 3.0D, 1.0D, 12.0D, 4.0D, 2.0D),
-            Block.box(4.0D, 8.0D, 1.0D, 12.0D, 9.0D, 2.0D),
-            Block.box(9.0D, 4.0D, 1.0D, 10.0D, 8.0D, 2.0D),
-            Block.box(6.0D, 4.0D, 1.0D, 7.0D, 8.0D, 2.0D),
-            Block.box(2.0D, 3.0D, 2.0D, 14.0D, 9.0D, 14.0D),
-            Block.box(1.0D, 3.0D, 2.0D, 2.0D, 9.0D, 4.0D),
-            Block.box(1.0D, 3.0D, 12.0D, 2.0D, 9.0D, 15.0D),
-            Block.box(1.0D, 3.0D, 4.0D, 2.0D, 4.0D, 12.0D),
-            Block.box(1.0D, 8.0D, 4.0D, 2.0D, 9.0D, 12.0D),
-            Block.box(1.0D, 4.0D, 6.0D, 2.0D, 8.0D, 7.0D),
-            Block.box(1.0D, 4.0D, 9.0D, 2.0D, 8.0D, 10.0D),
-            Block.box(2.0D, 3.0D, 14.0D, 4.0D, 9.0D, 15.0D),
-            Block.box(12.0D, 3.0D, 14.0D, 15.0D, 9.0D, 15.0D),
-            Block.box(4.0D, 3.0D, 14.0D, 12.0D, 4.0D, 15.0D),
-            Block.box(4.0D, 8.0D, 14.0D, 12.0D, 9.0D, 15.0D),
-            Block.box(6.0D, 4.0D, 14.0D, 7.0D, 8.0D, 15.0D),
-            Block.box(9.0D, 4.0D, 14.0D, 10.0D, 8.0D, 15.0D),
-            Block.box(14.0D, 3.0D, 12.0D, 15.0D, 9.0D, 14.0D),
-            Block.box(14.0D, 3.0D, 1.0D, 15.0D, 9.0D, 4.0D),
-            Block.box(14.0D, 3.0D, 4.0D, 15.0D, 4.0D, 12.0D),
-            Block.box(14.0D, 8.0D, 4.0D, 15.0D, 9.0D, 12.0D),
-            Block.box(14.0D, 4.0D, 9.0D, 15.0D, 8.0D, 10.0D),
-            Block.box(14.0D, 4.0D, 6.0D, 15.0D, 8.0D, 7.0D)
-    );
+    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
     public RelicRepairTableBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -63,12 +29,12 @@ public class RelicRepairTableBlock extends Block implements EntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return OUTLINE_SHAPE;
+        return SHAPE;
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return COLLISION_SHAPE;
+        return SHAPE;
     }
 
     @Nullable

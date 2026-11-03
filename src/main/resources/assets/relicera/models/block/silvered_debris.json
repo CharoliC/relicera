@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "relicera:block/silvered_debris_top",
+    "side": "relicera:block/silvered_debris_side"
+  }
+}

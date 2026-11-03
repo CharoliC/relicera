@@ -20,6 +20,8 @@ public final class ForgelingRenderer extends MobRenderer<Forgeling, ForgelingMod
             ReliceraMod.MOD_ID, "textures/entity/forgeling.png");
     private static final ResourceLocation EMISSIVE_TEXTURE = ResourceLocation.fromNamespaceAndPath(
             ReliceraMod.MOD_ID, "textures/entity/forgeling_emissive.png");
+    private static final ResourceLocation SILVERED_TEXTURE = ResourceLocation.fromNamespaceAndPath(
+            ReliceraMod.MOD_ID, "textures/entity/forgeling_silvered.png");
     private static final float VISUAL_SIZE = 2.0F;
 
     public ForgelingRenderer(EntityRendererProvider.Context context) {
@@ -40,7 +42,7 @@ public final class ForgelingRenderer extends MobRenderer<Forgeling, ForgelingMod
 
     @Override
     public ResourceLocation getTextureLocation(Forgeling forgeling) {
-        return TEXTURE;
+        return forgeling.isSilvered() ? SILVERED_TEXTURE : TEXTURE;
     }
 
     private static final class ForgelingEmissiveLayer extends RenderLayer<Forgeling, ForgelingModel> {

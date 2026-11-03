@@ -1,3 +1,9 @@
+银化溶液，银化残骸，精灵银碎片
+
+锻灵外观转化
+
+
+
 #### 1.2.5
 
 + Added items: Feysilver Pickaxe, Siren's Eye, Asphodel Bloom.

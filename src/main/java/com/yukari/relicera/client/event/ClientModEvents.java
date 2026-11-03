@@ -27,6 +27,7 @@ import com.yukari.relicera.client.screen.RelicRepairTableScreen;
 import com.yukari.relicera.client.tooltip.ClientFiveSlotContentsTooltip;
 import com.yukari.relicera.common.curio.CovenantTabletEffects;
 import com.yukari.relicera.common.item.AstralStorybookItem;
+import com.yukari.relicera.common.item.ForgelingBucketItem;
 import com.yukari.relicera.common.item.InscribedCovenantTabletItem;
 import com.yukari.relicera.common.item.IluthiasChaliceItem.TotemContentsTooltip;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem.ContractContentsTooltip;
@@ -36,6 +37,7 @@ import com.yukari.relicera.registry.ModEntityTypes;
 import com.yukari.relicera.registry.ModMenuTypes;
 import com.yukari.relicera.registry.ModParticleTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.particle.SculkChargePopParticle;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.entity.HorseRenderer;
@@ -60,6 +62,8 @@ public final class ClientModEvents {
         event.enqueueWork(() -> {
             MenuScreens.register(ModMenuTypes.RELIC_REPAIR_TABLE.get(), RelicRepairTableScreen::new);
             MenuScreens.register(ModMenuTypes.FOURFOLD_SHERD_PENDANT.get(), FourfoldSherdPendantScreen::new);
+            ItemProperties.register(ModItems.FORGELING_BUCKET.get(), ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "silvered"),
+                    (stack, level, entity, seed) -> ForgelingBucketItem.isSilvered(stack) ? 1.0F : 0.0F);
             ItemProperties.register(ModItems.PASTORAL_MELODY.get(), ResourceLocation.fromNamespaceAndPath("minecraft", "tooting"),
                     (stack, level, entity, seed) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
             ItemProperties.register(ModItems.COVENANT_TABLET.get(), ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "completed"),
@@ -160,5 +164,6 @@ public final class ClientModEvents {
         event.registerSpriteSet(ModParticleTypes.DREAM_BUBBLE.get(), DreamBubbleParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.HOLY_LIGHT.get(), HolyLightParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.LICH_FIRE.get(), LichFireParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.FEYSILVER_SOLUTION_POP.get(), SculkChargePopParticle.Provider::new);
     }
 }

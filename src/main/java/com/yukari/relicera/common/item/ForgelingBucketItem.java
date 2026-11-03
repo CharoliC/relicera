@@ -27,6 +27,10 @@ public final class ForgelingBucketItem extends Item {
         super(properties);
     }
 
+    public static boolean isSilvered(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().getBoolean(Forgeling.TAG_SILVERED);
+    }
+
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();

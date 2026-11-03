@@ -20,6 +20,7 @@ public final class ModParticleTypes {
     public static final RegistryObject<SimpleParticleType> DREAM_BUBBLE = PARTICLE_TYPES.register("dream_bubble", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> HOLY_LIGHT = PARTICLE_TYPES.register("holy_light", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> LICH_FIRE = PARTICLE_TYPES.register("lich_fire", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> FEYSILVER_SOLUTION_POP = PARTICLE_TYPES.register("feysilver_solution_pop", () -> new SimpleParticleType(false));
 
     private ModParticleTypes() {
     }

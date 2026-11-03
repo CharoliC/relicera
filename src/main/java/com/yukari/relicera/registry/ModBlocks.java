@@ -39,14 +39,18 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> RELIC_REPAIR_TABLE = BLOCKS.register("relic_repair_table", () ->
             new RelicRepairTableBlock(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)
-                    .strength(3.5F, 6.0F)
+                    .strength(3.5F, 1200.0F)
                     .sound(SoundType.DEEPSLATE)
                     .noOcclusion()));
 
     public static final RegistryObject<Block> DREAMCATCHER_BOX = BLOCKS.register("dreamcatcher_box", () ->
             new DreamcatcherBoxBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
+                    .strength(3.0F, 1200.0F)
                     .sound(SoundType.DEEPSLATE)
                     .lightLevel(state -> 7)));
+
+    public static final RegistryObject<Block> SILVERED_DEBRIS = BLOCKS.register("silvered_debris", () ->
+            new Block(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS)));
 
     public static final RegistryObject<Block> SCULK_FRUIT_CROP = BLOCKS.register("sculk_fruit_crop", () ->
             new SculkFruitCropBlock(BlockBehaviour.Properties.of()
