@@ -1,6 +1,7 @@
 package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
+import com.yukari.relicera.common.item.AlchemistsMedalItem;
 import com.yukari.relicera.common.compat.twilightforest.DepthbreakerItem;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem;
 import com.yukari.relicera.common.item.AstralLensItem;
@@ -15,7 +16,10 @@ import com.yukari.relicera.common.item.EphemeralBloomPendantItem;
 import com.yukari.relicera.common.item.EnvironmentallyIndestructibleItem;
 import com.yukari.relicera.common.item.PhilosophersStoneItem;
 import com.yukari.relicera.common.item.AultiasBloodItem;
-import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtVolumeOneItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtItem;
+import com.yukari.relicera.common.item.feysilver.FeysilverScrapItem;
+import com.yukari.relicera.common.item.feysilver.ForgingVolume;
+import com.yukari.relicera.common.item.feysilver.SilveredDebrisItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverIngotItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverSwordItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverPickaxeItem;
@@ -36,7 +40,7 @@ import com.yukari.relicera.common.item.RippleheartRingsItem;
 import com.yukari.relicera.common.item.SculkFruitItem;
 import com.yukari.relicera.common.item.SculkFruitSeedsItem;
 import com.yukari.relicera.common.item.SolarEmberItem;
-import com.yukari.relicera.common.item.SilveringSolutionItem;
+import com.yukari.relicera.common.item.feysilver.SilveringSolutionItem;
 import com.yukari.relicera.common.item.SoulRestoringStewItem;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
 import com.yukari.relicera.common.item.TempestsReinsItem;
@@ -71,7 +75,7 @@ public final class ModItems {
                     .fireResistant()));
 
     public static final RegistryObject<Item> FEYSILVER_SCRAP = ITEMS.register("feysilver_scrap", () ->
-            new Item(new Item.Properties()
+            new FeysilverScrapItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)
                     .fireResistant()));
@@ -103,9 +107,14 @@ public final class ModItems {
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_ONE = ITEMS.register("feysilver_forging_art_volume_one", () ->
-            new FeysilverForgingArtVolumeOneItem(new Item.Properties()
+            new FeysilverForgingArtItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.RARE)));
+                    .rarity(Rarity.RARE), ForgingVolume.ONE));
+
+    public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_TWO = ITEMS.register("feysilver_forging_art_volume_two", () ->
+            new FeysilverForgingArtItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE), ForgingVolume.TWO));
 
     public static final RegistryObject<Item> FORGOTTEN_THREAD = ITEMS.register("forgotten_thread", () ->
             new Item(new Item.Properties()
@@ -412,6 +421,9 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
+    public static final RegistryObject<Item> ALCHEMISTS_MEDAL = ITEMS.register("alchemists_medal", () ->
+            new AlchemistsMedalItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
     public static final RegistryObject<Item> TURNCOATS_MEDAL = ITEMS.register("turncoats_medal", () ->
             new TurncoatsMedalItem(new Item.Properties()
                     .stacksTo(1)
@@ -472,7 +484,7 @@ public final class ModItems {
                     .rarity(ReliceraMod.LEGENDARY)));
 
     public static final RegistryObject<Item> SILVERED_DEBRIS = ITEMS.register("silvered_debris", () ->
-            new BlockItem(ModBlocks.SILVERED_DEBRIS.get(), new Item.Properties()
+            new SilveredDebrisItem(ModBlocks.SILVERED_DEBRIS.get(), new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)
                     .fireResistant()));

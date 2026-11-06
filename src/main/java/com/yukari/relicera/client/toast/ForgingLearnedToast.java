@@ -1,15 +1,14 @@
 package com.yukari.relicera.client.toast;
 
-import com.yukari.relicera.registry.ModItems;
+import com.yukari.relicera.common.item.feysilver.ForgingVolume;
 import net.minecraft.network.chat.Component;
 
 public final class ForgingLearnedToast {
     private ForgingLearnedToast() {
     }
 
-    public static void show() {
+    public static void show(ForgingVolume volume) {
         ReliceraToast.show(Component.translatable("toast.relicera.forging_learned.title"),
-                Component.translatable("toast.relicera.forging_learned.description"),
-                ModItems.FEYSILVER_FORGING_ART_VOLUME_ONE.get().getDefaultInstance());
+                Component.translatable(volume.toastDescriptionKey()), volume.book().getDefaultInstance());
     }
 }

@@ -290,6 +290,13 @@
   "tooltip.relicera.turncoats_medal.7": "§5- §dAttack Damage %1$s",
   "tooltip.relicera.turncoats_medal.8": "§5- §dLife Steal %1$s",
 
+  "item.relicera.alchemists_medal": "Alchemist's Medal",
+  "tooltip.relicera.alchemists_medal.0": "§5Hold %1$s§5 to see details.",
+  "tooltip.relicera.alchemists_medal.1": "§5- Consume §6Gold Ingots§5 in the inventory to turn them into experience",
+  "tooltip.relicera.alchemists_medal.2": "§5- Dealing magic damage transfers the target's §6beneficial effects§5 to you",
+  "tooltip.relicera.alchemists_medal.3": "§8- Requires consuming an item with endless wealth",
+  "tooltip.relicera.alchemists_medal.4": "§5- Dealing magic damage restores an equal amount of health",
+
   "item.relicera.granbells_furnace": "Granbell's Furnace",
   "tooltip.relicera.granbells_furnace.0": "§4A magical tool belonging to a certain god. It will not be lost after death.",
   "tooltip.relicera.granbells_furnace.1": "§5Hold %1$s§5 to see details.",
@@ -374,9 +381,16 @@
   "tooltip.relicera.feysilver_forging_art_volume_one.2": "§5- Use to learn a forging art of Feysilver",
   "tooltip.relicera.feysilver_forging_art_volume_one.3": "§5- At an anvil, use §6Feysilver Ingots§5 to make equipment §6Unbreakable",
   "tooltip.relicera.feysilver_forging_art_volume_one.4": "§4Already learned",
+  "item.relicera.feysilver_forging_art_volume_two": "The Art of Feysilver Forging: Volume II",
+  "tooltip.relicera.feysilver_forging_art_volume_two.0": "§9One of an unnamed alchemist's manuscripts.",
+  "tooltip.relicera.feysilver_forging_art_volume_two.1": "§5Hold %1$s§5 to see details.",
+  "tooltip.relicera.feysilver_forging_art_volume_two.2": "§5- Use to learn a forging art of Feysilver",
+  "tooltip.relicera.feysilver_forging_art_volume_two.3": "§5- Silvering Solution can transform §6Ancient Debris",
+  "tooltip.relicera.feysilver_forging_art_volume_two.4": "§4Already learned",
   "tooltip.relicera.feysilver_coating.0": "Feysilver Coating",
   "toast.relicera.forging_learned.title": "Forging Art Learned!",
-  "toast.relicera.forging_learned.description": "Apply Unbreakable by anvils with a feysilver.",
+  "toast.relicera.forging_learned.volume_one.description": "Apply Unbreakable by anvils with a feysilver.",
+  "toast.relicera.forging_learned.volume_two.description": "Learned about Silvering Solution",
 
   "item.relicera.silk_of_night": "Silk of Night",
   "tooltip.relicera.silk_of_night.0": "§9A light fabric that makes almost no sound when rubbed.",
@@ -460,6 +474,10 @@
   "toast.relicera.slot_unlocked.ring": "Ring Slot +1",
   "toast.relicera.slot_unlocked.charm": "Charm Slot +1",
 
+  "item.relicera.silvering_solution": "Silvering Solution",
+  "tooltip.relicera.silvering_solution.0": "Can be used on Ancient Debris.",
+  "tooltip.relicera.feysilver_material.requires_volume_two": "Requires reading The Art of Feysilver Forging: Volume II",
+
   "item.relicera.cobblestone_template_base": "Cobblestone Template Base",
   "item.relicera.terracotta_template_base": "Terracotta Template Base",
   "item.relicera.torchflower_ember": "Torchflower Ember",
@@ -477,7 +495,6 @@
   "item.relicera.soulknot_stone": "Soulknot Stone",
   "item.relicera.alchemical_residue": "Alchemical Residue",
   "item.relicera.aultias_blood": "Blood of God",
-  "item.relicera.silvering_solution": "Silvering Solution",
   "item.relicera.feysilver_scrap": "Feysilver Scrap",
   "block.relicera.silvered_debris": "Silvered Debris",
 

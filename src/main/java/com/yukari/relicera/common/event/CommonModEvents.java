@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -38,6 +39,11 @@ public final class CommonModEvents {
                 BrewingRecipeRegistry.addRecipe(PartialNBTIngredient.of(bottle, water.getOrCreateTag()),
                         Ingredient.of(ModItems.ALCHEMICAL_RESIDUE.get()),
                         PotionUtils.setPotion(new ItemStack(bottle), Potions.AWKWARD));
+            }
+            for (Potion potion : new Potion[]{Potions.INVISIBILITY, Potions.LONG_INVISIBILITY}) {
+                ItemStack input = PotionUtils.setPotion(new ItemStack(Items.POTION), potion);
+                BrewingRecipeRegistry.addRecipe(PartialNBTIngredient.of(Items.POTION, input.getOrCreateTag()),
+                        Ingredient.of(Items.ECHO_SHARD), new ItemStack(ModItems.SILVERING_SOLUTION.get()));
             }
         });
     }

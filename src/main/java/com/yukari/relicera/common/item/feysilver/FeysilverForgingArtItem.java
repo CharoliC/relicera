@@ -14,9 +14,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class FeysilverForgingArtVolumeOneItem extends Item {
-    public FeysilverForgingArtVolumeOneItem(Properties properties) {
+public final class FeysilverForgingArtItem extends Item {
+    private final ForgingVolume volume;
+
+    public FeysilverForgingArtItem(Properties properties, ForgingVolume volume) {
         super(properties);
+        this.volume = volume;
+    }
+
+    public ForgingVolume volume() {
+        return volume;
     }
 
     @Override
@@ -26,11 +33,11 @@ public class FeysilverForgingArtVolumeOneItem extends Item {
             return InteractionResultHolder.success(stack);
         }
 
-        if (FeysilverForgingKnowledge.hasVolumeOne(player)) {
+        if (FeysilverForgingKnowledge.hasLearned(player, volume)) {
             return InteractionResultHolder.fail(stack);
         }
 
-        FeysilverForgingKnowledge.learnVolumeOne(player);
+        FeysilverForgingKnowledge.learn(player, volume);
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);
         }
@@ -38,7 +45,7 @@ public class FeysilverForgingArtVolumeOneItem extends Item {
             serverPlayer.playNotifySound(SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS, 1.0F, 1.0F);
             serverPlayer.playNotifySound(SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
             spawnLearnParticles(serverPlayer);
-            ModNetworking.sendToPlayer(new ForgingLearnedToastPacket(), serverPlayer);
+            ModNetworking.sendToPlayer(new ForgingLearnedToastPacket(volume), serverPlayer);
         }
         return InteractionResultHolder.consume(stack);
     }

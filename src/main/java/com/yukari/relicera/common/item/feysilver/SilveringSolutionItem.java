@@ -1,6 +1,8 @@
-package com.yukari.relicera.common.item;
+package com.yukari.relicera.common.item.feysilver;
 
 import com.yukari.relicera.common.entity.forgeling.Forgeling;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
@@ -8,7 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
@@ -22,6 +23,11 @@ public final class SilveringSolutionItem extends Item {
     }
 
     @Override
+    public Component getName(ItemStack stack) {
+        return FeysilverForgingClientData.materialName(super.getName(stack));
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -29,6 +35,9 @@ public final class SilveringSolutionItem extends Item {
         ItemStack stack = context.getItemInHand();
         if (player == null || !level.getBlockState(pos).is(Blocks.ANCIENT_DEBRIS)) {
             return InteractionResult.PASS;
+        }
+        if (!FeysilverForgingKnowledge.canUseSilveringSolution(player)) {
+            return InteractionResult.FAIL;
         }
         if (!level.mayInteract(player, pos) || !player.mayUseItemAt(pos, context.getClickedFace(), stack)) {
             return InteractionResult.FAIL;
@@ -46,6 +55,9 @@ public final class SilveringSolutionItem extends Item {
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
         if (!(target instanceof Forgeling forgeling)) {
             return InteractionResult.PASS;
+        }
+        if (!FeysilverForgingKnowledge.canUseSilveringSolution(player)) {
+            return InteractionResult.FAIL;
         }
         if (!forgeling.isAlive() || forgeling.isSilvered()) {
             return InteractionResult.CONSUME;

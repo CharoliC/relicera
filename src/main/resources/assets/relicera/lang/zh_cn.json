@@ -290,6 +290,13 @@
   "tooltip.relicera.turncoats_medal.7": "§5- §d攻击伤害 %1$s",
   "tooltip.relicera.turncoats_medal.8": "§5- §d生命汲取 %1$s",
 
+  "item.relicera.alchemists_medal": "炼金术士勋章",
+  "tooltip.relicera.alchemists_medal.0": "§5按住 %1$s§5 查看详情。",
+  "tooltip.relicera.alchemists_medal.1": "§5- 可在物品栏中吞噬§6金锭§5，并转化为经验",
+  "tooltip.relicera.alchemists_medal.2": "§5- 造成魔法伤害时，将目标的§6正面状态§5转移至自身",
+  "tooltip.relicera.alchemists_medal.3": "§8- 需要吞噬某个拥有无尽财富的物品",
+  "tooltip.relicera.alchemists_medal.4": "§5- 造成魔法伤害时，恢复等量生命值",
+
   "item.relicera.granbells_furnace": "古兰贝尔的熔炉",
   "tooltip.relicera.granbells_furnace.0": "§4属于某位神明的魔法道具，不会在死亡后丢失。",
   "tooltip.relicera.granbells_furnace.1": "§5按住 %1$s§5 查看详情。",
@@ -374,9 +381,16 @@
   "tooltip.relicera.feysilver_forging_art_volume_one.2": "§5- 使用后，习得§6精灵银镀层§5的方法",
   "tooltip.relicera.feysilver_forging_art_volume_one.3": "§5- 借由铁砧，可以让装备§6永恒不坏§5",
   "tooltip.relicera.feysilver_forging_art_volume_one.4": "§4当前已习得",
+  "item.relicera.feysilver_forging_art_volume_two": "精灵银的锻造术：中卷",
+  "tooltip.relicera.feysilver_forging_art_volume_two.0": "§9无名炼金术士的手稿之一。",
+  "tooltip.relicera.feysilver_forging_art_volume_two.1": "§5按住 %1$s§5 查看详情。",
+  "tooltip.relicera.feysilver_forging_art_volume_two.2": "§5- 使用后，习得§6精灵银冶炼§5的方法",
+  "tooltip.relicera.feysilver_forging_art_volume_two.3": "§5- 借由银化溶液，可以让§6远古残骸§5发生变化",
+  "tooltip.relicera.feysilver_forging_art_volume_two.4": "§4当前已习得",
   "tooltip.relicera.feysilver_coating.0": "精灵银镀层",
   "toast.relicera.forging_learned.title": "已习得锻造术！",
-  "toast.relicera.forging_learned.description": "可通过铁砧添加无法破坏",
+  "toast.relicera.forging_learned.volume_one.description": "可通过铁砧添加无法破坏",
+  "toast.relicera.forging_learned.volume_two.description": "已知晓银化溶液等物品的信息",
 
   "item.relicera.silk_of_night": "黑夜绸缎",
   "tooltip.relicera.silk_of_night.0": "§9异常轻盈的布料，几乎不会产生摩擦声。",
@@ -460,6 +474,10 @@
   "toast.relicera.slot_unlocked.ring": "戒指栏位 +1",
   "toast.relicera.slot_unlocked.charm": "护符栏位 +1",
 
+  "item.relicera.silvering_solution": "银化溶液",
+  "tooltip.relicera.silvering_solution.0": "可以对远古残骸使用。",
+  "tooltip.relicera.feysilver_material.requires_volume_two": "需要阅读《精灵银的锻造术：中卷》",
+
   "item.relicera.cobblestone_template_base": "圆石模板基底",
   "item.relicera.terracotta_template_base": "陶瓦模板基底",
   "item.relicera.torchflower_ember": "火把花余烬",
@@ -477,7 +495,6 @@
   "item.relicera.soulknot_stone": "魂结之石",
   "item.relicera.alchemical_residue": "炼金残渣",
   "item.relicera.aultias_blood": "神之血",
-  "item.relicera.silvering_solution": "银化溶液",
   "item.relicera.feysilver_scrap": "精灵银碎片",
   "block.relicera.silvered_debris": "银化残骸",
 

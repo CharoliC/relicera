@@ -27,6 +27,7 @@ import com.yukari.relicera.common.curio.StriderSpursEffects;
 import com.yukari.relicera.common.curio.ThousandweightGauntletsEffects;
 import com.yukari.relicera.common.curio.TreasureHuntersGlovesEffects;
 import com.yukari.relicera.common.curio.TurncoatsMedalEffects;
+import com.yukari.relicera.common.curio.AlchemistsMedalEffects;
 import com.yukari.relicera.common.curio.TwoHandedSwordBroochEffects;
 import com.yukari.relicera.common.curio.VindicatorsMedalEffects;
 import com.yukari.relicera.common.curio.VerdantScaleBeltEffects;
@@ -43,7 +44,7 @@ import com.yukari.relicera.common.item.PastoralMelodyEffects;
 import com.yukari.relicera.common.item.RottenTuskEffects;
 import com.yukari.relicera.common.item.RippleheartPearlEffects;
 import com.yukari.relicera.common.item.SolarEmberEffects;
-import com.yukari.relicera.common.item.SilveringSolutionEffects;
+import com.yukari.relicera.common.item.feysilver.SilveringSolutionEffects;
 import com.yukari.relicera.common.item.SoulknotStoneEffects;
 import com.yukari.relicera.common.item.SoulRestoringStewEffects;
 import com.yukari.relicera.common.item.StonewallGreatshieldItem;
@@ -312,6 +313,7 @@ public final class CommonGameEvents {
     public static void onLivingDamageLowest(LivingDamageEvent event) {
         WarpCrystalEffects.preventLethalDamage(event);
         BruteBeltEffects.rechargeAttackAfterDamage(event);
+        AlchemistsMedalEffects.onMagicDamage(event);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

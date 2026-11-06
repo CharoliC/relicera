@@ -9,16 +9,16 @@
       "item": "relicera:feysilver_scrap"
     },
     {
-      "item": "minecraft:amethyst_shard"
+      "item": "relicera:feysilver_scrap"
+    },
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "minecraft:quartz"
     },
     {
       "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:prismarine_crystals"
-    },
-    {
-      "item": "minecraft:prismarine_crystals"
     }
   ],
   "result": {

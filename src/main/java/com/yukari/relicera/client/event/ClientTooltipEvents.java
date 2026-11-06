@@ -10,8 +10,11 @@ import com.yukari.relicera.common.curio.NereiasCrownEffects;
 import com.yukari.relicera.common.curio.RippleheartRingClientData;
 import com.yukari.relicera.common.curio.TurncoatsMedalEffects;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem;
+import com.yukari.relicera.common.item.AlchemistsMedalItem;
 import com.yukari.relicera.common.item.InscribedCovenantTabletItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingClientData;
+import com.yukari.relicera.common.item.feysilver.FeysilverForgingArtItem;
+import com.yukari.relicera.common.item.feysilver.ForgingVolume;
 import com.yukari.relicera.common.item.RippleheartRingItem;
 import com.yukari.relicera.common.item.RippleheartRingItem.RingSide;
 import com.yukari.relicera.common.item.TempestsReinsEffects;
@@ -70,8 +73,9 @@ public final class ClientTooltipEvents {
             appendAstralLensTooltip(event);
         }
 
-        if (event.getItemStack().is(ModItems.FEYSILVER_FORGING_ART_VOLUME_ONE.get())) {
-            appendFeysilverForgingArtVolumeOneTooltip(event);
+        if (event.getItemStack().getItem() instanceof FeysilverForgingArtItem book) {
+            appendFeysilverForgingArtTooltip(event, ForgeRegistries.ITEMS.getKey(book).getPath(),
+                    FeysilverForgingClientData.hasLearned(book.volume()));
         }
 
         if (event.getItemStack().is(ModItems.SILK_OF_NIGHT.get())) {
@@ -144,6 +148,10 @@ public final class ClientTooltipEvents {
 
         if (event.getItemStack().is(ModItems.TURNCOATS_MEDAL.get())) {
             appendTurncoatsMedalTooltip(event);
+        }
+
+        if (event.getItemStack().is(ModItems.ALCHEMISTS_MEDAL.get())) {
+            appendAlchemistsMedalTooltip(event);
         }
 
         if (event.getItemStack().is(ModItems.FOURFOLD_SHERD_PENDANT.get())) {
@@ -267,19 +275,19 @@ public final class ClientTooltipEvents {
         event.getToolTip().add(tooltipLine("astral_lens", 4, gold("-30%")));
     }
 
-    private static void appendFeysilverForgingArtVolumeOneTooltip(ItemTooltipEvent event) {
-        event.getToolTip().add(tooltipLine("feysilver_forging_art_volume_one", 0));
+    private static void appendFeysilverForgingArtTooltip(ItemTooltipEvent event, String itemName, boolean learned) {
+        event.getToolTip().add(tooltipLine(itemName, 0));
         event.getToolTip().add(Component.empty());
         if (!Screen.hasShiftDown()) {
-            event.getToolTip().add(holdShiftLine("feysilver_forging_art_volume_one", 1));
+            event.getToolTip().add(holdShiftLine(itemName, 1));
             return;
         }
 
-        event.getToolTip().add(tooltipLine("feysilver_forging_art_volume_one", 2));
-        event.getToolTip().add(tooltipLine("feysilver_forging_art_volume_one", 3));
-        if (FeysilverForgingClientData.hasVolumeOne()) {
+        event.getToolTip().add(tooltipLine(itemName, 2));
+        event.getToolTip().add(tooltipLine(itemName, 3));
+        if (learned) {
             event.getToolTip().add(Component.empty());
-            event.getToolTip().add(tooltipLine("feysilver_forging_art_volume_one", 4));
+            event.getToolTip().add(tooltipLine(itemName, 4));
         }
     }
 
@@ -357,6 +365,19 @@ public final class ClientTooltipEvents {
         event.getToolTip().add(tooltipLine("warp_crystal", 1,
                 gold(formatUnsignedPercent(ModCommonConfig.WARP_CRYSTAL_DODGE_CHANCE.get()))));
         event.getToolTip().add(tooltipLine("warp_crystal", 2));
+    }
+
+    private static void appendAlchemistsMedalTooltip(ItemTooltipEvent event) {
+        event.getToolTip().add(Component.empty());
+        if (!Screen.hasShiftDown()) {
+            event.getToolTip().add(holdShiftLine("alchemists_medal"));
+            return;
+        }
+
+        event.getToolTip().add(tooltipLine("alchemists_medal", 1));
+        event.getToolTip().add(tooltipLine("alchemists_medal", 2));
+        event.getToolTip().add(tooltipLine("alchemists_medal",
+                AlchemistsMedalItem.hasConsumedBearskin(event.getItemStack()) ? 4 : 3));
     }
 
     private static void appendCovenantTabletTooltip(ItemTooltipEvent event) {
@@ -1201,12 +1222,22 @@ public final class ClientTooltipEvents {
             }
         }
         ItemStack stack = event.getItemStack();
-        if (stack.is(ModItems.PHILOSOPHERS_STONE.get()) || stack.is(ModItems.AULTIAS_BLOOD.get())) {
-            elements.replaceAll(element -> element.mapLeft(ClientTooltipEvents::obfuscateLegendaryMaterialText));
+        boolean unknownFeysilverMaterial = !FeysilverForgingClientData.hasLearned(ForgingVolume.TWO)
+                && (stack.is(ModItems.SILVERING_SOLUTION.get()) || stack.is(ModItems.SILVERED_DEBRIS.get())
+                || stack.is(ModItems.FEYSILVER_SCRAP.get()));
+        if (stack.is(ModItems.PHILOSOPHERS_STONE.get()) || stack.is(ModItems.AULTIAS_BLOOD.get()) || unknownFeysilverMaterial) {
+            elements.replaceAll(element -> element.mapLeft(ClientTooltipEvents::obfuscateMaterialText));
+        }
+        if (unknownFeysilverMaterial) {
+            elements.add(Math.min(1, elements.size()), Either.left(Component.translatable(
+                    "tooltip.relicera.feysilver_material.requires_volume_two").withStyle(ChatFormatting.BLUE)));
+        } else if (stack.is(ModItems.SILVERING_SOLUTION.get())) {
+            elements.add(Math.min(1, elements.size()), Either.left(Component.translatable(
+                    "tooltip.relicera.silvering_solution.0").withStyle(ChatFormatting.BLUE)));
         }
     }
 
-    private static FormattedText obfuscateLegendaryMaterialText(FormattedText text) {
+    private static FormattedText obfuscateMaterialText(FormattedText text) {
         MutableComponent result = Component.empty();
         StringDecomposer.iterateFormatted(text, Style.EMPTY, (index, style, codePoint) -> {
             result.append(Component.literal(new String(Character.toChars(codePoint)))

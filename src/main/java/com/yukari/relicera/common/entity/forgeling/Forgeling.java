@@ -1,7 +1,7 @@
 package com.yukari.relicera.common.entity.forgeling;
 
 import com.yukari.relicera.registry.ModItems;
-import com.yukari.relicera.common.item.SilveringSolutionEffects;
+import com.yukari.relicera.common.item.feysilver.SilveringSolutionEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;

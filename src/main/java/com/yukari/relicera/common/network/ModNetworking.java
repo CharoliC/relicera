@@ -14,6 +14,7 @@ import com.yukari.relicera.common.network.packet.SyncLittleTailorSeenThroughPack
 import com.yukari.relicera.common.network.packet.SyncRippleheartRingStatePacket;
 import com.yukari.relicera.common.network.packet.ThousandweightGauntletsSmashPacket;
 import com.yukari.relicera.common.network.packet.UseTurncoatsMedalBannerPacket;
+import com.yukari.relicera.common.network.packet.UseAlchemistsMedalGoldPacket;
 import com.yukari.relicera.common.network.packet.SelectItemContentsSlotPacket;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +25,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetworking {
-    private static final String PROTOCOL_VERSION = "14";
+    private static final String PROTOCOL_VERSION = "17";
     private static int messageId;
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -120,6 +121,12 @@ public final class ModNetworking {
                 .encoder(ForgingLearnedToastPacket::encode)
                 .decoder(ForgingLearnedToastPacket::decode)
                 .consumerMainThread(ForgingLearnedToastPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(UseAlchemistsMedalGoldPacket.class, nextMessageId(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(UseAlchemistsMedalGoldPacket::encode)
+                .decoder(UseAlchemistsMedalGoldPacket::decode)
+                .consumerMainThread(UseAlchemistsMedalGoldPacket::handle)
                 .add();
     }
 

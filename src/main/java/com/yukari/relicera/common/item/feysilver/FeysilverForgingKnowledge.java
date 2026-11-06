@@ -13,38 +13,51 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.EnumSet;
+
 public final class FeysilverForgingKnowledge {
     private static final String DATA_KEY = "ReliceraFeysilverForging";
-    private static final String VOLUME_ONE_KEY = "VolumeOne";
     private static final int EXPERIENCE_LEVEL_COST = 39;
 
     private FeysilverForgingKnowledge() {
     }
 
-    public static boolean hasVolumeOne(Player player) {
-        return player.getPersistentData().getCompound(DATA_KEY).getBoolean(VOLUME_ONE_KEY);
+    public static boolean hasLearned(Player player, ForgingVolume volume) {
+        return player.getPersistentData().getCompound(DATA_KEY).getBoolean(volume.saveKey());
     }
 
-    public static void learnVolumeOne(Player player) {
-        getOrCreateData(player).putBoolean(VOLUME_ONE_KEY, true);
+    public static boolean canUseSilveringSolution(Player player) {
+        return player.level().isClientSide() ? FeysilverForgingClientData.hasLearned(ForgingVolume.TWO)
+                : hasLearned(player, ForgingVolume.TWO);
+    }
+
+    public static void learn(Player player, ForgingVolume volume) {
+        getOrCreateData(player).putBoolean(volume.saveKey(), true);
         if (player instanceof ServerPlayer serverPlayer) {
             sync(serverPlayer);
         }
     }
 
     public static void copy(Player original, Player replacement) {
-        if (hasVolumeOne(original)) {
-            learnVolumeOne(replacement);
+        CompoundTag root = original.getPersistentData();
+        if (root.contains(DATA_KEY, Tag.TAG_COMPOUND)) {
+            replacement.getPersistentData().put(DATA_KEY, root.getCompound(DATA_KEY).copy());
         }
     }
 
     public static void sync(ServerPlayer player) {
-        ModNetworking.sendToPlayer(new SyncFeysilverForgingKnowledgePacket(hasVolumeOne(player)), player);
+        EnumSet<ForgingVolume> learned = EnumSet.noneOf(ForgingVolume.class);
+        for (ForgingVolume volume : ForgingVolume.values()) {
+            if (hasLearned(player, volume)) {
+                learned.add(volume);
+            }
+        }
+        ModNetworking.sendToPlayer(new SyncFeysilverForgingKnowledgePacket(learned), player);
     }
 
     public static void updateAnvilResult(AnvilUpdateEvent event) {
         Player player = event.getPlayer();
-        if (player == null || !hasVolumeOne(player)) {
+        if (player == null || !hasLearned(player, ForgingVolume.ONE)) {
             return;
         }
 

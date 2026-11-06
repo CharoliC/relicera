@@ -1,4 +1,4 @@
-package com.yukari.relicera.common.item;
+package com.yukari.relicera.common.item.feysilver;
 
 import com.yukari.relicera.registry.ModBlocks;
 import com.yukari.relicera.registry.ModParticleTypes;

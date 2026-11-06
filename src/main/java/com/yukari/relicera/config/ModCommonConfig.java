@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 
 public final class ModCommonConfig {
+    public static final ForgeConfigSpec.IntValue ALCHEMISTS_MEDAL_EXPERIENCE_PER_INGOT;
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
     public static final ForgeConfigSpec.DoubleValue FORGOTTEN_THREAD_VILLAGE_CHEST_CHANCE;
@@ -334,6 +335,12 @@ public final class ModCommonConfig {
                 .comment("Chance for Vindicator's Medal to be added to Pillager Outpost or Woodland Mansion chest. 0.16 = 16%.")
                 .defineInRange("structureChestChance", 0.16D, 0.0D, 1.0D);
 
+        BUILDER.pop();
+
+        BUILDER.push("alchemists_medal");
+        ALCHEMISTS_MEDAL_EXPERIENCE_PER_INGOT = BUILDER
+                .comment("Experience points released per vanilla Gold Ingot. Set to 0 to disable gold transmutation.")
+                .defineInRange("experiencePerIngot", 36, 0, Integer.MAX_VALUE / 64);
         BUILDER.pop();
 
         BUILDER.push("turncoats_medal");
