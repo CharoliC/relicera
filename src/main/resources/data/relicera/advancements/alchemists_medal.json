@@ -1,0 +1,32 @@
+{
+  "parent": "relicera:alchemist_house",
+  "display": {
+    "icon": {
+      "item": "relicera:alchemists_medal"
+    },
+    "title": {
+      "translate": "advancements.relicera.alchemists_medal.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.alchemists_medal.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_alchemists_medal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:alchemists_medal"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

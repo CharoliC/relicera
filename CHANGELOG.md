@@ -1,8 +1,9 @@
-银化溶液，银化残骸，精灵银碎片
+#### 1.2.6
 
-锻灵外观转化
-
-炼金术士勋章
++ Added items: Feysilver Forging Art Volume Two, Silvering Solution, Silvered Debris, Feysilver Scrap.
++ Added structure: Alchemist' House.
++ Added brooch:  Alchemist' Medal.
++ Added 4 advancements.
 
 
 

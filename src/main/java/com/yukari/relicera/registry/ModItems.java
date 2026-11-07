@@ -74,16 +74,16 @@ public final class ModItems {
                     .rarity(ReliceraMod.LEGENDARY)
                     .fireResistant()));
 
-    public static final RegistryObject<Item> FEYSILVER_SCRAP = ITEMS.register("feysilver_scrap", () ->
-            new FeysilverScrapItem(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)
-                    .fireResistant()));
-
     public static final RegistryObject<Item> FEYSILVER_INGOT = ITEMS.register("feysilver_ingot", () ->
             new FeysilverIngotItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.RARE)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> FEYSILVER_SCRAP = ITEMS.register("feysilver_scrap", () ->
+            new FeysilverScrapItem(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)
                     .fireResistant()));
 
     public static final RegistryObject<Item> SILVERING_SOLUTION = ITEMS.register("silvering_solution", () ->
@@ -91,9 +91,29 @@ public final class ModItems {
                     .stacksTo(16)
                     .rarity(Rarity.COMMON)));
 
+    public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_ONE = ITEMS.register("feysilver_forging_art_volume_one", () ->
+            new FeysilverForgingArtItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE), ForgingVolume.ONE));
+
+    public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_TWO = ITEMS.register("feysilver_forging_art_volume_two", () ->
+            new FeysilverForgingArtItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE), ForgingVolume.TWO));
+
     public static final RegistryObject<Item> ALCHEMICAL_RESIDUE = ITEMS.register("alchemical_residue", () ->
             new Item(new Item.Properties()
                     .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> PASTORAL_MELODY = ITEMS.register("pastoral_melody", () ->
+            new PastoralMelodyItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> FORGELING_BUCKET = ITEMS.register("forgeling_bucket", () ->
+            new ForgelingBucketItem(new Item.Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> COBBLESTONE_TEMPLATE_BASE = ITEMS.register("cobblestone_template_base", () ->
@@ -106,15 +126,79 @@ public final class ModItems {
                     .stacksTo(64)
                     .rarity(Rarity.COMMON)));
 
-    public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_ONE = ITEMS.register("feysilver_forging_art_volume_one", () ->
-            new FeysilverForgingArtItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.RARE), ForgingVolume.ONE));
+    public static final RegistryObject<Item> ROTTEN_TUSK = ITEMS.register("rotten_tusk", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
 
-    public static final RegistryObject<Item> FEYSILVER_FORGING_ART_VOLUME_TWO = ITEMS.register("feysilver_forging_art_volume_two", () ->
-            new FeysilverForgingArtItem(new Item.Properties()
+    public static final RegistryObject<Item> TORCHFLOWER_EMBER = ITEMS.register("torchflower_ember", () ->
+            new TorchflowerEmberItem(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> SOLAR_EMBER = ITEMS.register("solar_ember", () ->
+            new SolarEmberItem(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.EPIC)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> WARFIRE_FRAGMENT = ITEMS.register("warfire_fragment", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> RAW_HALLOWED_ENAMEL = ITEMS.register("raw_hallowed_enamel", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> HALLOWED_ENAMEL = ITEMS.register("hallowed_enamel", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.COMMON)));
+
+    public static final RegistryObject<Item> CHALICE_LINING = ITEMS.register("chalice_lining", () ->
+            new Item(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.RARE), ForgingVolume.TWO));
+                    .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> EPHEMERAL_BLOOM = ITEMS.register("ephemeral_bloom", () ->
+            new EphemeralBloomItem(ModBlocks.EPHEMERAL_BLOOM.get(), new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> REVIVAL_NECTAR = ITEMS.register("revival_nectar", () ->
+            new RevivalNectarItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)
+                    .food(RevivalNectarItem.createFoodProperties())));
+
+    public static final RegistryObject<Item> STORMSCALE = ITEMS.register("stormscale", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> TEMPESTS_REINS = ITEMS.register("tempests_reins", () ->
+            new TempestsReinsItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> RIPPLEHEART_PEARL = ITEMS.register("rippleheart_pearl", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> HEART_OF_THE_MOUNTAIN = ITEMS.register("heart_of_the_mountain", () ->
+            new EnvironmentallyIndestructibleItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
+
+    public static final RegistryObject<Item> STONEWALL_GREATSHIELD = ITEMS.register("stonewall_greatshield", () ->
+            new StonewallGreatshieldItem(new Item.Properties()
+                    .durability(StonewallGreatshieldItem.MAX_DURABILITY)
+                    .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> FORGOTTEN_THREAD = ITEMS.register("forgotten_thread", () ->
             new Item(new Item.Properties()
@@ -137,95 +221,16 @@ public final class ModItems {
                     .rarity(Rarity.COMMON)
                     .food(SculkFruitItem.createFoodProperties())));
 
-    public static final RegistryObject<Item> SOULKNOT_STONE = ITEMS.register("soulknot_stone", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.EPIC)));
-
-    public static final RegistryObject<Item> SIRENS_EYE = ITEMS.register("sirens_eye", () ->
-            new SirensEyeItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.RARE)
-                    .food(SirensEyeItem.createFoodProperties())));
-
-    public static final RegistryObject<Item> ASPHODEL_BLOOM = ITEMS.register("asphodel_bloom", () ->
-            new AsphodelBloomItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.EPIC)));
-
     public static final RegistryObject<Item> SOUL_RESTORING_STEW = ITEMS.register("soul_restoring_stew", () ->
             new SoulRestoringStewItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .food(SoulRestoringStewItem.createFoodProperties())));
 
-    public static final RegistryObject<Item> ROTTEN_TUSK = ITEMS.register("rotten_tusk", () ->
+    public static final RegistryObject<Item> SOULKNOT_STONE = ITEMS.register("soulknot_stone", () ->
             new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)));
-
-    public static final RegistryObject<Item> RAW_HALLOWED_ENAMEL = ITEMS.register("raw_hallowed_enamel", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)));
-
-    public static final RegistryObject<Item> HALLOWED_ENAMEL = ITEMS.register("hallowed_enamel", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)));
-
-    public static final RegistryObject<Item> PASTORAL_MELODY = ITEMS.register("pastoral_melody", () ->
-            new PastoralMelodyItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)));
-
-    public static final RegistryObject<Item> STORMSCALE = ITEMS.register("stormscale", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
-
-    public static final RegistryObject<Item> TEMPESTS_REINS = ITEMS.register("tempests_reins", () ->
-            new TempestsReinsItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.RARE)));
-
-    public static final RegistryObject<Item> RIPPLEHEART_PEARL = ITEMS.register("rippleheart_pearl", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
                     .rarity(Rarity.EPIC)));
-
-    public static final RegistryObject<Item> CHALICE_LINING = ITEMS.register("chalice_lining", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)));
-
-    public static final RegistryObject<Item> TORCHFLOWER_EMBER = ITEMS.register("torchflower_ember", () ->
-            new TorchflowerEmberItem(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.COMMON)));
-
-    public static final RegistryObject<Item> SOLAR_EMBER = ITEMS.register("solar_ember", () ->
-            new SolarEmberItem(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.EPIC)
-                    .fireResistant()));
-
-    public static final RegistryObject<Item> EPHEMERAL_BLOOM = ITEMS.register("ephemeral_bloom", () ->
-            new EphemeralBloomItem(ModBlocks.EPHEMERAL_BLOOM.get(), new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)));
-
-    public static final RegistryObject<Item> REVIVAL_NECTAR = ITEMS.register("revival_nectar", () ->
-            new RevivalNectarItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.EPIC)
-                    .food(RevivalNectarItem.createFoodProperties())));
-
-    public static final RegistryObject<Item> WARFIRE_FRAGMENT = ITEMS.register("warfire_fragment", () ->
-            new Item(new Item.Properties()
-                    .stacksTo(64)
-                    .rarity(Rarity.UNCOMMON)
-                    .fireResistant()));
 
     public static final RegistryObject<Item> ASTRAL_LENS = ITEMS.register("astral_lens", () ->
             new AstralLensItem(new Item.Properties()
@@ -238,15 +243,15 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
-    public static final RegistryObject<Item> HEART_OF_THE_MOUNTAIN = ITEMS.register("heart_of_the_mountain", () ->
-            new EnvironmentallyIndestructibleItem(new Item.Properties()
+    public static final RegistryObject<Item> SIRENS_EYE = ITEMS.register("sirens_eye", () ->
+            new SirensEyeItem(new Item.Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)
-                    .fireResistant()));
+                    .rarity(Rarity.RARE)
+                    .food(SirensEyeItem.createFoodProperties())));
 
-    public static final RegistryObject<Item> STONEWALL_GREATSHIELD = ITEMS.register("stonewall_greatshield", () ->
-            new StonewallGreatshieldItem(new Item.Properties()
-                    .durability(StonewallGreatshieldItem.MAX_DURABILITY)
+    public static final RegistryObject<Item> ASPHODEL_BLOOM = ITEMS.register("asphodel_bloom", () ->
+            new AsphodelBloomItem(new Item.Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> FEYSILVER_SWORD = ITEMS.register("feysilver_sword", () ->
@@ -501,11 +506,6 @@ public final class ModItems {
     public static final RegistryObject<Item> FORGELING_SPAWN_EGG = ITEMS.register("forgeling_spawn_egg", () ->
             new ForgeSpawnEggItem(ModEntityTypes.FORGELING, 0x24120C, 0xE95C20,
                     new Item.Properties().rarity(Rarity.COMMON)));
-
-    public static final RegistryObject<Item> FORGELING_BUCKET = ITEMS.register("forgeling_bucket", () ->
-            new ForgelingBucketItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.COMMON)));
 
     private ModItems() {
     }

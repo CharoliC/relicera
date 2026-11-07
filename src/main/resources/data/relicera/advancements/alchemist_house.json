@@ -1,0 +1,30 @@
+{
+  "parent": "relicera:feysilver",
+  "display": {
+    "icon": {
+      "item": "minecraft:cauldron"
+    },
+    "title": {
+      "translate": "advancements.relicera.alchemist_house.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.alchemist_house.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "inside_alchemist_house": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "location": {
+            "structure": "relicera:alchemist_house"
+          }
+        }
+      }
+    }
+  }
+}

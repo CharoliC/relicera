@@ -337,12 +337,6 @@ public final class ModCommonConfig {
 
         BUILDER.pop();
 
-        BUILDER.push("alchemists_medal");
-        ALCHEMISTS_MEDAL_EXPERIENCE_PER_INGOT = BUILDER
-                .comment("Experience points released per vanilla Gold Ingot. Set to 0 to disable gold transmutation.")
-                .defineInRange("experiencePerIngot", 36, 0, Integer.MAX_VALUE / 64);
-        BUILDER.pop();
-
         BUILDER.push("turncoats_medal");
 
         TURNCOATS_MEDAL_HERO_DAMAGE_BONUS_PER_LEVEL = BUILDER
@@ -361,6 +355,12 @@ public final class ModCommonConfig {
                 .comment("Base interval in ticks between extra patrol spawn attempts for each Turncoat's Medal wearer. 18000 ticks = 15 minutes. Set to 0 to disable extra patrols.")
                 .defineInRange("patrolAttemptIntervalTicks", 18000, 0, Integer.MAX_VALUE);
 
+        BUILDER.pop();
+
+        BUILDER.push("alchemists_medal");
+        ALCHEMISTS_MEDAL_EXPERIENCE_PER_INGOT = BUILDER
+                .comment("Experience points per Gold Ingot. Set to 0 to disable the effect.")
+                .defineInRange("experiencePerIngot", 27, 0, Integer.MAX_VALUE / 64);
         BUILDER.pop();
 
         BUILDER.push("stormscale");

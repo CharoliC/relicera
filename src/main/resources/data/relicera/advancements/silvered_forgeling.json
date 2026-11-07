@@ -1,0 +1,26 @@
+{
+  "parent": "relicera:feysilver_forging_art_volume_two",
+  "display": {
+    "icon": {
+      "item": "relicera:silvering_solution"
+    },
+    "title": {
+      "translate": "advancements.relicera.silvered_forgeling.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.silvered_forgeling.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "used_solution_on_forgeling": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

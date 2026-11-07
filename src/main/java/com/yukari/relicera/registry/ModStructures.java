@@ -3,6 +3,8 @@ package com.yukari.relicera.registry;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.worldgen.structure.AncientForgePiece;
 import com.yukari.relicera.common.worldgen.structure.AncientForgeStructure;
+import com.yukari.relicera.common.worldgen.structure.AlchemistHouseStructure;
+import com.yukari.relicera.common.worldgen.structure.AlchemistHousePiece;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
@@ -22,6 +24,13 @@ public final class ModStructures {
     public static final RegistryObject<StructurePieceType> ANCIENT_FORGE_PIECE =
             STRUCTURE_PIECE_TYPES.register("ancient_forge", () ->
                     (StructurePieceType.StructureTemplateType) AncientForgePiece::new);
+
+    public static final RegistryObject<StructureType<AlchemistHouseStructure>> ALCHEMIST_HOUSE =
+            STRUCTURE_TYPES.register("alchemist_house", () -> () -> AlchemistHouseStructure.CODEC);
+
+    public static final RegistryObject<StructurePieceType> ALCHEMIST_HOUSE_PIECE =
+            STRUCTURE_PIECE_TYPES.register("alchemist_house", () ->
+                    (StructurePieceType.StructureTemplateType) AlchemistHousePiece::new);
 
     private ModStructures() {
     }

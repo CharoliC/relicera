@@ -26,6 +26,7 @@ public final class ModCreativeModeTabs {
                                         && item != ModItems.FORGELING_SPAWN_EGG.get()
                                         && item != ModItems.PHILOSOPHERS_STONE.get()
                                         && item != ModItems.AULTIAS_BLOOD.get()
+                                        && item != ModItems.FORGOTTEN_NIGHT_VEIL.get()
                                         && item != ModItems.INSCRIBED_COVENANT_TABLET.get())
                                 .forEach(item -> {
                                     if (item == ModItems.COVENANT_TABLET.get()) {

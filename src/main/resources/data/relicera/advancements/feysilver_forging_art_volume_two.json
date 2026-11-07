@@ -1,0 +1,32 @@
+{
+  "parent": "relicera:alchemist_house",
+  "display": {
+    "icon": {
+      "item": "relicera:feysilver_forging_art_volume_two"
+    },
+    "title": {
+      "translate": "advancements.relicera.feysilver_forging_art_volume_two.title"
+    },
+    "description": {
+      "translate": "advancements.relicera.feysilver_forging_art_volume_two.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_feysilver_forging_art_volume_two": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "relicera:feysilver_forging_art_volume_two"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

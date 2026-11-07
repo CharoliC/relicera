@@ -1,10 +1,14 @@
 package com.yukari.relicera.common.item.feysilver;
 
+import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.entity.forgeling.Forgeling;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
@@ -18,6 +22,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 public final class SilveringSolutionItem extends Item {
+    private static final ResourceLocation SILVERED_FORGELING_ADVANCEMENT =
+            ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "silvered_forgeling");
+
     public SilveringSolutionItem(Properties properties) {
         super(properties);
     }
@@ -64,8 +71,18 @@ public final class SilveringSolutionItem extends Item {
         }
         if (!target.level().isClientSide() && forgeling.startSilvering()) {
             consumeSolution(player, hand, stack);
+            if (player instanceof ServerPlayer serverPlayer) {
+                awardSilveredForgelingAdvancement(serverPlayer);
+            }
         }
         return InteractionResult.sidedSuccess(target.level().isClientSide());
+    }
+
+    private static void awardSilveredForgelingAdvancement(ServerPlayer player) {
+        Advancement advancement = player.server.getAdvancements().getAdvancement(SILVERED_FORGELING_ADVANCEMENT);
+        if (advancement != null) {
+            player.getAdvancements().award(advancement, "used_solution_on_forgeling");
+        }
     }
 
     private void consumeSolution(Player player, InteractionHand hand, ItemStack stack) {
