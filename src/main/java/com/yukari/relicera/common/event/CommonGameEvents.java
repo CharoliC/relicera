@@ -24,6 +24,7 @@ import com.yukari.relicera.common.curio.NightGlovesEffects;
 import com.yukari.relicera.common.curio.NereiasCrownEffects;
 import com.yukari.relicera.common.curio.RippleheartRingEffects;
 import com.yukari.relicera.common.curio.StriderSpursEffects;
+import com.yukari.relicera.common.curio.SweetGemEffects;
 import com.yukari.relicera.common.curio.ThousandweightGauntletsEffects;
 import com.yukari.relicera.common.curio.TreasureHuntersGlovesEffects;
 import com.yukari.relicera.common.curio.TurncoatsMedalEffects;
@@ -409,6 +410,7 @@ public final class CommonGameEvents {
     @SubscribeEvent
     public static void onLivingUseItemFinish(LivingEntityUseItemEvent.Finish event) {
         FourfoldSherdPendantEffects.applyConsumptionBonuses(event);
+        SweetGemEffects.applyConsumptionBonus(event);
         DevilsBearskinEffects.applyPostConsumptionNausea(event);
     }
 

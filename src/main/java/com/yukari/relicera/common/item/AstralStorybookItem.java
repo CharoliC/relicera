@@ -4,10 +4,6 @@ import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.network.ModNetworking;
 import com.yukari.relicera.common.network.packet.OpenAstralStorybookPacket;
 import com.yukari.relicera.registry.ModParticleTypes;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -27,6 +23,11 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class AstralStorybookItem extends Item {
     public static final int LITTLE_TAILOR_STORY_ID = 1;
@@ -94,8 +95,8 @@ public class AstralStorybookItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(getStoryDefinition(getStoryId(stack))
-                .map(StoryDefinition::title)
-                .orElseGet(() -> Component.translatable("tooltip.relicera.astral_storybook.empty")));
+                .map(story -> ItemTooltipText.heading("astral_storybook", story.id()))
+                .orElseGet(() -> ItemTooltipText.flavor("astral_storybook", 0)));
     }
 
     public static int getStoryId(ItemStack stack) {
@@ -190,7 +191,7 @@ public class AstralStorybookItem extends Item {
 
     public record StoryDefinition(int id, int paragraphCount, ResourceLocation rewardItemId) {
         public Component title() {
-            return Component.translatable("tooltip.relicera.astral_storybook.story." + id);
+            return ItemTooltipText.description("astral_storybook", id);
         }
 
         public List<Component> paragraphs() {

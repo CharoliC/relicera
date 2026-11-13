@@ -31,6 +31,6 @@ public class SculkFruitSeedsItem extends ItemNameBlockItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.relicera.sculk_fruit_seeds.0"));
+        tooltip.add(ItemTooltipText.flavor("sculk_fruit_seeds", 0));
     }
 }

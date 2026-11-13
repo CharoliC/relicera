@@ -1,5 +1,11 @@
 package com.yukari.relicera.common.item;
 
+import com.yukari.relicera.config.ModCommonConfig;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -18,6 +24,20 @@ public final class ThousandweightGauntletsItem extends QuickEquipCurioItem {
 
     public ThousandweightGauntletsItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.curioEffectsHeader());
+        tooltip.add(ItemTooltipText.curioEffect("thousandweight_gauntlets", 0));
+        tooltip.add(ItemTooltipText.curioEffect("thousandweight_gauntlets", 1));
+        tooltip.add(ItemTooltipText.curioEffect("thousandweight_gauntlets", 2));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.curioModifiersHeader("hands"));
+        tooltip.add(ItemTooltipText.negativeStat("thousandweight_gauntlets", 3,
+                ItemTooltipText.signedPercent(-ModCommonConfig.THOUSANDWEIGHT_GAUNTLETS_ATTACK_SPEED_REDUCTION.get())));
     }
 
     public static int getWindBurstCharge(ItemStack stack) {

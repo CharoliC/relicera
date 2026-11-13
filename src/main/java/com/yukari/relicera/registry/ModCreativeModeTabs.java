@@ -18,7 +18,7 @@ public final class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> RELICERA = CREATIVE_MODE_TABS.register("relicera", () ->
             CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.relicera"))
-                    .icon(() -> ModItems.ASTRAL_LENS.get().getDefaultInstance())
+                    .icon(() -> ModItems.FEYSILVER_INGOT.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         ModItems.ITEMS.getEntries().stream()
                                 .map(RegistryObject::get)

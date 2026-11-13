@@ -1,7 +1,32 @@
 package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
+import com.yukari.relicera.common.item.BladeRingItem;
+import com.yukari.relicera.common.item.SweetGemItem;
+import com.yukari.relicera.common.item.TidewishShellItem;
+import com.yukari.relicera.common.item.DreamcatcherBoxItem;
+import com.yukari.relicera.common.item.DivineSeveranceRingItem;
+import com.yukari.relicera.common.item.NereiasCrownItem;
+import com.yukari.relicera.common.item.MasterSmithsBroochItem;
+import com.yukari.relicera.common.item.ImmortalSoulRingItem;
+import com.yukari.relicera.common.item.VerdantScaleBeltItem;
+import com.yukari.relicera.common.item.RippleheartPearlItem;
+import com.yukari.relicera.common.item.GranbellsFurnaceItem;
+import com.yukari.relicera.common.item.SufferersExultationItem;
+import com.yukari.relicera.common.item.TreasureHuntersGlovesItem;
+import com.yukari.relicera.common.item.BruteBeltItem;
+import com.yukari.relicera.common.item.WarriorBeltItem;
+import com.yukari.relicera.common.item.VindicatorsMedalItem;
+import com.yukari.relicera.common.item.TwoHandedSwordBroochItem;
+import com.yukari.relicera.common.item.WarfireFragmentItem;
+import com.yukari.relicera.common.item.silkofnight.SilkOfNightItem;
+import com.yukari.relicera.common.item.RingOfSatietyItem;
+import com.yukari.relicera.common.item.CurativeTalismanItem;
+import com.yukari.relicera.common.item.WarpCrystalItem;
+import com.yukari.relicera.common.item.StriderSpursItem;
+import com.yukari.relicera.common.item.NightGlovesItem;
 import com.yukari.relicera.common.item.AlchemistsMedalItem;
+import com.yukari.relicera.common.item.AshenTouchItem;
 import com.yukari.relicera.common.compat.twilightforest.DepthbreakerItem;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem;
 import com.yukari.relicera.common.item.AstralLensItem;
@@ -143,7 +168,7 @@ public final class ModItems {
                     .fireResistant()));
 
     public static final RegistryObject<Item> WARFIRE_FRAGMENT = ITEMS.register("warfire_fragment", () ->
-            new Item(new Item.Properties()
+            new WarfireFragmentItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.UNCOMMON)
                     .fireResistant()));
@@ -185,7 +210,7 @@ public final class ModItems {
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> RIPPLEHEART_PEARL = ITEMS.register("rippleheart_pearl", () ->
-            new Item(new Item.Properties()
+            new RippleheartPearlItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.EPIC)));
 
@@ -206,7 +231,7 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> SILK_OF_NIGHT = ITEMS.register("silk_of_night", () ->
-            new Item(new Item.Properties()
+            new SilkOfNightItem(new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.UNCOMMON)));
 
@@ -243,9 +268,26 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
+    public static final RegistryObject<Item> LITTLE_TAILORS_BELT = ITEMS.register("little_tailors_belt", () ->
+            new LittleTailorsBeltItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> DEVILS_BEARSKIN = ITEMS.register("devils_bearskin", () ->
+            new DevilsBearskinItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)
+                    .setNoRepair()));
+
+    public static final RegistryObject<Item> STOPPED_SILVER_CHRONOMETER = ITEMS.register("stopped_silver_chronometer", () ->
+            new StoppedSilverChronometerItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)
+                    .fireResistant()));
+
     public static final RegistryObject<Item> SIRENS_EYE = ITEMS.register("sirens_eye", () ->
             new SirensEyeItem(new Item.Properties()
-                    .stacksTo(1)
+                    .stacksTo(64)
                     .rarity(Rarity.RARE)
                     .food(SirensEyeItem.createFoodProperties())));
 
@@ -269,42 +311,30 @@ public final class ModItems {
             : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "depthbreaker"),
                     ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
-    public static final RegistryObject<Item> LITTLE_TAILORS_BELT = ITEMS.register("little_tailors_belt", () ->
-            new LittleTailorsBeltItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.RARE)));
-
     public static final RegistryObject<Item> WARRIOR_BELT = ITEMS.register("warrior_belt", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new WarriorBeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> BRUTE_BELT = ITEMS.register("brute_belt", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new BruteBeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> VERDANT_SCALE_BELT = ModList.get().isLoaded("twilightforest")
-            ? ITEMS.register("verdant_scale_belt", () -> new QuickEquipCurioItem(new Item.Properties()
+            ? ITEMS.register("verdant_scale_belt", () -> new VerdantScaleBeltItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)))
             : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "verdant_scale_belt"),
                     ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
-    public static final RegistryObject<Item> DEVILS_BEARSKIN = ITEMS.register("devils_bearskin", () ->
-            new DevilsBearskinItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.EPIC)
-                    .setNoRepair()));
-
-    public static final RegistryObject<Item> STOPPED_SILVER_CHRONOMETER = ITEMS.register("stopped_silver_chronometer", () ->
-            new StoppedSilverChronometerItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)
-                    .fireResistant()));
-
     public static final RegistryObject<Item> EPHEMERAL_BLOOM_PENDANT = ITEMS.register("ephemeral_bloom_pendant", () ->
             new EphemeralBloomPendantItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> TIDEWISH_SHELL = ITEMS.register("tidewish_shell", () ->
+            new TidewishShellItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
@@ -319,12 +349,12 @@ public final class ModItems {
                     .rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> NIGHT_GLOVES = ITEMS.register("night_gloves", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new NightGlovesItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> TREASURE_HUNTERS_GLOVES = ITEMS.register("treasure_hunters_gloves", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new TreasureHuntersGlovesItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
@@ -334,18 +364,23 @@ public final class ModItems {
                     .rarity(Rarity.EPIC)
                     .setNoRepair()));
 
+    public static final RegistryObject<Item> BLADE_RING = ITEMS.register("blade_ring", () ->
+            new BladeRingItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
+
     public static final RegistryObject<Item> DIVINE_SEVERANCE_RING = ITEMS.register("divine_severance_ring", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new DivineSeveranceRingItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> RING_OF_SATIETY = ITEMS.register("ring_of_satiety", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new RingOfSatietyItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> ASHEN_TOUCH = ITEMS.register("ashen_touch", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new AshenTouchItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
@@ -355,7 +390,7 @@ public final class ModItems {
                     .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> IMMORTAL_SOUL_RING = ModList.get().isLoaded("twilightforest")
-            ? ITEMS.register("immortal_soul_ring", () -> new QuickEquipCurioItem(new Item.Properties()
+            ? ITEMS.register("immortal_soul_ring", () -> new ImmortalSoulRingItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)))
             : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "immortal_soul_ring"),
@@ -376,8 +411,13 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.COMMON)));
 
+    public static final RegistryObject<Item> SWEET_GEM = ITEMS.register("sweet_gem", () ->
+            new SweetGemItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
+
     public static final RegistryObject<Item> STRIDER_SPURS = ITEMS.register("strider_spurs", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new StriderSpursItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
@@ -392,17 +432,17 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> WARP_CRYSTAL = ITEMS.register("warp_crystal", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new WarpCrystalItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> CURATIVE_TALISMAN = ITEMS.register("curative_talisman", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new CurativeTalismanItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> SUFFERERS_EXULTATION = ITEMS.register("sufferers_exultation", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new SufferersExultationItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
@@ -412,22 +452,24 @@ public final class ModItems {
                     .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> MASTER_SMITHS_BROOCH = ITEMS.register("master_smiths_brooch", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new MasterSmithsBroochItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> TWO_HANDED_SWORD_BROOCH = ITEMS.register("two_handed_sword_brooch", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new TwoHandedSwordBroochItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> VINDICATORS_MEDAL = ITEMS.register("vindicators_medal", () ->
-            new QuickEquipCurioItem(new Item.Properties()
+            new VindicatorsMedalItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> ALCHEMISTS_MEDAL = ITEMS.register("alchemists_medal", () ->
-            new AlchemistsMedalItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+            new AlchemistsMedalItem(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> TURNCOATS_MEDAL = ITEMS.register("turncoats_medal", () ->
             new TurncoatsMedalItem(new Item.Properties()
@@ -440,7 +482,7 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> GRANBELLS_FURNACE = ITEMS.register("granbells_furnace", () ->
-            new RelicCurioItem(new Item.Properties()
+            new GranbellsFurnaceItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(ReliceraMod.LEGENDARY)
                     .fireResistant()));
@@ -462,7 +504,7 @@ public final class ModItems {
                     .rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> NEREIAS_CROWN = ITEMS.register("nereias_crown", () ->
-            new RelicCurioItem(new Item.Properties()
+            new NereiasCrownItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(ReliceraMod.LEGENDARY)
                     .fireResistant()));
@@ -499,7 +541,7 @@ public final class ModItems {
                     .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> DREAMCATCHER_BOX = ITEMS.register("dreamcatcher_box", () ->
-            new BlockItem(ModBlocks.DREAMCATCHER_BOX.get(), new Item.Properties()
+            new DreamcatcherBoxItem(ModBlocks.DREAMCATCHER_BOX.get(), new Item.Properties()
                     .stacksTo(64)
                     .rarity(Rarity.UNCOMMON)));
 

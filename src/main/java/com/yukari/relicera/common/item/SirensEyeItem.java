@@ -33,9 +33,10 @@ public class SirensEyeItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.relicera.sirens_eye.0"));
+        tooltip.add(ItemTooltipText.flavor("sirens_eye", 0));
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("tooltip.relicera.sirens_eye.1"));
+        tooltip.add(ItemTooltipText.heading("sirens_eye", 1));
+        tooltip.add(ItemTooltipText.description("sirens_eye", 2));
     }
 
     @Override

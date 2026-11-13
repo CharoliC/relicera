@@ -1,6 +1,11 @@
 package com.yukari.relicera.common.item.armor.devilsbearskin;
 
 import com.yukari.relicera.ReliceraMod;
+import com.yukari.relicera.common.item.ItemTooltipText;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import java.util.List;
 import com.yukari.relicera.client.renderer.DevilsBearskinClientExtensions;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -26,6 +31,32 @@ public final class DevilsBearskinItem extends ArmorItem {
 
     public DevilsBearskinItem(Properties properties) {
         super(DevilsBearskinArmorMaterial.INSTANCE, Type.CHESTPLATE, properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.armorEffectsHeader());
+        if (DevilsBearskinEffects.isReleased(stack)) {
+            tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 8));
+            tooltip.add(Component.empty());
+            tooltip.add(ItemTooltipText.quote("devils_bearskin", 9));
+            return;
+        }
+        tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 0));
+        tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 1));
+        tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 2));
+        tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 3));
+        if (DevilsBearskinEffects.hasReachedTradeRefusalStage(stack)) {
+            tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 4));
+        }
+        if (DevilsBearskinEffects.hasReachedNauseaStage(stack)) {
+            tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 5));
+        }
+        tooltip.add(ItemTooltipText.curioEffect("devils_bearskin", 6,
+                ItemTooltipText.unsignedPercent(DevilsBearskinEffects.MAX_HEALTH_LOSS)));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.quote("devils_bearskin", 7));
     }
 
     @Override

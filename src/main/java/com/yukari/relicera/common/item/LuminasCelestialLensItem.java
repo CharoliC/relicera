@@ -1,5 +1,9 @@
 package com.yukari.relicera.common.item;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -17,6 +21,16 @@ public class LuminasCelestialLensItem extends RelicCurioItem {
 
     public LuminasCelestialLensItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.relic("luminas_celestial_lens", 0));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.curioEffectsHeader());
+        tooltip.add(ItemTooltipText.curioEffect("luminas_celestial_lens", 1));
     }
 
     @Override

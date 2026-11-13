@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " K ",
+    "K K",
+    "PCP"
+  ],
+  "key": {
+    "K": {
+      "item": "minecraft:kelp"
+    },
+    "P": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "C": {
+      "item": "relicera:dried_crown"
+    }
+  },
+  "result": {
+    "item": "relicera:tidewish_shell",
+    "count": 1
+  }
+}

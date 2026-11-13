@@ -3,6 +3,12 @@ package com.yukari.relicera.common.item;
 import com.yukari.relicera.client.event.AlchemistsMedalClientInteraction;
 import com.yukari.relicera.config.ModCommonConfig;
 import com.yukari.relicera.registry.ModItems;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,6 +27,17 @@ public final class AlchemistsMedalItem extends QuickEquipCurioItem {
 
     public AlchemistsMedalItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.curioEffectsHeader());
+        tooltip.add(ItemTooltipText.curioEffect("alchemists_medal", 0));
+        tooltip.add(ItemTooltipText.curioEffect("alchemists_medal", 1));
+        tooltip.add(hasConsumedBearskin(stack)
+                ? ItemTooltipText.curioEffect("alchemists_medal", 3)
+                : ItemTooltipText.locked("alchemists_medal", 2));
     }
 
     @Override

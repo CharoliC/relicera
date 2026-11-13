@@ -1,9 +1,9 @@
 package com.yukari.relicera.common.item;
 
 import com.yukari.relicera.registry.ModSoundEvents;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -164,7 +164,10 @@ public class PastoralMelodyItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.relicera.pastoral_melody.0"));
-        tooltip.add(Component.translatable("tooltip.relicera.pastoral_melody.refill"));
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(ItemTooltipText.flavor("pastoral_melody", 0));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.heading("pastoral_melody", 1));
+        tooltip.add(ItemTooltipText.description("pastoral_melody", 2));
     }
 }

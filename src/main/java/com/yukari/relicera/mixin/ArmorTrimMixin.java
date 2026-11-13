@@ -1,5 +1,6 @@
 package com.yukari.relicera.mixin;
 
+import com.yukari.relicera.common.item.ItemTooltipText;
 import com.yukari.relicera.common.item.feysilver.FeysilverCoating;
 import com.yukari.relicera.common.item.silkofnight.SilkOfNightDecoration;
 import net.minecraft.core.RegistryAccess;
@@ -40,11 +41,10 @@ public abstract class ArmorTrimMixin {
             tooltip.add(UPGRADE_TITLE);
         }
         if (hasFeysilverCoating) {
-            tooltip.add(CommonComponents.space().append(Component.translatable("tooltip.relicera.feysilver_coating.0")
-                    .withStyle(style -> style.withColor(0xC0D1EB))));
+            tooltip.add(CommonComponents.space().append(ItemTooltipText.description("feysilver_coating", 0)));
         }
         if (hasSilkOfNightDecoration) {
-            tooltip.add(CommonComponents.space().append(Component.translatable("tooltip.relicera.silk_of_night_decoration.0")));
+            tooltip.add(CommonComponents.space().append(ItemTooltipText.description("silk_of_night_decoration", 0)));
         }
     }
 }

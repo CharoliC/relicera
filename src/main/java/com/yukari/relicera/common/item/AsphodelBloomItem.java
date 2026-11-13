@@ -48,9 +48,10 @@ public class AsphodelBloomItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.relicera.asphodel_bloom.0"));
+        tooltip.add(ItemTooltipText.flavor("asphodel_bloom", 0));
         tooltip.add(Component.empty());
-        tooltip.add(Component.translatable("tooltip.relicera.asphodel_bloom.1"));
+        tooltip.add(ItemTooltipText.heading("asphodel_bloom", 1));
+        tooltip.add(ItemTooltipText.description("asphodel_bloom", 2));
     }
 
     @Override

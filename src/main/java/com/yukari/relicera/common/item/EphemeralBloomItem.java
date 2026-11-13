@@ -16,6 +16,6 @@ public class EphemeralBloomItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.relicera.ephemeral_bloom.0"));
+        tooltip.add(ItemTooltipText.flavor("ephemeral_bloom", 0));
     }
 }

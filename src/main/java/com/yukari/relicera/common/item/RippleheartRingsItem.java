@@ -1,18 +1,32 @@
 package com.yukari.relicera.common.item;
 
 import com.yukari.relicera.registry.ModItems;
-import java.util.UUID;
+import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.UUID;
 
 public class RippleheartRingsItem extends Item {
     public RippleheartRingsItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(ItemTooltipText.flavor("rippleheart_rings", 0,
+                Component.translatable("tooltip.relicera.rippleheart_ring.0"),
+                Component.translatable("tooltip.relicera.rippleheart_ring.1")
+        ));
     }
 
     @Override

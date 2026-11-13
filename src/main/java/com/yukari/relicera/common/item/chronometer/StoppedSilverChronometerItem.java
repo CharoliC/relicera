@@ -1,5 +1,10 @@
 package com.yukari.relicera.common.item.chronometer;
 
+import com.yukari.relicera.common.item.ItemTooltipText;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 import com.yukari.relicera.registry.ModSoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -14,6 +19,19 @@ import net.minecraft.world.level.Level;
 public final class StoppedSilverChronometerItem extends Item {
     public StoppedSilverChronometerItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        String percent = ItemTooltipText.signedPercent(StoppedSilverChronometerEffects.getStep(stack) / 20.0D);
+        tooltip.add(ItemTooltipText.flavor("stopped_silver_chronometer", 0));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.heading("stopped_silver_chronometer", 1));
+        tooltip.add(ItemTooltipText.description("stopped_silver_chronometer", 2, percent));
+        tooltip.add(ItemTooltipText.description("stopped_silver_chronometer", 3, percent));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.quote("stopped_silver_chronometer", 4));
     }
 
     @Override

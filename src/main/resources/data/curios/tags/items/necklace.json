@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "relicera:tidewish_shell",
     "relicera:ephemeral_bloom_pendant",
     "relicera:fourfold_sherd_pendant"
   ]

@@ -2,19 +2,20 @@ package com.yukari.relicera.common.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.yukari.relicera.config.ModCommonConfig;
 import com.yukari.relicera.registry.ModItems;
-import java.util.Optional;
-import java.util.UUID;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,8 +26,15 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public final class BaromsCovenantStoneItem extends RelicCurioItem implements SelectableItemContents {
     public static final String RELIC_SLOT = "relicera_relic";
@@ -35,6 +43,78 @@ public final class BaromsCovenantStoneItem extends RelicCurioItem implements Sel
 
     public BaromsCovenantStoneItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        String itemId = "baroms_covenant_stone";
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.relic(itemId, 0));
+        tooltip.add(Component.empty());
+
+        List<ItemStack> contracts = BaromsCovenantStoneItem.getContracts(stack);
+        if (contracts.stream().allMatch(ItemStack::isEmpty)) {
+            tooltip.add(ItemTooltipText.curioEffectsHeader());
+            tooltip.add(ItemTooltipText.curioEffect(itemId, 15));
+            tooltip.add(ItemTooltipText.curioEffect(itemId, 16));
+        }
+        for (ItemStack contract : contracts) {
+            appendBaromsCovenantContractTooltip(tooltip, contract);
+        }
+    }
+
+    private static void appendBaromsCovenantContractTooltip(List<Component> tooltip, ItemStack contract) {
+        EntityType<?> entityType = InscribedCovenantTabletItem.getContractEntity(contract);
+        int effectLine;
+        if (entityType == EntityType.IRON_GOLEM) {
+            effectLine = 1;
+        } else if (entityType == EntityType.SILVERFISH) {
+            effectLine = 2;
+        } else if (entityType == EntityType.VILLAGER) {
+            effectLine = 4;
+        } else if (entityType == EntityType.PILLAGER) {
+            effectLine = 5;
+        } else if (entityType == EntityType.ENDER_DRAGON) {
+            effectLine = 6;
+        } else if (entityType == EntityType.ZOMBIE) {
+            effectLine = 7;
+        } else if (entityType == EntityType.CREEPER) {
+            effectLine = 8;
+        } else if (entityType == EntityType.BLAZE) {
+            effectLine = 9;
+        } else if (entityType == EntityType.HUSK) {
+            effectLine = 10;
+        } else if (entityType == EntityType.SKELETON) {
+            effectLine = 11;
+        } else if (entityType == EntityType.WANDERING_TRADER) {
+            effectLine = 12;
+        } else if (entityType == EntityType.PIGLIN) {
+            effectLine = 13;
+        } else if (entityType == EntityType.WITCH) {
+            effectLine = 14;
+        } else {
+            return;
+        }
+
+        tooltip.add(contract.getHoverName().copy().withStyle(ChatFormatting.BLUE));
+        if (entityType == EntityType.SILVERFISH) {
+            double volumeMultiplier = ModCommonConfig.BAROM_VOLUME_MULTIPLIER.get();
+            tooltip.add(volumeMultiplier == 1.0D
+                    ? ItemTooltipText.effect("baroms_covenant_stone", 2)
+                    : ItemTooltipText.effect("baroms_covenant_stone", 3, java.math.BigDecimal.valueOf(volumeMultiplier)
+                            .stripTrailingZeros().toPlainString()));
+        } else if (entityType == EntityType.HUSK) {
+            String chance = java.math.BigDecimal.valueOf(ModCommonConfig.BAROM_HUSK_HUNGER_CHANCE.get())
+                    .multiply(java.math.BigDecimal.valueOf(100)).stripTrailingZeros().toPlainString() + "%";
+            tooltip.add(ItemTooltipText.effect("baroms_covenant_stone", effectLine, chance));
+        } else if (entityType == EntityType.WITCH) {
+            String chance = java.math.BigDecimal.valueOf(ModCommonConfig.BAROM_WITCH_POTION_PRESERVATION_CHANCE.get())
+                    .multiply(java.math.BigDecimal.valueOf(100)).stripTrailingZeros().toPlainString() + "%";
+            tooltip.add(ItemTooltipText.effect("baroms_covenant_stone", effectLine, chance));
+        } else {
+            tooltip.add(ItemTooltipText.effect("baroms_covenant_stone", effectLine));
+        }
     }
 
     @Override

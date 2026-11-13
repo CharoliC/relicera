@@ -1,8 +1,10 @@
 package com.yukari.relicera.common.item.feysilver;
 
+import com.yukari.relicera.common.item.ItemTooltipText;
 import com.yukari.relicera.common.network.ModNetworking;
 import com.yukari.relicera.common.network.packet.ForgingLearnedToastPacket;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -12,7 +14,12 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public final class FeysilverForgingArtItem extends Item {
     private final ForgingVolume volume;
@@ -20,6 +27,16 @@ public final class FeysilverForgingArtItem extends Item {
     public FeysilverForgingArtItem(Properties properties, ForgingVolume volume) {
         super(properties);
         this.volume = volume;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        String itemName = ForgeRegistries.ITEMS.getKey(this).getPath();
+        tooltip.add(ItemTooltipText.flavor(itemName, 0));
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.heading(itemName, 1));
+        tooltip.add(ItemTooltipText.description(itemName, 2));
     }
 
     public ForgingVolume volume() {

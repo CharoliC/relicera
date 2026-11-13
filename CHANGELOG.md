@@ -1,3 +1,11 @@
+#### 1.2.7 
+
++ Added curios: Sweet Gem, Tidewish Shell, Blade Ring.
++ Changed texture: Revival Nectar.
++ Changed tooltip display.
+
+
+
 #### 1.2.6
 
 + Added items: Feysilver Forging Art Volume Two, Silvering Solution, Silvered Debris, Feysilver Scrap.

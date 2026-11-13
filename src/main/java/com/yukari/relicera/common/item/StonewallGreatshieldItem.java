@@ -1,5 +1,9 @@
 package com.yukari.relicera.common.item;
 
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+import java.util.List;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.yukari.relicera.client.renderer.StonewallGreatshieldClientExtensions;
@@ -103,6 +107,12 @@ public final class StonewallGreatshieldItem extends ShieldItem {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(ItemTooltipText.flavor("stonewall_greatshield", 0));
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.yukari.relicera.common.item;
 
+import com.yukari.relicera.common.curio.TurncoatsMedalEffects;
 import com.yukari.relicera.common.network.ModNetworking;
 import com.yukari.relicera.common.network.packet.UseTurncoatsMedalBannerPacket;
 import com.yukari.relicera.config.ModCommonConfig;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -10,15 +12,45 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.SlotAccess;
-import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-public class TurncoatsMedalItem extends QuickEquipCurioItem {
+import java.util.List;
+
+public class TurncoatsMedalItem extends QuickEquipCurioItem implements ViewerTooltipItem {
     public TurncoatsMedalItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendViewerTooltip(ItemStack stack, @Nullable Player player, List<Component> tooltip) {
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.curioEffectsHeader());
+        tooltip.add(ItemTooltipText.curioEffect("turncoats_medal", 0));
+        tooltip.add(ItemTooltipText.curioEffect("turncoats_medal", 1,
+                ItemTooltipText.signedPercent(ModCommonConfig.TURNCOATS_MEDAL_HERO_DAMAGE_BONUS_PER_LEVEL.get())));
+        tooltip.add(ItemTooltipText.curioEffect("turncoats_medal", 2,
+                ItemTooltipText.signedPercent(ModCommonConfig.TURNCOATS_MEDAL_BAD_OMEN_LIFE_STEAL_PER_LEVEL.get())));
+        tooltip.add(ItemTooltipText.curioEffect("turncoats_medal", 3));
+
+        double damage = player == null ? 0.0D : TurncoatsMedalEffects.getHeroDamageBonus(player);
+        double lifeSteal = player == null ? 0.0D : TurncoatsMedalEffects.getBadOmenLifeSteal(player);
+        if (damage != 0.0D || lifeSteal != 0.0D) {
+            tooltip.add(Component.empty());
+            tooltip.add(ItemTooltipText.curioModifiersHeader("relicera_brooch"));
+            if (damage != 0.0D) {
+                tooltip.add(ItemTooltipText.description("turncoats_medal", 4,
+                        ItemTooltipText.signedDecimal(damage * 100.0D) + "%"));
+            }
+            if (lifeSteal != 0.0D) {
+                tooltip.add(ItemTooltipText.description("turncoats_medal", 5,
+                        ItemTooltipText.signedDecimal(lifeSteal * 100.0D) + "%"));
+            }
+        }
     }
 
     @Override

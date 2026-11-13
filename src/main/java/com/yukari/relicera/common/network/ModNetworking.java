@@ -1,6 +1,8 @@
 package com.yukari.relicera.common.network;
 
 import com.yukari.relicera.ReliceraMod;
+import com.yukari.relicera.common.network.packet.UseTidewishShellPacket;
+import com.yukari.relicera.common.network.packet.TidewishRiptidePacket;
 import com.yukari.relicera.common.network.packet.CameraShakePacket;
 import com.yukari.relicera.common.network.packet.CovenantToastPacket;
 import com.yukari.relicera.common.network.packet.ItemActivationPacket;
@@ -25,7 +27,7 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public final class ModNetworking {
-    private static final String PROTOCOL_VERSION = "17";
+    private static final String PROTOCOL_VERSION = "18";
     private static int messageId;
 
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -128,6 +130,18 @@ public final class ModNetworking {
                 .decoder(UseAlchemistsMedalGoldPacket::decode)
                 .consumerMainThread(UseAlchemistsMedalGoldPacket::handle)
                 .add();
+        CHANNEL.messageBuilder(UseTidewishShellPacket.class, nextMessageId(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(UseTidewishShellPacket::encode)
+                .decoder(UseTidewishShellPacket::decode)
+                .consumerMainThread(UseTidewishShellPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(TidewishRiptidePacket.class, nextMessageId(), NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(TidewishRiptidePacket::encode)
+                .decoder(TidewishRiptidePacket::decode)
+                .consumerMainThread(TidewishRiptidePacket::handle)
+                .add();
+
     }
 
     public static void sendToPlayer(Object message, ServerPlayer player) {

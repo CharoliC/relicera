@@ -1,6 +1,6 @@
 package com.yukari.relicera.common.item.feysilver;
 
-import net.minecraft.ChatFormatting;
+import com.yukari.relicera.common.item.ItemTooltipText;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +17,9 @@ public class FeysilverIngotItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.relicera.feysilver_ingot.0").withStyle(ChatFormatting.BLUE));
+        super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(Component.empty());
+        tooltip.add(ItemTooltipText.heading("feysilver_ingot", 0));
+        tooltip.add(ItemTooltipText.description("feysilver_ingot", 1));
     }
 }
