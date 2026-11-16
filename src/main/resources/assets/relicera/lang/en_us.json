@@ -432,6 +432,16 @@
   "tooltip.relicera.silvering_solution.0": "Can be used on Ancient Debris.",
   "tooltip.relicera.feysilver_material.0": "Requires reading The Art of Feysilver Forging: Volume II",
 
+  "item.relicera.lumen": "Lumen",
+  "entity.relicera.lumen_moon": "Lumen Moon",
+  "entity.relicera.lumen_star": "Lumen Star",
+  "enchantment.relicera.daylight": "Radiance",
+  "enchantment.relicera.daylight.desc": "Add lumen damage.",
+  "enchantment.relicera.moonfrost": "Moonfrost",
+  "enchantment.relicera.moonfrost.desc": "When hit, freeze the target.",
+  "enchantment.relicera.starcrown": "Starcrown",
+  "enchantment.relicera.starcrown.desc": "When hit, split many lumen star.",
+
   "item.relicera.cobblestone_template_base": "Cobblestone Template Base",
   "item.relicera.terracotta_template_base": "Terracotta Template Base",
   "item.relicera.torchflower_ember": "Torchflower Ember",

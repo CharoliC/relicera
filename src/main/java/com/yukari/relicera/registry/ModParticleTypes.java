@@ -1,6 +1,8 @@
 package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
+import com.mojang.serialization.Codec;
+import com.yukari.relicera.common.particle.CircleParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,6 +22,14 @@ public final class ModParticleTypes {
     public static final RegistryObject<SimpleParticleType> DREAM_BUBBLE = PARTICLE_TYPES.register("dream_bubble", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> HOLY_LIGHT = PARTICLE_TYPES.register("holy_light", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> LICH_FIRE = PARTICLE_TYPES.register("lich_fire", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> LUMEN_EXPLOSION = PARTICLE_TYPES.register("lumen_explosion", () -> new SimpleParticleType(false));
+    public static final RegistryObject<ParticleType<CircleParticleOptions>> CIRCLE = PARTICLE_TYPES.register("circle",
+            () -> new ParticleType<CircleParticleOptions>(false, CircleParticleOptions.DESERIALIZER) {
+                @Override
+                public Codec<CircleParticleOptions> codec() {
+                    return CircleParticleOptions.CODEC;
+                }
+            });
     public static final RegistryObject<SimpleParticleType> FEYSILVER_SOLUTION_POP = PARTICLE_TYPES.register("feysilver_solution_pop", () -> new SimpleParticleType(false));
 
     private ModParticleTypes() {

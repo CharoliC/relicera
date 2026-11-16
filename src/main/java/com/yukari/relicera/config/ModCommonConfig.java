@@ -6,6 +6,10 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 
 public final class ModCommonConfig {
+    public static final ForgeConfigSpec.DoubleValue LUMEN_DAMAGE;
+    public static final ForgeConfigSpec.DoubleValue LUMEN_RADIUS;
+    public static final ForgeConfigSpec.DoubleValue LUMEN_STAR_DAMAGE;
+    public static final ForgeConfigSpec.DoubleValue LUMEN_STAR_RADIUS;
     public static final ForgeConfigSpec.IntValue ALCHEMISTS_MEDAL_EXPERIENCE_PER_INGOT;
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
@@ -122,7 +126,6 @@ public final class ModCommonConfig {
     public static final ForgeConfigSpec SPEC;
 
     static {
-
         BUILDER.push("sculk_fruit");
         SCULK_FRUIT_EXPERIENCE_PER_STAGE = BUILDER
                 .comment("Sculk Catalyst charge consumed per growth stage.")
@@ -698,6 +701,21 @@ public final class ModCommonConfig {
         BAROM_WITCH_POTION_PRESERVATION_CHANCE = BUILDER
                 .comment("Chance to preserve a potion with the Witch covenant. 0.50 = 50%.")
                 .defineInRange("witchPotionPreservationChance", 0.50D, 0.0D, 1.0D);
+        BUILDER.pop();
+
+        BUILDER.push("lumen");
+        LUMEN_DAMAGE = BUILDER
+                .comment("Lumen Moon damage.")
+                .defineInRange("damage", 40.0D, 0.0D, 1000000.0D);
+        LUMEN_RADIUS = BUILDER
+                .comment("Lumen Moon range.")
+                .defineInRange("radius", 3.0D, 0.1D, 32.0D);
+        LUMEN_STAR_DAMAGE = BUILDER
+                .comment("Lumen Star damage.")
+                .defineInRange("starDamage", 12.0D, 0.0D, 1000000.0D);
+        LUMEN_STAR_RADIUS = BUILDER
+                .comment("Lumen Star range.")
+                .defineInRange("starRadius", 1.5D, 0.1D, 32.0D);
         BUILDER.pop();
 
         BUILDER.push("dreamcatcher_box");

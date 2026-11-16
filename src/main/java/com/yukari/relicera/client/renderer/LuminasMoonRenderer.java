@@ -34,11 +34,6 @@ public final class LuminasMoonRenderer {
     }
 
     public static void render(LivingEntity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick) {
-        BakedModel model = getMoonModel();
-        if (model == null) {
-            return;
-        }
-
         float time = entity.tickCount + partialTick;
         float phase = (entity.getId() * 37 % 360) * Mth.DEG_TO_RAD;
         float angle = time * ORBIT_SPEED + phase;
@@ -55,6 +50,16 @@ public final class LuminasMoonRenderer {
         poseStack.scale(MOON_SCALE, MOON_SCALE, MOON_SCALE);
         poseStack.translate(-0.5D, -0.5D, -0.5D);
 
+        renderModel(poseStack, bufferSource);
+        poseStack.popPose();
+    }
+
+    private static void renderModel(PoseStack poseStack, MultiBufferSource bufferSource) {
+        BakedModel model = getMoonModel();
+        if (model == null) {
+            return;
+        }
+
         RenderType renderType = RenderType.translucent();
         VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
         Minecraft.getInstance().getBlockRenderer().getModelRenderer().renderModel(
@@ -70,7 +75,6 @@ public final class LuminasMoonRenderer {
                 ModelData.EMPTY,
                 renderType
         );
-        poseStack.popPose();
     }
 
     private static BakedModel getMoonModel() {

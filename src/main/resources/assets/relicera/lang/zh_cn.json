@@ -432,6 +432,16 @@
   "tooltip.relicera.silvering_solution.0": "可以对远古残骸使用。",
   "tooltip.relicera.feysilver_material.0": "需要阅读《精灵银的锻造术：中卷》",
 
+  "item.relicera.lumen": "流明",
+  "entity.relicera.lumen_moon": "流明之月",
+  "entity.relicera.lumen_star": "流明之星",
+  "enchantment.relicera.daylight": "白昼",
+  "enchantment.relicera.daylight.desc": "增加流明造成的伤害",
+  "enchantment.relicera.moonfrost": "广寒",
+  "enchantment.relicera.moonfrost.desc": "命中时，令目标陷入冻结",
+  "enchantment.relicera.starcrown": "星冕",
+  "enchantment.relicera.starcrown.desc": "命中时，分裂出多个流明之星",
+
   "item.relicera.cobblestone_template_base": "圆石模板基底",
   "item.relicera.terracotta_template_base": "陶瓦模板基底",
   "item.relicera.torchflower_ember": "火把花余烬",

@@ -8,6 +8,7 @@ import com.yukari.relicera.client.model.DevilsBearskinModel;
 import com.yukari.relicera.client.model.SurfaceGlovesModel;
 import com.yukari.relicera.client.model.TreasureHuntersGlovesModel;
 import com.yukari.relicera.client.renderer.LuminasMoonRenderer;
+import com.yukari.relicera.client.renderer.LumenProjectileRenderer;
 import com.yukari.relicera.client.renderer.BruteBeltRenderer;
 import com.yukari.relicera.client.renderer.BeltRenderer;
 import com.yukari.relicera.client.renderer.WarpedFungusBottleRenderer;
@@ -18,6 +19,8 @@ import com.yukari.relicera.client.particle.FlyParticle;
 import com.yukari.relicera.client.particle.GoldHeartParticle;
 import com.yukari.relicera.client.particle.HolyLightParticle;
 import com.yukari.relicera.client.particle.LichFireParticle;
+import com.yukari.relicera.client.particle.LumenExplosionParticle;
+import com.yukari.relicera.client.particle.CircleParticle;
 import com.yukari.relicera.client.renderer.TempestSprintHorseLayer;
 import com.yukari.relicera.client.renderer.SurfaceGlovesRenderer;
 import com.yukari.relicera.client.renderer.TreasureHuntersGlovesRenderer;
@@ -61,6 +64,12 @@ public final class ClientModEvents {
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             MenuScreens.register(ModMenuTypes.RELIC_REPAIR_TABLE.get(), RelicRepairTableScreen::new);
+            ItemProperties.register(ModItems.LUMEN.get(), ResourceLocation.withDefaultNamespace("pull"),
+                    (stack, level, entity, seed) -> entity != null && entity.getUseItem() == stack
+                            ? (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F : 0.0F);
+            ItemProperties.register(ModItems.LUMEN.get(), ResourceLocation.withDefaultNamespace("pulling"),
+                    (stack, level, entity, seed) -> entity != null && entity.isUsingItem()
+                            && entity.getUseItem() == stack ? 1.0F : 0.0F);
             MenuScreens.register(ModMenuTypes.FOURFOLD_SHERD_PENDANT.get(), FourfoldSherdPendantScreen::new);
             ItemProperties.register(ModItems.FORGELING_BUCKET.get(), ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "silvered"),
                     (stack, level, entity, seed) -> ForgelingBucketItem.isSilvered(stack) ? 1.0F : 0.0F);
@@ -100,6 +109,8 @@ public final class ClientModEvents {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.RELIC_REPAIR_TABLE.get(), RelicRepairTableRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.FORGELING.get(), ForgelingRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.LUMEN_MOON.get(), context -> new LumenProjectileRenderer<>(context, false));
+        event.registerEntityRenderer(ModEntityTypes.LUMEN_STAR.get(), context -> new LumenProjectileRenderer<>(context, true));
     }
 
     @SubscribeEvent
@@ -142,6 +153,10 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
         event.register(LuminasMoonRenderer.MOON_MODEL);
+        event.register(LumenProjectileRenderer.MOON_MODEL);
+        event.register(LumenProjectileRenderer.MOON_OUTLINE_MODEL);
+        event.register(LumenProjectileRenderer.STAR_MODEL);
+        event.register(LumenProjectileRenderer.STAR_OUTLINE_MODEL);
     }
 
     @SubscribeEvent
@@ -164,6 +179,8 @@ public final class ClientModEvents {
         event.registerSpriteSet(ModParticleTypes.DREAM_BUBBLE.get(), DreamBubbleParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.HOLY_LIGHT.get(), HolyLightParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.LICH_FIRE.get(), LichFireParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.LUMEN_EXPLOSION.get(), LumenExplosionParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.CIRCLE.get(), CircleParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.FEYSILVER_SOLUTION_POP.get(), SculkChargePopParticle.Provider::new);
     }
 }

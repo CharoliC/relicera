@@ -2,6 +2,8 @@ package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.entity.forgeling.Forgeling;
+import com.yukari.relicera.common.entity.lumen.LumenMoon;
+import com.yukari.relicera.common.entity.lumen.LumenStar;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,6 +22,22 @@ public final class ModEntityTypes {
                     .clientTrackingRange(8)
                     .updateInterval(3)
                     .build("forgeling"));
+
+    public static final RegistryObject<EntityType<LumenMoon>> LUMEN_MOON = ENTITY_TYPES.register("lumen_moon", () ->
+            EntityType.Builder.<LumenMoon>of(LumenMoon::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .fireImmune()
+                    .clientTrackingRange(8)
+                    .updateInterval(1)
+                    .build("lumen_moon"));
+
+    public static final RegistryObject<EntityType<LumenStar>> LUMEN_STAR = ENTITY_TYPES.register("lumen_star", () ->
+            EntityType.Builder.<LumenStar>of(LumenStar::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .fireImmune()
+                    .clientTrackingRange(8)
+                    .updateInterval(1)
+                    .build("lumen_star"));
 
     private ModEntityTypes() {
     }

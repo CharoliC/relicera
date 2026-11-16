@@ -5,6 +5,8 @@ import com.yukari.relicera.common.curio.CovenantTabletEffects;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,6 +41,9 @@ public final class ModCreativeModeTabs {
                                         output.accept(item.getDefaultInstance());
                                     }
                                 });
+                        ModEnchantments.ENCHANTMENTS.getEntries().stream().map(RegistryObject::get)
+                                .forEach(enchantment -> output.accept(EnchantedBookItem.createForEnchantment(
+                                        new EnchantmentInstance(enchantment, enchantment.getMaxLevel()))));
                     })
                     .build());
 

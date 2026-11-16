@@ -10,6 +10,7 @@ import com.yukari.relicera.registry.ModBlocks;
 import com.yukari.relicera.registry.ModCreativeModeTabs;
 import com.yukari.relicera.registry.ModEffects;
 import com.yukari.relicera.registry.ModEntityTypes;
+import com.yukari.relicera.registry.ModEnchantments;
 import com.yukari.relicera.registry.ModItems;
 import com.yukari.relicera.registry.ModLootModifiers;
 import com.yukari.relicera.registry.ModMenuTypes;
@@ -42,6 +43,7 @@ public class ReliceraMod {
         ModEffects.register(modEventBus);
         ModEntityTypes.register(modEventBus);
         ModItems.register(modEventBus);
+        ModEnchantments.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModMenuTypes.register(modEventBus);

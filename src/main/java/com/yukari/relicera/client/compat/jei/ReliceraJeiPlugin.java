@@ -100,6 +100,7 @@ public final class ReliceraJeiPlugin implements IModPlugin {
         addInfo(registration, ModItems.FEYSILVER_FORGING_ART_VOLUME_TWO.get(), "feysilver_forging_art_volume_two", 1);
         registerStonewallGreatshieldRepair(registration);
         registerDepthbreakerRepair(registration);
+        registerLumenRepair(registration);
         registerFeysilverToolRepair(registration, new ItemStack(ModItems.FEYSILVER_SWORD.get()), "feysilver_sword");
         registerFeysilverToolRepair(registration, new ItemStack(ModItems.FEYSILVER_PICKAXE.get()), "feysilver_pickaxe");
     }
@@ -145,6 +146,22 @@ public final class ReliceraJeiPlugin implements IModPlugin {
                 List.of(new ItemStack(Items.EMERALD_BLOCK)),
                 List.of(repairedShield),
                 ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil.stonewall_greatshield_repair")
+        );
+        registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
+    }
+
+    private static void registerLumenRepair(IRecipeRegistration registration) {
+        ItemStack damagedBow = new ItemStack(ModItems.LUMEN.get());
+        damagedBow.setDamageValue(damagedBow.getMaxDamage() - 1);
+        ItemStack repairedBow = damagedBow.copy();
+        repairedBow.setDamageValue(Math.max(0,
+                repairedBow.getDamageValue() - repairedBow.getMaxDamage() / 4));
+
+        var recipe = registration.getVanillaRecipeFactory().createAnvilRecipe(
+                damagedBow,
+                List.of(new ItemStack(Items.NETHER_STAR)),
+                List.of(repairedBow),
+                ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "anvil.lumen_repair")
         );
         registration.addRecipes(RecipeTypes.ANVIL, List.of(recipe));
     }

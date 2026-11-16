@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "relicera:entity/lumen_moon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "relicera:entity/lumen_star"
+    }
+  ]
+}

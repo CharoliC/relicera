@@ -2,6 +2,7 @@ package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.item.BladeRingItem;
+import com.yukari.relicera.common.item.LumenItem;
 import com.yukari.relicera.common.item.SweetGemItem;
 import com.yukari.relicera.common.item.TidewishShellItem;
 import com.yukari.relicera.common.item.DreamcatcherBoxItem;
@@ -86,6 +87,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ReliceraMod.MOD_ID);
+
+    public static final RegistryObject<Item> LUMEN = ITEMS.register("lumen", () ->
+            new LumenItem(new Item.Properties()
+                    .durability(1889)
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> PHILOSOPHERS_STONE = ITEMS.register("philosophers_stone", () ->
             new PhilosophersStoneItem(new Item.Properties()

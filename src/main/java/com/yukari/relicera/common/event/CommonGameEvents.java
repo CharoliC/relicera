@@ -38,6 +38,7 @@ import com.yukari.relicera.common.effect.furnaceofwar.FurnaceOfWarEffects;
 import com.yukari.relicera.common.effect.iluthiasblessing.IluthiasBlessingEffects;
 import com.yukari.relicera.common.effect.tempestsprint.TempestSprintEffects;
 import com.yukari.relicera.common.entity.forgeling.ForgelingWorksiteManager;
+import com.yukari.relicera.common.entity.lumen.LumenMoonfrost;
 import com.yukari.relicera.common.item.AstralStorybookItem;
 import com.yukari.relicera.common.item.feysilver.FeysilverForgingKnowledge;
 import com.yukari.relicera.common.item.feysilver.FeysilverToolAnvil;
@@ -477,6 +478,7 @@ public final class CommonGameEvents {
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        LumenMoonfrost.tick(event.getEntity());
         CurativeTalismanEffects.tick(event.getEntity());
         SufferersExultationEffects.tick(event.getEntity());
         LittleTailorsBeltEffects.clearIntimidatedTarget(event.getEntity());
