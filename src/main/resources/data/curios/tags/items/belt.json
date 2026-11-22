@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    {
+      "id": "relicera:prismatic_lamp",
+      "required": false
+    },
     "relicera:little_tailors_belt",
     "relicera:warrior_belt",
     "relicera:brute_belt",

@@ -1,4 +1,9 @@
 {
+  "item.lumen.fire": {
+    "sounds": [
+      "relicera:item/lumen_fire"
+    ]
+  },
   "item.immortal_soul_ring.shield": {
     "sounds": [
       "relicera:item/lich_shield"

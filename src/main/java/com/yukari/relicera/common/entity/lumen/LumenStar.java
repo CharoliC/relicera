@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -22,6 +21,7 @@ import java.util.UUID;
 
 public final class LumenStar extends AbstractArrow {
     private static final double BASE_ARROW_DAMAGE = 2.0D;
+    private static final float FLAME_CHANCE_PER_TICK = 0.15F;
     private double shotDamage = 12.0D;
     private double blastRadius = 1.5D;
     private UUID launchTarget;
@@ -55,16 +55,33 @@ public final class LumenStar extends AbstractArrow {
                 }
             }
         }
+        Vec3 previousPosition = position();
         super.tick();
         if (!isRemoved() && inGround) {
             detonate(position(), null);
         }
+        if (level().isClientSide() && !isRemoved() && !inGround) {
+            spawnFlameTrail(previousPosition);
+        }
+    }
+
+    private void spawnFlameTrail(Vec3 previousPosition) {
+        Vec3 movement = position().subtract(previousPosition);
+        if (movement.lengthSqr() < 0.000001D || random.nextFloat() >= FLAME_CHANCE_PER_TICK) {
+            return;
+        }
+        Vec3 point = previousPosition.add(movement.scale(random.nextDouble()));
+        level().addParticle(ParticleTypes.FLAME,
+                point.x + (random.nextDouble() - 0.5D) * 0.08D,
+                point.y + getBbHeight() * 0.5D + (random.nextDouble() - 0.5D) * 0.08D,
+                point.z + (random.nextDouble() - 0.5D) * 0.08D,
+                0.0D, 0.0D, 0.0D);
     }
 
     @Override
     protected boolean canHitEntity(Entity entity) {
-        return entity instanceof LivingEntity living && !entity.getUUID().equals(launchTarget)
-                && LumenCombat.canDamage(getOwner(), living) && super.canHitEntity(entity);
+        return !entity.getUUID().equals(launchTarget) && LumenCombat.canHit(getOwner(), entity)
+                && super.canHitEntity(entity);
     }
 
     @Override
@@ -92,6 +109,7 @@ public final class LumenStar extends AbstractArrow {
                 target -> shotDamage * getBaseDamage() / BASE_ARROW_DAMAGE, blastRadius,
                 (target, amount) -> LumenCombat.hurtIgnoringCooldown(target,
                         damageSources().arrow(this, getOwner()), amount));
+        LumenCombat.hurtEndCrystal(directTarget, this);
         discard();
     }
 

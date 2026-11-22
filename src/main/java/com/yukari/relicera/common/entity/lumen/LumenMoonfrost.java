@@ -1,7 +1,6 @@
 package com.yukari.relicera.common.entity.lumen;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -20,10 +19,10 @@ public final class LumenMoonfrost {
         if (target.level().isClientSide() || level <= 0 || !target.isAlive()) {
             return;
         }
-        level = Mth.clamp(level, 1, 3);
-        int duration = 80 * level;
+        int duration = (int) Math.min(Integer.MAX_VALUE, 80L * level);
         if (target.canFreeze()) {
-            target.setTicksFrozen(Math.max(target.getTicksFrozen(), target.getTicksRequiredToFreeze() + 2 * duration));
+            int frozenTicks = (int) Math.min(Integer.MAX_VALUE, target.getTicksRequiredToFreeze() + 160L * level);
+            target.setTicksFrozen(Math.max(target.getTicksFrozen(), frozenTicks));
         }
         CompoundTag state = target.getPersistentData().getCompound(STATE_KEY);
         if (state.getInt("Ticks") > 0 && state.getInt("Level") > level) {
@@ -50,7 +49,7 @@ public final class LumenMoonfrost {
             return;
         }
         state.putInt("Ticks", remaining);
-        updateSpeed(target, Mth.clamp(state.getInt("Level"), 1, 3));
+        updateSpeed(target, Math.max(state.getInt("Level"), 1));
     }
 
     private static void updateSpeed(LivingEntity target, int level) {
@@ -58,7 +57,7 @@ public final class LumenMoonfrost {
         if (speed == null) {
             return;
         }
-        double amount = -0.15D * level;
+        double amount = -Math.min(0.9D, 0.15D * level);
         AttributeModifier previous = speed.getModifier(SPEED_MODIFIER);
         if (previous == null || Double.compare(previous.getAmount(), amount) != 0) {
             speed.removeModifier(SPEED_MODIFIER);

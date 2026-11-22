@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "irons_spellbooks"
+    },
+    {
+      "type": "forge:item_exists",
+      "item": "irons_spellbooks:amethyst_resonance_charm"
+    }
+  ],
+  "pattern": [
+    " C ",
+    "CAC",
+    "SC "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "A": {
+      "item": "irons_spellbooks:amethyst_resonance_charm"
+    },
+    "S": {
+      "item": "relicera:soulknot_stone"
+    }
+  },
+  "result": {
+    "item": "relicera:shadow_manastone_charm",
+    "count": 1
+  }
+}

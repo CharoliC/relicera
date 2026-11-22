@@ -6,6 +6,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 
 public final class ModCommonConfig {
+    public static final ForgeConfigSpec.DoubleValue SHADOW_MANASTONE_CHARM_POWER_PER_SPELL;
+    public static final ForgeConfigSpec.DoubleValue MAGIC_SWORDSMANS_MEDAL_MELEE_BONUS;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ARCHMAGES_SILVER_RING_BOOK_BONUSES;
     public static final ForgeConfigSpec.DoubleValue LUMEN_DAMAGE;
     public static final ForgeConfigSpec.DoubleValue LUMEN_RADIUS;
     public static final ForgeConfigSpec.DoubleValue LUMEN_STAR_DAMAGE;
@@ -705,17 +708,17 @@ public final class ModCommonConfig {
 
         BUILDER.push("lumen");
         LUMEN_DAMAGE = BUILDER
-                .comment("Lumen Moon damage.")
+                .comment("Lumen Moon base damage.")
                 .defineInRange("damage", 40.0D, 0.0D, 1000000.0D);
         LUMEN_RADIUS = BUILDER
                 .comment("Lumen Moon range.")
-                .defineInRange("radius", 3.0D, 0.1D, 32.0D);
+                .defineInRange("radius", 4.5D, 0.1D, 32.0D);
         LUMEN_STAR_DAMAGE = BUILDER
-                .comment("Lumen Star damage.")
+                .comment("Lumen Star base damage.")
                 .defineInRange("starDamage", 12.0D, 0.0D, 1000000.0D);
         LUMEN_STAR_RADIUS = BUILDER
                 .comment("Lumen Star range.")
-                .defineInRange("starRadius", 1.5D, 0.1D, 32.0D);
+                .defineInRange("starRadius", 2.0D, 0.1D, 32.0D);
         BUILDER.pop();
 
         BUILDER.push("dreamcatcher_box");
@@ -758,10 +761,55 @@ public final class ModCommonConfig {
 
         BUILDER.pop();
 
+        BUILDER.push("archmages_silver_ring");
+        ARCHMAGES_SILVER_RING_BOOK_BONUSES = BUILDER
+                .comment("Spellbook item id|attribute id|bonus. 0.15 = +15%.")
+                .defineListAllowEmpty("bookBonuses", List.of(
+                        "irons_spellbooks:netherite_spell_book|irons_spellbooks:eldritch_spell_power|0.18",
+                        "irons_spellbooks:villager_spell_book|irons_spellbooks:holy_spell_power|0.15",
+                        "irons_spellbooks:evoker_spell_book|irons_spellbooks:evocation_spell_power|0.15",
+                        "irons_spellbooks:blaze_spell_book|irons_spellbooks:fire_spell_power|0.15",
+                        "irons_spellbooks:dragonskin_spell_book|irons_spellbooks:ender_spell_power|0.18",
+                        "irons_spellbooks:druidic_spell_book|irons_spellbooks:nature_spell_power|0.15",
+                        "irons_spellbooks:necronomicon_spell_book|irons_spellbooks:blood_spell_power|0.20",
+                        "irons_spellbooks:cursed_doll_spell_book|irons_spellbooks:blood_spell_power|0.15",
+                        "irons_spellbooks:ice_spell_book|irons_spellbooks:ice_spell_power|0.15"
+                ), value -> value instanceof String entry && SpellbookPowerBonus.parse(entry) != null);
+        BUILDER.pop();
+
+        BUILDER.push("shadow_manastone_charm");
+        SHADOW_MANASTONE_CHARM_POWER_PER_SPELL = BUILDER
+                .comment("Spell Power per learned Eldritch spell. 0.02 = +2%.")
+                .defineInRange("spellPowerPerLearnedSpell", 0.02D, 0.0D, 100.0D);
+        BUILDER.pop();
+
+        BUILDER.push("magic_swordsmans_medal");
+        MAGIC_SWORDSMANS_MEDAL_MELEE_BONUS = BUILDER
+                .comment("Melee damage bonus with inscribed weapon. 0.15 = +15%.")
+                .defineInRange("meleeDamageBonus", 0.15D, 0.0D, 100.0D);
+        BUILDER.pop();
         SPEC = BUILDER.build();
     }
 
     private ModCommonConfig() {
+    }
+
+    public record SpellbookPowerBonus(ResourceLocation book, ResourceLocation attribute, double amount) {
+        public static SpellbookPowerBonus parse(String entry) {
+            String[] parts = entry.split("\\|", -1);
+            if (parts.length != 3) {
+                return null;
+            }
+            ResourceLocation book = ResourceLocation.tryParse(parts[0].trim());
+            ResourceLocation attribute = ResourceLocation.tryParse(parts[1].trim());
+            try {
+                double amount = Double.parseDouble(parts[2].trim());
+                return book != null && attribute != null && Double.isFinite(amount) && amount >= 0
+                        ? new SpellbookPowerBonus(book, attribute, amount) : null;
+            } catch (NumberFormatException exception) {
+                return null;
+            }
+        }
     }
 
     private static boolean isValidResourceLocation(Object value) {

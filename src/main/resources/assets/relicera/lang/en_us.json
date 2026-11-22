@@ -323,6 +323,7 @@
   "tooltip.relicera.baroms_covenant_stone.14": "Throwing splash or lingering potions have a %1$s chance not consumed",
   "tooltip.relicera.baroms_covenant_stone.15": "Insert specific Covenant Tablet to activate effect",
   "tooltip.relicera.baroms_covenant_stone.16": "Contracted creatures become neutral, but killing one breaks its covenant",
+  "tooltip.relicera.baroms_covenant_stone.17": "Slightly increases armor toughness",
   "toast.relicera.covenant_established.title": "Covenant Established!",
   "toast.relicera.covenant_established.description": "Insert into Barom's Covenant Stone.",
   "toast.relicera.covenant_broken.title": "Covenant Broken!",
@@ -330,7 +331,29 @@
 
   "item.relicera.luminas_celestial_lens": "Luminas's Celestial Lens",
   "tooltip.relicera.luminas_celestial_lens.0": "A magical tool belonging to a certain god. It will not be lost after death.",
-  "tooltip.relicera.luminas_celestial_lens.1": "WIP",
+  "tooltip.relicera.luminas_celestial_lens.1": "Provide Fly",
+
+  "gui.relicera.archmages_silver_ring.0": "Include Initially Inscribed Spells",
+  "gui.relicera.archmages_silver_ring.1": "Exclude Initially Inscribed Spells",
+  "item.relicera.archmages_silver_ring": "Archmage's Silver Ring",
+  "tooltip.relicera.archmages_silver_ring.0": "Can open a GUI",
+  "tooltip.relicera.archmages_silver_ring.1": "Increases spell power for the spellbook's corresponding school",
+  "tooltip.relicera.archmages_silver_ring.2": "Increases the levels of the first four spells in the spellbook",
+  "tooltip.relicera.archmages_silver_ring.3": "[%s] Increases %s spell power",
+  "tooltip.relicera.archmages_silver_ring.4": "[%s] %s",
+  "tooltip.relicera.archmages_silver_ring.5": "+1 Level",
+  "tooltip.relicera.archmages_silver_ring.6": "[%s]",
+
+  "item.relicera.prismatic_lamp": "Prismatic Lamp",
+  "tooltip.relicera.prismatic_lamp.0": "Scroll recycling in Alchemist Cauldrons always succeeds",
+
+  "item.relicera.shadow_manastone_charm": "Shadow Manastone Charm",
+  "tooltip.relicera.shadow_manastone_charm.0": "Increases spell power based on the number of learned Eldritch spells",
+  "tooltip.relicera.shadow_manastone_charm.1": "+20% Mana Regeneration",
+  "tooltip.relicera.shadow_manastone_charm.2": "%s Spell Power",
+
+  "item.relicera.magic_swordsmans_medal": "Magic Swordsman's Medal",
+  "tooltip.relicera.magic_swordsmans_medal.0": "Deal %s more melee damage with weapon inscribed spells",
 
   "block.relicera.dreamcatcher_box": "Dreamcatcher Box",
   "container.relicera.dreamcatcher_box": "Dreamcatcher Box",
@@ -467,6 +490,7 @@
   "item.relicera.dried_crown": "Dried Crown",
   "item.relicera.weathered_mountain_covenant": "Weathered Mountain Covenant",
   "item.relicera.forgotten_night_veil": "Forgotten Night Veil",
+  "item.relicera.dim_celestial_lens": "Dim Celestial Lens",
 
   "container.relicera.relic_repair_table.hint.granbells_furnace.netherite_ingot": "Nether metal...?",
   "container.relicera.relic_repair_table.hint.granbells_furnace.solar_ember": "Searing flame...?",

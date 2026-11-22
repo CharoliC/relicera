@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    {"id": "relicera:magic_swordsmans_medal", "required": false},
     "relicera:master_smiths_brooch",
     "relicera:two_handed_sword_brooch",
     "relicera:vindicators_medal",

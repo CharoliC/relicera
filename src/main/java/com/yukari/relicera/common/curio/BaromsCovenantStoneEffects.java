@@ -3,6 +3,7 @@ package com.yukari.relicera.common.curio;
 import com.yukari.relicera.ReliceraMod;
 import com.yukari.relicera.common.effect.covenantbreaker.CovenantBreakerEffects;
 import com.yukari.relicera.common.item.BaromsCovenantStoneItem;
+import com.yukari.relicera.common.item.InscribedCovenantTabletItem;
 import com.yukari.relicera.common.network.ModNetworking;
 import com.yukari.relicera.common.network.packet.CovenantToastPacket;
 import com.yukari.relicera.config.ModCommonConfig;
@@ -18,7 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -108,14 +109,19 @@ public final class BaromsCovenantStoneEffects {
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        if (event.getEntity() instanceof Mob mob && !mob.level().isClientSide()
-                && mob.getTarget() != null
-                && isNeutralContractMob(mob, mob.getTarget())) {
-            if (mob instanceof Piglin piglin) {
-                piglin.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
-                piglin.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
-            }
+        if (!(event.getEntity() instanceof Mob mob) || mob.level().isClientSide()) {
+            return;
+        }
+        if (mob.getTarget() != null && isNeutralContractMob(mob, mob.getTarget())) {
             mob.setTarget(null);
+        }
+        if (mob.getBrain().checkMemory(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT)) {
+            mob.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET)
+                    .filter(target -> isNeutralContractMob(mob, target))
+                    .ifPresent(target -> {
+                        mob.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
+                        mob.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
+                    });
         }
     }
 
@@ -151,7 +157,8 @@ public final class BaromsCovenantStoneEffects {
 
     private static boolean isNeutralContractMob(Mob mob, LivingEntity wearer) {
         EntityType<?> entityType = mob.getType();
-        return (entityType == EntityType.IRON_GOLEM || entityType == EntityType.SILVERFISH
+        return (!InscribedCovenantTabletItem.hasSpecificContract(entityType)
+                        || entityType == EntityType.IRON_GOLEM || entityType == EntityType.SILVERFISH
                         || entityType == EntityType.PILLAGER || entityType == EntityType.ZOMBIE
                         || entityType == EntityType.CREEPER || entityType == EntityType.BLAZE
                         || entityType == EntityType.HUSK || entityType == EntityType.SKELETON

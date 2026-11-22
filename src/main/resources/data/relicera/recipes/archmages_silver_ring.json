@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {"type": "forge:mod_loaded", "modid": "irons_spellbooks"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:divine_soulshard"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:ice_rune"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:fire_rune"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:ancient_knowledge_fragment"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:mana_ring"}
+  ],
+  "pattern": ["ASA", "IMR", "CFC"],
+  "key": {
+    "A": {"item": "minecraft:amethyst_shard"},
+    "S": {"item": "irons_spellbooks:divine_soulshard"},
+    "I": {"item": "irons_spellbooks:ice_rune"},
+    "R": {"item": "irons_spellbooks:fire_rune"},
+    "M": {"item": "irons_spellbooks:mana_ring"},
+    "C": {"item": "irons_spellbooks:ancient_knowledge_fragment"},
+    "F": {"item": "relicera:feysilver_ingot"}
+  },
+  "result": {"item": "relicera:archmages_silver_ring", "count": 1}
+}

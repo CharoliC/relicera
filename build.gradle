@@ -134,6 +134,12 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    exclusiveContent {
+        forRepository {
+            maven { url = 'https://api.modrinth.com/maven' }
+        }
+        filter { includeVersion('maven.modrinth', 'irons-spells-n-spellbooks', irons_spellbooks_version) }
+    }
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -192,6 +198,7 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:lootr:${lootr_version}")
     runtimeOnly fg.deobf("maven.modrinth:lootr:${lootr_version}")
     compileOnly fg.deobf("curse.maven:the-twilight-forest-227639:${twilight_forest_file_id}")
+    compileOnly fg.deobf("maven.modrinth:irons-spells-n-spellbooks:${irons_spellbooks_version}")
     runtimeOnly fg.deobf("curse.maven:the-twilight-forest-227639:${twilight_forest_file_id}")
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository

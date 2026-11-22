@@ -10,8 +10,10 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.OwnableEntity;
+import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -21,6 +23,16 @@ import java.util.function.ToDoubleFunction;
 
 final class LumenCombat {
     private LumenCombat() {
+    }
+
+    static boolean canHit(Entity owner, Entity target) {
+        return target instanceof EndCrystal || target instanceof LivingEntity living && canDamage(owner, living);
+    }
+
+    static void hurtEndCrystal(Entity target, AbstractArrow projectile) {
+        if (target instanceof EndCrystal crystal && !crystal.isRemoved()) {
+            crystal.hurt(projectile.damageSources().arrow(projectile, projectile.getOwner()), 1.0F);
+        }
     }
 
     static boolean canDamage(Entity owner, LivingEntity target) {

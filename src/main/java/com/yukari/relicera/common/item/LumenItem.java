@@ -1,9 +1,12 @@
 package com.yukari.relicera.common.item;
 
 import com.yukari.relicera.common.entity.lumen.LumenMoon;
+import com.yukari.relicera.common.network.ModNetworking;
+import com.yukari.relicera.common.network.packet.CameraShakePacket;
 import com.yukari.relicera.registry.ModEntityTypes;
 import com.yukari.relicera.registry.ModEnchantments;
-import net.minecraft.sounds.SoundEvents;
+import com.yukari.relicera.registry.ModSoundEvents;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -66,8 +69,12 @@ public final class LumenItem extends BowItem {
                 return;
             }
             stack.hurtAndBreak(1, player, holder -> holder.broadcastBreakEvent(player.getUsedItemHand()));
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT,
-                    SoundSource.PLAYERS, 1.0F, 1.0F / (level.random.nextFloat() * 0.4F + 1.2F) + power * 0.5F);
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSoundEvents.LUMEN_FIRE.get(),
+                    SoundSource.PLAYERS, 0.2F + 0.5F * power, 1.2F - 0.2F * power);
+            if (player instanceof ServerPlayer serverPlayer) {
+                ModNetworking.sendToPlayer(new CameraShakePacket(Math.round(4.0F + 4.0F * power),
+                        0.8F * power), serverPlayer);
+            }
             player.awardStat(Stats.ITEM_USED.get(this));
         }
     }

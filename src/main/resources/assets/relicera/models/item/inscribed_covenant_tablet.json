@@ -55,6 +55,10 @@
     {
       "predicate": {"relicera:contract_entity": 13},
       "model": "relicera:item/inscribed_covenant_tablet_witch"
+    },
+    {
+      "predicate": {"relicera:contract_entity": 14},
+      "model": "relicera:item/inscribed_covenant_tablet_generic"
     }
   ]
 }

@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    {
+      "id": "relicera:archmages_silver_ring",
+      "required": false
+    },
     "relicera:blade_ring",
     "relicera:ashen_touch",
     "relicera:divine_severance_ring",

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    {"id": "relicera:shadow_manastone_charm", "required": false},
     "relicera:tidewish_shell",
     "relicera:ephemeral_bloom_pendant",
     "relicera:fourfold_sherd_pendant"

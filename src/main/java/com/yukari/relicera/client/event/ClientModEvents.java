@@ -7,7 +7,6 @@ import com.yukari.relicera.client.model.BruteBeltModel;
 import com.yukari.relicera.client.model.DevilsBearskinModel;
 import com.yukari.relicera.client.model.SurfaceGlovesModel;
 import com.yukari.relicera.client.model.TreasureHuntersGlovesModel;
-import com.yukari.relicera.client.renderer.LuminasMoonRenderer;
 import com.yukari.relicera.client.renderer.LumenProjectileRenderer;
 import com.yukari.relicera.client.renderer.BruteBeltRenderer;
 import com.yukari.relicera.client.renderer.BeltRenderer;
@@ -25,6 +24,7 @@ import com.yukari.relicera.client.renderer.TempestSprintHorseLayer;
 import com.yukari.relicera.client.renderer.SurfaceGlovesRenderer;
 import com.yukari.relicera.client.renderer.TreasureHuntersGlovesRenderer;
 import com.yukari.relicera.client.screen.FourfoldSherdPendantScreen;
+import com.yukari.relicera.client.screen.ArchmagesSilverRingScreen;
 import com.yukari.relicera.client.renderer.RelicRepairTableRenderer;
 import com.yukari.relicera.client.screen.RelicRepairTableScreen;
 import com.yukari.relicera.client.tooltip.ClientFiveSlotContentsTooltip;
@@ -71,6 +71,9 @@ public final class ClientModEvents {
                     (stack, level, entity, seed) -> entity != null && entity.isUsingItem()
                             && entity.getUseItem() == stack ? 1.0F : 0.0F);
             MenuScreens.register(ModMenuTypes.FOURFOLD_SHERD_PENDANT.get(), FourfoldSherdPendantScreen::new);
+            if (ModMenuTypes.ARCHMAGES_SILVER_RING.isPresent()) {
+                MenuScreens.register(ModMenuTypes.ARCHMAGES_SILVER_RING.get(), ArchmagesSilverRingScreen::new);
+            }
             ItemProperties.register(ModItems.FORGELING_BUCKET.get(), ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "silvered"),
                     (stack, level, entity, seed) -> ForgelingBucketItem.isSilvered(stack) ? 1.0F : 0.0F);
             ItemProperties.register(ModItems.PASTORAL_MELODY.get(), ResourceLocation.fromNamespaceAndPath("minecraft", "tooting"),
@@ -152,7 +155,6 @@ public final class ClientModEvents {
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-        event.register(LuminasMoonRenderer.MOON_MODEL);
         event.register(LumenProjectileRenderer.MOON_MODEL);
         event.register(LumenProjectileRenderer.MOON_OUTLINE_MODEL);
         event.register(LumenProjectileRenderer.STAR_MODEL);

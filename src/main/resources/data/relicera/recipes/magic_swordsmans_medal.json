@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "irons_spellbooks"
+    },
+    {
+      "type": "forge:item_exists",
+      "item": "irons_spellbooks:arcane_rune"
+    },
+    {
+      "type": "forge:item_exists",
+      "item": "irons_spellbooks:mithril_scrap"
+    }
+  ],
+  "pattern": [
+    "AAA",
+    "ARA",
+    "CMC"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "R": {
+      "item": "irons_spellbooks:arcane_rune"
+    },
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "M": {
+      "item": "irons_spellbooks:mithril_scrap"
+    }
+  },
+  "result": {
+    "item": "relicera:magic_swordsmans_medal",
+    "count": 1
+  }
+}

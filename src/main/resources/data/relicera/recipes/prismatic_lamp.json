@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {"type": "forge:mod_loaded", "modid": "irons_spellbooks"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:mithril_scrap"},
+    {"type": "forge:item_exists", "item": "irons_spellbooks:cinder_essence"}
+  ],
+  "pattern": ["IMI", "PCP", "GRG"],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "G": {"item": "minecraft:gold_ingot"},
+    "M": {"item": "irons_spellbooks:mithril_scrap"},
+    "P": {"item": "minecraft:glass_pane"},
+    "C": {"item": "irons_spellbooks:cinder_essence"},
+    "R": {"item": "relicera:alchemical_residue"}
+  },
+  "result": {"item": "relicera:prismatic_lamp", "count": 1}
+}

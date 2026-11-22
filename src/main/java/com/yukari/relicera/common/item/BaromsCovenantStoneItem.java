@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -66,6 +67,9 @@ public final class BaromsCovenantStoneItem extends RelicCurioItem implements Sel
 
     private static void appendBaromsCovenantContractTooltip(List<Component> tooltip, ItemStack contract) {
         EntityType<?> entityType = InscribedCovenantTabletItem.getContractEntity(contract);
+        if (entityType == null) {
+            return;
+        }
         int effectLine;
         if (entityType == EntityType.IRON_GOLEM) {
             effectLine = 1;
@@ -94,7 +98,7 @@ public final class BaromsCovenantStoneItem extends RelicCurioItem implements Sel
         } else if (entityType == EntityType.WITCH) {
             effectLine = 14;
         } else {
-            return;
+            effectLine = 17;
         }
 
         tooltip.add(contract.getHoverName().copy().withStyle(ChatFormatting.BLUE));
@@ -134,9 +138,19 @@ public final class BaromsCovenantStoneItem extends RelicCurioItem implements Sel
             SlotContext context, UUID uuid, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> modifiers =
                 HashMultimap.create(super.getAttributeModifiers(context, uuid, stack));
-        if (!context.cosmetic() && RELIC_SLOT.equals(context.identifier())
-                && hasContract(stack, EntityType.ENDER_DRAGON)) {
-            CuriosApi.addSlotModifier(modifiers, RELIC_SLOT, uuid, 1.0D, AttributeModifier.Operation.ADDITION);
+        if (!context.cosmetic() && RELIC_SLOT.equals(context.identifier())) {
+            if (hasContract(stack, EntityType.ENDER_DRAGON)) {
+                CuriosApi.addSlotModifier(modifiers, RELIC_SLOT, uuid, 1.0D, AttributeModifier.Operation.ADDITION);
+            }
+            long genericContracts = getContracts(stack).stream()
+                    .map(InscribedCovenantTabletItem::getContractEntity)
+                    .filter(type -> type != null && !InscribedCovenantTabletItem.hasSpecificContract(type))
+                    .distinct().count();
+            if (genericContracts > 0) {
+                modifiers.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid,
+                        "Relicera Barom generic covenant toughness", 2.0D * genericContracts,
+                        AttributeModifier.Operation.ADDITION));
+            }
         }
         return modifiers;
     }

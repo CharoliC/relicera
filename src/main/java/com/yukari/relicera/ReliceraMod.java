@@ -1,6 +1,9 @@
 package com.yukari.relicera;
 
 import com.yukari.relicera.common.compat.lootr.LootrTreasureHuntersGlovesCompat;
+import com.yukari.relicera.common.compat.irons_spellbooks.ArchmagesSilverRingCompat;
+import com.yukari.relicera.common.compat.irons_spellbooks.ShadowManastoneCharmCompat;
+import com.yukari.relicera.common.compat.irons_spellbooks.MagicSwordsmansMedalCompat;
 import com.yukari.relicera.common.compat.twilightforest.ImmortalSoulRingCompat;
 import com.yukari.relicera.common.network.ModNetworking;
 import com.yukari.relicera.config.ModClientConfig;
@@ -59,6 +62,11 @@ public class ReliceraMod {
         }
         if (ModList.get().isLoaded("twilightforest")) {
             MinecraftForge.EVENT_BUS.register(ImmortalSoulRingCompat.class);
+        }
+        if (ModList.get().isLoaded("irons_spellbooks")) {
+            MinecraftForge.EVENT_BUS.register(ArchmagesSilverRingCompat.class);
+            MinecraftForge.EVENT_BUS.register(ShadowManastoneCharmCompat.class);
+            MinecraftForge.EVENT_BUS.register(MagicSwordsmansMedalCompat.class);
         }
     }
 }

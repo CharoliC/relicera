@@ -14,7 +14,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -37,6 +41,11 @@ public final class InscribedCovenantTabletItem extends Item {
     }
 
     public static boolean supports(EntityType<?> entityType) {
+        return entityType != null && entityType != EntityType.PLAYER && entityType != EntityType.ARMOR_STAND
+                && DefaultAttributes.hasSupplier(entityType);
+    }
+
+    public static boolean hasSpecificContract(EntityType<?> entityType) {
         return CONTRACT_ENTITIES.contains(entityType);
     }
 
@@ -62,7 +71,11 @@ public final class InscribedCovenantTabletItem extends Item {
 
     public static float getModelIndex(ItemStack stack) {
         EntityType<?> entityType = getContractEntity(stack);
-        return entityType == null ? 0.0F : CONTRACT_ENTITIES.indexOf(entityType) + 1.0F;
+        if (entityType == null) {
+            return 0.0F;
+        }
+        int index = CONTRACT_ENTITIES.indexOf(entityType);
+        return index < 0 ? CONTRACT_ENTITIES.size() + 1.0F : index + 1.0F;
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -81,8 +94,12 @@ public final class InscribedCovenantTabletItem extends Item {
                 || event.getEntity().hasEffect(ModEffects.COVENANT_BREAKER.get())) {
             return;
         }
-        EntityType<?> entityType = target instanceof EnderDragonPart part
-                ? part.parentMob.getType() : target.getType();
+        Entity resolvedTarget = target instanceof EnderDragonPart part ? part.parentMob : target;
+        if (!(resolvedTarget instanceof LivingEntity) || resolvedTarget instanceof Player
+                || resolvedTarget instanceof ArmorStand) {
+            return;
+        }
+        EntityType<?> entityType = resolvedTarget.getType();
         if (!supports(entityType)) {
             return;
         }

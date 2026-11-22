@@ -1,7 +1,11 @@
 package com.yukari.relicera.registry;
 
 import com.yukari.relicera.ReliceraMod;
+import com.yukari.relicera.common.item.ShadowManastoneCharmItem;
+import com.yukari.relicera.common.item.MagicSwordsmansMedalItem;
 import com.yukari.relicera.common.item.BladeRingItem;
+import com.yukari.relicera.common.item.PrismaticLampItem;
+import com.yukari.relicera.common.item.ArchmagesSilverRingItem;
 import com.yukari.relicera.common.item.LumenItem;
 import com.yukari.relicera.common.item.SweetGemItem;
 import com.yukari.relicera.common.item.TidewishShellItem;
@@ -87,12 +91,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ReliceraMod.MOD_ID);
-
-    public static final RegistryObject<Item> LUMEN = ITEMS.register("lumen", () ->
-            new LumenItem(new Item.Properties()
-                    .durability(1889)
-                    .rarity(ReliceraMod.LEGENDARY)
-                    .fireResistant()));
 
     public static final RegistryObject<Item> PHILOSOPHERS_STONE = ITEMS.register("philosophers_stone", () ->
             new PhilosophersStoneItem(new Item.Properties()
@@ -335,6 +333,12 @@ public final class ModItems {
             : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "verdant_scale_belt"),
                     ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
+    public static final RegistryObject<Item> PRISMATIC_LAMP = ModList.get().isLoaded("irons_spellbooks")
+            ? ITEMS.register("prismatic_lamp", () -> new PrismaticLampItem(new Item.Properties()
+            .stacksTo(1).rarity(Rarity.RARE)))
+            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "prismatic_lamp"),
+            ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
+
     public static final RegistryObject<Item> EPHEMERAL_BLOOM_PENDANT = ITEMS.register("ephemeral_bloom_pendant", () ->
             new EphemeralBloomPendantItem(new Item.Properties()
                     .stacksTo(1)
@@ -349,6 +353,11 @@ public final class ModItems {
             new FourfoldSherdPendantItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> SHADOW_MANASTONE_CHARM = ModList.get().isLoaded("irons_spellbooks")
+            ? ITEMS.register("shadow_manastone_charm", () -> new ShadowManastoneCharmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)))
+            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "shadow_manastone_charm"),
+            ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
     public static final RegistryObject<Item> LEATHER_GLOVES = ITEMS.register("leather_gloves", () ->
             new LeatherGlovesItem(new Item.Properties()
@@ -396,13 +405,6 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)));
 
-    public static final RegistryObject<Item> IMMORTAL_SOUL_RING = ModList.get().isLoaded("twilightforest")
-            ? ITEMS.register("immortal_soul_ring", () -> new ImmortalSoulRingItem(new Item.Properties()
-                    .stacksTo(1)
-                    .rarity(Rarity.EPIC)))
-            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "immortal_soul_ring"),
-                    ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
-
     public static final RegistryObject<RippleheartRingItem> RIPPLEHEART_RING_RED = ITEMS.register("rippleheart_ring_red", () ->
             new RippleheartRingItem(new Item.Properties()
                     .stacksTo(1)
@@ -412,6 +414,19 @@ public final class ModItems {
             new RippleheartRingItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC), RippleheartRingItem.RingSide.BLUE));
+
+    public static final RegistryObject<Item> ARCHMAGES_SILVER_RING = ModList.get().isLoaded("irons_spellbooks")
+            ? ITEMS.register("archmages_silver_ring", () -> new ArchmagesSilverRingItem(new Item.Properties()
+            .stacksTo(1).rarity(Rarity.EPIC)))
+            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "archmages_silver_ring"),
+            ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
+
+    public static final RegistryObject<Item> IMMORTAL_SOUL_RING = ModList.get().isLoaded("twilightforest")
+            ? ITEMS.register("immortal_soul_ring", () -> new ImmortalSoulRingItem(new Item.Properties()
+            .stacksTo(1)
+            .rarity(Rarity.EPIC)))
+            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "immortal_soul_ring"),
+            ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
     public static final RegistryObject<Item> WARPED_FUNGUS_BOTTLE = ITEMS.register("warped_fungus_bottle", () ->
             new WarpedFungusBottleItem(new Item.Properties()
@@ -467,6 +482,11 @@ public final class ModItems {
             new TwoHandedSwordBroochItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> MAGIC_SWORDSMANS_MEDAL = ModList.get().isLoaded("irons_spellbooks")
+            ? ITEMS.register("magic_swordsmans_medal", () -> new MagicSwordsmansMedalItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)))
+            : RegistryObject.createOptional(ResourceLocation.fromNamespaceAndPath(ReliceraMod.MOD_ID, "magic_swordsmans_medal"),
+            ForgeRegistries.Keys.ITEMS, ReliceraMod.MOD_ID);
 
     public static final RegistryObject<Item> VINDICATORS_MEDAL = ITEMS.register("vindicators_medal", () ->
             new VindicatorsMedalItem(new Item.Properties()
@@ -532,10 +552,21 @@ public final class ModItems {
                     .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)));
 
+    public static final RegistryObject<Item> DIM_CELESTIAL_LENS = ITEMS.register("dim_celestial_lens", () ->
+            new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)));
+
     public static final RegistryObject<Item> LUMINAS_CELESTIAL_LENS = ITEMS.register("luminas_celestial_lens", () ->
             new LuminasCelestialLensItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(ReliceraMod.LEGENDARY)));
+
+    public static final RegistryObject<Item> LUMEN = ITEMS.register("lumen", () ->
+            new LumenItem(new Item.Properties()
+                    .durability(1889)
+                    .rarity(ReliceraMod.LEGENDARY)
+                    .fireResistant()));
 
     public static final RegistryObject<Item> SILVERED_DEBRIS = ITEMS.register("silvered_debris", () ->
             new SilveredDebrisItem(ModBlocks.SILVERED_DEBRIS.get(), new Item.Properties()

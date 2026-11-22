@@ -323,6 +323,7 @@
   "tooltip.relicera.baroms_covenant_stone.14": "投掷喷溅或滞留药水时，有 %1$s 概率不消耗药水",
   "tooltip.relicera.baroms_covenant_stone.15": "放入特定的的契约石板以生效",
   "tooltip.relicera.baroms_covenant_stone.16": "石板对应的生物将会中立，但击杀会导致契约破碎",
+  "tooltip.relicera.baroms_covenant_stone.17": "略微提升盔甲韧性",
   "toast.relicera.covenant_established.title": "契约已建立！",
   "toast.relicera.covenant_established.description": "放入巴洛姆的契约石中以生效。",
   "toast.relicera.covenant_broken.title": "契约已破碎！",
@@ -330,7 +331,29 @@
 
   "item.relicera.luminas_celestial_lens": "露米娜斯的观星镜",
   "tooltip.relicera.luminas_celestial_lens.0": "属于某位神明的魔法道具，不会在死亡后丢失。",
-  "tooltip.relicera.luminas_celestial_lens.1": "待定",
+  "tooltip.relicera.luminas_celestial_lens.1": "可以进行飞行",
+
+  "gui.relicera.archmages_silver_ring.0": "包含初始铭刻的法术",
+  "gui.relicera.archmages_silver_ring.1": "排除初始铭刻的法术",
+  "item.relicera.archmages_silver_ring": "大魔法师的戒指",
+  "tooltip.relicera.archmages_silver_ring.0": "可打开 GUI",
+  "tooltip.relicera.archmages_silver_ring.1": "提升法术书对应学派的法术强度",
+  "tooltip.relicera.archmages_silver_ring.2": "提升法术书中前四个法术的等级",
+  "tooltip.relicera.archmages_silver_ring.3": "[%s] 提升%s学派的法术强度",
+  "tooltip.relicera.archmages_silver_ring.4": "[%s] %s",
+  "tooltip.relicera.archmages_silver_ring.5": "等级+1",
+  "tooltip.relicera.archmages_silver_ring.6": "[%s]",
+
+  "item.relicera.prismatic_lamp": "虹光炼金灯",
+  "tooltip.relicera.prismatic_lamp.0": "在炼金锅中回收卷轴时，必定成功",
+
+  "item.relicera.shadow_manastone_charm": "幽影魔石护符",
+  "tooltip.relicera.shadow_manastone_charm.0": "依据习得的邪术数量，提升法术强度",
+  "tooltip.relicera.shadow_manastone_charm.1": "+20% 法力恢复",
+  "tooltip.relicera.shadow_manastone_charm.2": "%s 法术强度",
+
+  "item.relicera.magic_swordsmans_medal": "魔剑士的徽章",
+  "tooltip.relicera.magic_swordsmans_medal.0": "使用铭刻有法术的武器，造成的近战伤害提高 %s",
 
   "block.relicera.dreamcatcher_box": "捕梦匣",
   "container.relicera.dreamcatcher_box": "捕梦匣",
@@ -467,6 +490,7 @@
   "item.relicera.dried_crown": "干涸的深海王冠",
   "item.relicera.weathered_mountain_covenant": "风化的山脉契约",
   "item.relicera.forgotten_night_veil": "被遗忘的黑夜面纱",
+  "item.relicera.dim_celestial_lens": "黯淡的观星镜",
 
   "container.relicera.relic_repair_table.hint.granbells_furnace.netherite_ingot": "下界的贵金属...？",
   "container.relicera.relic_repair_table.hint.granbells_furnace.solar_ember": "炽热的火焰...？",

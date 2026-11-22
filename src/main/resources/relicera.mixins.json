@@ -2,9 +2,11 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.yukari.relicera.mixin",
+  "plugin": "com.yukari.relicera.mixin.ReliceraMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "relicera.refmap.json",
   "mixins": [
+    "compat.irons_spellbooks.AlchemistCauldronMixin",
     "AbstractHorseMixin",
     "ArmorTrimMixin",
     "AxolotlMixin",
@@ -35,7 +37,8 @@
     "VillagerMixin",
     "VillagerHostilesSensorMixin",
     "WardenEntitySensorMixin",
-    "WardenMixin"
+    "WardenMixin",
+    "WitherBossMixin"
   ],
   "client": [
     "client.LivingEntityRendererMixin",

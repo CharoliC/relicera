@@ -15,6 +15,7 @@ public final class ModSoundEvents {
     public static final RegistryObject<SoundEvent> PASTORAL_MELODY_PLAY = register("item.pastoral_melody.play");
     public static final RegistryObject<SoundEvent> RABBITS_POCKET_WATCH_USE = register("item.rabbits_pocket_watch.use");
     public static final RegistryObject<SoundEvent> IMMORTAL_SOUL_RING_SHIELD = register("item.immortal_soul_ring.shield");
+    public static final RegistryObject<SoundEvent> LUMEN_FIRE = register("item.lumen.fire");
 
     private ModSoundEvents() {
     }

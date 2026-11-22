@@ -31,8 +31,8 @@ public final class LumenMoon extends AbstractArrow {
     private static final double BASE_ARROW_DAMAGE = 2.0D;
     private static final int STATUS_DURATION_TICKS = 200;
     private static final double SHAKE_RADIUS = 12.0D;
-    private static final int SHAKE_DURATION_TICKS = 12;
-    private static final float SHAKE_INTENSITY = 2.0F;
+    private static final int SHAKE_DURATION_TICKS = 20;
+    private static final float SHAKE_INTENSITY = 3.0F;
     private double shotDamage = 40.0D;
     private double blastRadius = 3.0D;
     private boolean starcrown;
@@ -53,13 +53,13 @@ public final class LumenMoon extends AbstractArrow {
 
     public void configureShot(float power, boolean starcrown, int daylight, int moonfrost) {
         shotPower = Mth.clamp(power, 0.0F, 1.0F);
-        double daylightMultiplier = 1.0D + 0.2D * Mth.clamp(daylight, 0, 5);
+        double daylightMultiplier = 1.0D + 0.2D * Math.max(daylight, 0);
         shotDamage = ModCommonConfig.LUMEN_DAMAGE.get() * shotPower * daylightMultiplier;
         blastRadius = ModCommonConfig.LUMEN_RADIUS.get();
         this.starcrown = starcrown;
         starDamage = ModCommonConfig.LUMEN_STAR_DAMAGE.get() * shotPower * daylightMultiplier;
         starRadius = ModCommonConfig.LUMEN_STAR_RADIUS.get();
-        moonfrostLevel = Mth.clamp(moonfrost, 0, 3);
+        moonfrostLevel = Math.max(moonfrost, 0);
     }
 
     @Override
@@ -105,8 +105,7 @@ public final class LumenMoon extends AbstractArrow {
 
     @Override
     protected boolean canHitEntity(Entity entity) {
-        return entity instanceof LivingEntity living && LumenCombat.canDamage(getOwner(), living)
-                && super.canHitEntity(entity);
+        return LumenCombat.canHit(getOwner(), entity) && super.canHitEntity(entity);
     }
 
     @Override
@@ -141,6 +140,7 @@ public final class LumenMoon extends AbstractArrow {
                 SoundSource.PLAYERS, 1.0F, 1.2F);
         LumenCombat.hurtInRadius(level, center, getOwner(), directTarget, this::damageForTarget,
                 blastRadius, this::damageTarget);
+        LumenCombat.hurtEndCrystal(directTarget, this);
         if (starcrown) {
             releaseStars(level, center, directTarget);
         }
@@ -208,7 +208,7 @@ public final class LumenMoon extends AbstractArrow {
         blastRadius = Math.max(0.1D, tag.getDouble("LumenRadius"));
         age = tag.getInt("LumenAge");
         shotPower = tag.contains("LumenPower") ? Mth.clamp(tag.getFloat("LumenPower"), 0.0F, 1.0F) : 1.0F;
-        moonfrostLevel = Mth.clamp(tag.getInt("MoonfrostLevel"), 0, 3);
+        moonfrostLevel = Math.max(tag.getInt("MoonfrostLevel"), 0);
         starcrown = tag.getBoolean("Starcrown");
         starDamage = tag.getDouble("LumenStarDamage");
         starRadius = Math.max(0.1D, tag.getDouble("LumenStarRadius"));

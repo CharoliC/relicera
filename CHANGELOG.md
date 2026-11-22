@@ -1,3 +1,12 @@
+#### 1.2.8
+
++ Added crossover items for ISS: Magicswords' Medal, Shadow Manastone Charm, Prismatic Lamp, Archmage's Ring.
++ Added equipment: Lumen (unable to obtain).
++ Added 3 enchantments: Daylight, Moonfrost, Starcrown.
++ Added a common version for Inscribed Covenant Tablet.
+
+
+
 #### 1.2.7 
 
 + Added curios: Sweet Gem, Tidewish Shell, Blade Ring.
