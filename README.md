@@ -3,3 +3,4 @@
 
 A Minecraft mod that adds some curios.
 
+No updates for now.
